@@ -18,187 +18,166 @@ export function check(checker) {
     var next = checker.params[2];
     //flag to check if there is an error on not
     var flag: Boolean;
-    //status response to client
-    var stat: number;
     var bankchecked: Boolean;
-    function bank() {
-        bankchecked = true;
-        if (req.params.bid && !bankpermissions(req)) {
-            message = "User has no relation with this bank";
-            flag = true;
-            stat = 412;
-        }
-        return;
-    }
+    var viewchecked: Boolean;
+    var tmpname: string;
     function msg(str: string) {
         //var test = str.search('can_edit');
-        if (str.search('can_edit') != -1) {
-            str = 'can_edit';
-        }
-        else if (str.search('can_see') != -1) {
-            str = 'can_see';
-        }
-        else if (str.search('can_add') != -1) {
-            str = 'can_add';
+        if (str.search('can_') != -1) {
+            //msgdata.can_do.message = "User has no " + str;
+            tmpname = str;
+            str = 'can_do';
         }
         return str;
     }
+    function TransactionAccount(localflag: Boolean) {
+        localflag = false;
+        var msg: string;
+        function dubaccount(fromAcc) {
+            try {
+                if ((fromAcc == req.body.to.account_id) || (fromAcc == req.body.to.other_account_id)) {
+                    msg = "From and To Account are the same";
+                    return true;
+                }
+            } catch (err) { }
+            return false;
+        }
+        function checkbank(bank, path) {
+            if (!bank) {
+                msg = "Bank_ID missing in Path " + path;
+                return true;
+            }
+            return false;
+        }
+        function accountfields(account_id, other_account_id, bank, path) {
+            if (account_id && other_account_id) {
+                msg = "Account_id And Other_account_id cannot be together in Path " + path;
+                return true;
+            }
+            else if (!account_id && !other_account_id) {
+                msg = "account_id or other_account_id Missing in Path " + path;
+                return true;
+            }
+            else if (checkbank(bank, path)) {
+                return true;
+            }
+            else return false;
+        }
+        if (req.params.acid) {
+            if (checkbank(req.params.bid, 'url') || dubaccount(req.params.acid))
+                localflag = true;
+        }
+        else if (req.body.from) {
+            var account_id = req.body.from.account_id;
+            var other_account_id = req.body.from.other_account_id;
+            if (accountfields(account_id, other_account_id, req.body.from.bank_id, 'from')) {
+                localflag = true;
+            }
+            else if (dubaccount(account_id) || dubaccount(other_account_id)) {
+                localflag = true;
+            }
+        }
+        else {
+            msg = "from Missing";
+            localflag = true;
+        }
+        if (req.body.to) {
+            if (accountfields(req.body.to.account_id, req.body.to.other_account_id, req.body.to.bank_id, 'to'))
+            { localflag = true; }
+        }
+        else {
+            msg = "to Missing";
+            localflag = true;
+        }
+        msgdata.TransactionAccount.message = msg;
+        return localflag;
+    }
+    function permission(name: string) {
+        var msg: string = "User has no " + tmpname;
+        var x: Boolean = true;
+        var tempcheck: Boolean;
+        if (req.user) {
+            if (req.user[message]) { x = false; }
+            else {
+                if (!bankchecked) {
+                    if (msgdata.bank_id.flag(tempcheck)) {
+                        msgdata[name].message = msgdata.bank_id.message;
+                        msgdata[name].stat = msgdata.bank_id.stat;
+                        return x = true;
+                    }
+                }
+                {
+                    try { if (bankpermissions(req)[message]) { x = false } else { msg += " in Bank Permissions" } }
+                    catch (err) { if (x && (req.user[message] != false)) msg += " in Bank Permissions" }
+                };
+            }
+        };
+        if (x) {
+            if (!viewchecked) {
+                if (msgdata.view_id.flag(tempcheck)) {
+                    msgdata[name].message = msgdata.view_id.message;
+                    msgdata[name].stat = msgdata.view_id.stat;
+                    return x = true;
+                }
+            };
+            { try { if (req.params.view[message]) { x = false } else { msg = "User has no " + tmpname + " in Views" } } catch (err) { }; }
+        }
+        msgdata.can_do.message = msg;
+        return x;
+    }
+    function providers(localflag: Boolean) {
+        localflag = false;
+        var msg: string;
+        if (req.body.providers.length === undefined || req.body.providers.length == 0) {
+            msg = "No Provider Added";
+            localflag = true;
+        }
+        else {
+            req.body.providers.forEach(function (prov, index) {
+                if (JSON.stringify(prov) === "{}") {
+                    msg = "One of the Providers is Empty";
+                    localflag = true;
+                }
+                else {
+                    for (var i = index + 1; i < req.body.providers.length; i++) {
+                        if (prov.auth_provider_name == req.body.providers[i].auth_provider_name) {
+                            msg = "Duplicate Provider found";
+                            localflag = true;
+                        }
+                    }
+                }
+            });
+        }
+        msgdata.providers.message = msg;
+        return localflag;
+    }
+    var msgdata = {
+        //fieldname: { stat: 404, message: "not Found", flag: function (x: Boolean) { x = true; return x; } }, //example
+        data: { stat: 412, message: "No input data or wrong input data", flag: function (x: Boolean) { if (JSON.stringify(req.body) === "{}") { x = true } return x; } },
+        bank_id: { stat: 412, message: "User has no relation with this bank", flag: function (x: Boolean) { bankchecked = true; if (req.params.bid && !bankpermissions(req)) { x = true }; return x; } },
+        view_id: { stat: 404, message: "No View Available", flag: function (x: Boolean) { viewchecked = true; if (!req.params.view) { x = true }; return x; } },
+        customer_id: { stat: 404, message: "User is not a customer for this bank", flag: function (x: Boolean) { return permission('customer_id'); } },
+        can_do: { stat: 403, message: "Can Do Error", flag: function (x: Boolean) { return permission('can_do'); } },
+        providers: { stat: 501, message: "Providers Error", flag: function (x: Boolean) { return providers(x); } },
+        TransactionAccount: { stat: 400, message: "Transaction Account Error", flag: function (x: Boolean) { return TransactionAccount(x); } }
+    };
+
     for (var message of checker.field) {
-        var tempmsg = msg(message);
-        switch (tempmsg) {
-            case 'data':
-                if (JSON.stringify(req.body) === "{}") {
-                    message = "No input data or wrong input data";
-                    stat = 412;
-                    flag = true;
-                }
-                break;
-            case 'TransactionAccount':
-                function dubaccount(fromAcc) {
-                    try {
-                        if ((fromAcc == req.body.to.account_id) || (fromAcc == req.body.to.other_account_id)) {
-                            message = "From and To Account are the same";
-                            stat = 400;
-                            flag = true;
-                            return true;
-                        }
-                    } catch (err) { }
-                    return false;
-                }
-                function checkbank(bank, path) {
-                    if (!bank) {
-                        message = "Bank_ID missing on Path " + path;
-                        stat = 400;
-                        flag = true;
-                        return true;
-                    }
-                    return false;
-                }
-                if (req.params.acid) {
-                    if (checkbank(req.params.bid, 'url') || dubaccount(req.params.acid))
-                        break;
-                }
-                else if (req.body.from) {
-                    if (req.body.from.account_id && req.body.from.other_account_id) {
-                        message = "Account_id And Other_account_id cannot be together";
-                        stat = 400;
-                        flag = true;
-                        break;
-                    }
-                    if (req.body.from.account_id) {
-                        if (checkbank(req.body.from.bank_id, 'from') || dubaccount(req.body.from.account_id))
-                            break;
-                    }
-                    if (req.body.from.other_account_id) {
-                        if (checkbank(req.body.from.bank_id, 'from') || dubaccount(req.body.from.other_account_id))
-                            break;
-                    }
-                }
-                else {
-                    message = "from Missing";
-                    stat = 400;
-                    flag = true;
-                    break;
-                }
-                if (req.body.to) {
-                    if (req.body.to.account_id && req.body.to.other_account_id) {
-                        message = "Account_id And Other_account_id cannot be together";
-                        stat = 400;
-                        flag = true;
-                        break;
-                    }
-                    if (!req.body.to.account_id && !req.body.to.other_account_id) {
-                        message = "account_id or other_account_id Missing in Path To";
-                        stat = 400;
-                        flag = true;
-                        break;
-                    }
-                    if (checkbank(req.body.to.bank_id, 'to'))
-                    { break; }
-                }
-                else {
-                    message = "To Missing";
-                    stat = 400;
-                    flag = true;
-                    break;
-                }
-                break;
-            case 'providers':
-                function err2() {
-                    stat = 501;
-                    flag = true;
-                    return;
-                }
-                if (req.body.providers.length === undefined || req.body.providers.length == 0) {
-                    message = "No Provider Added";
-                    err2()
-                }
-                else {
-                    req.body.providers.forEach(function (prov, index) {
-                        if (JSON.stringify(prov) === "{}") {
-                            message = "One of the Providers is Empty";
-                            err2()
-                            return;
-                        }
-                        else {
-                            for (var i = index + 1; i < req.body.providers.length; i++) {
-                                if (prov.auth_provider_name == req.body.providers[i].auth_provider_name) {
-                                    message = "Duplicate Provider found";
-                                    err2()
-                                    return;
-                                }
-                            }
-                        }
-                    });
-                }
-                break;
-            case 'bank_id':
-                bank()
-                break;
-            case 'customer_id':
-                if (!bankchecked) { bank() }
-                if (req.params.bid && !bankpermissions(req)[message]) {
-                    message = "User is not a customer for this bank";
-                    stat = 404;
-                    flag = true;
-                }
-                break;
-            case 'can_edit':
-            case 'can_add':
-            case 'can_see':
-                //check if can do this process
-                function err() {
-                    message = "User has no " + message;
-                    stat = 403;
-                    flag = true;
-                    return;
-                }
-                if (req.user[message] !== undefined) {
-                    if (!req.user[message]) {
-                        err();
-                    }
-                    break;
-                }
-                else {
-                    if (!bankchecked) { bank() }
-                    if (bankpermissions(req)[message] !== undefined) {
-                        if (!bankpermissions(req)[message]) {
-                            err();
-                        }
-                        break;
-                    }
-                }
-            default:
-                console.log('Field ' + message + ' Not Exist');
-                flag = false;
-                break;
+        var tempmsg: string = msg(message);
+        if (msgdata[tempmsg]) {
+            var jsres: any = msgdata[tempmsg];
+            flag = jsres.flag(flag);
+        }
+        else {
+            console.log('Field ' + message + ' Not Exist');
+            flag = false;
+        }
+        if (flag) {
+            res.status(jsres.stat).send({ reqwas: req.body, error: jsres.message }); next(jsres.message)
+            return false;
         }
     }
-    if (flag) {
-        res.status(stat).send({ reqwas: req.body, error: message }); next(message)
-        return false;
-    }
-    else return true;
+    return true;
 }
 export function response(resp, name, res, next) {
     if (resp['error']) {
