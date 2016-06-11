@@ -3,6 +3,7 @@ import express = require('express');
 import transactionRequestsservice = require('../../services/transactionRequests/service');
 import transactionsservice = require('../../services/transactions/service');
 import commonfunct = require('../../implementation/commonfunct');
+var fields = commonfunct.check;
 import accountsservice = require('../../services/accounts/service');
 import Q = require('q');
 var name = { 'transaction-requests': null };
@@ -15,8 +16,9 @@ export function list(req: express.Request, res: express.Response, next) {
     );
 };
 export function listmore(req: express.Request, res: express.Response, next) {
-    var check = { field: ['data'], params: [req, res, next] };
-    if (commonfunct.check(check)) {
+    var check = { field: [], params: [req, res, next] };
+    check.field = ['data'];
+    if (fields(check)) {
         var question: any = {};
         if (req.body.uuid) { question.uuid = req.body.uuid; }
         if (req.params.id) { question._id = req.params.id; }
@@ -58,6 +60,7 @@ export function set(req: express.Request, res: express.Response, next) {
                                 function (resp) {
                                     input.transaction_ids.push(resp['data'].id.toString());
                                     if (!otheraccount) {
+                                        input.value.amount = -1 * input.value.amount;
                                         Q.nextTick(setRequest);
                                     }
                                 });
@@ -71,7 +74,6 @@ export function set(req: express.Request, res: express.Response, next) {
                             transactionsservice.set(null, transaction).then(
                                 function (resp) {
                                     input.transaction_ids.push(resp['data'].id.toString());
-                                    input.value.amount = -1 * input.value.amount;
                                     Q.nextTick(setRequest);
                                 });
                         };
@@ -81,8 +83,9 @@ export function set(req: express.Request, res: express.Response, next) {
             });
         }
     }
-    var check = { field: ['data', 'TransactionAccount'], params: [req, res, next] };
-    if (commonfunct.check(check)) {
+    var check = { field: [], params: [req, res, next] };
+    check.field = ['data', 'TransactionAccount'];
+    if (fields(check)) {
         var question: any = {};
         var transaction: any = {};
         var input = req.body;
@@ -95,6 +98,7 @@ export function set(req: express.Request, res: express.Response, next) {
         transaction.details.type = req.params.type;
         transaction.details.description = input.description;
         transaction.details.value = input.value;
+        transaction.details.value.amount = -1 * transaction.details.value.amount;
         question.from = {};
         if (req.params.id) { question._id = req.params.id; };
         if (req.params.acid || input.from.account_id) {
@@ -108,21 +112,32 @@ export function set(req: express.Request, res: express.Response, next) {
                 temp.bank_id = input.from.bank_id;
                 temp.account_id = input.from.account_id;
             }
+
             input.bank_id = temp.bank_id;
             input.account_id = temp.account_id;
 
             question.from.bank_id = temp.bank_id;
             question.from._id = temp.account_id;
+            
             accountsservice.listId(question.from).then(function (resp) {
-                if (resp['data']) {
+                var flag: boolean;
+                try { flag = resp['data'].views_available[0].can_initiate_transaction; } catch (err) { };
+                if (!flag) {
+                    check.field = ['can_add_all_transactions_for_banks'];
+                    if (fields(check)) { flag = true };
+                };
+                if (flag && resp['data']) {
                     fromaccount = true;
                     transaction.this_account_insystem = temp.account_id;
                     delete question.from;
                     Q.nextTick(transactionRequest);
                 }
-                else {
+                else if (resp['error']) {
                     resp['error'] = resp['error'].toString() + " in Path From/Url";
                     commonfunct.response(resp, name, res, next)
+                }
+                else {
+                    commonfunct.response(null, null, res, next)
                 }
             });
         }

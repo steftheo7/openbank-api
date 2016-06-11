@@ -2,6 +2,7 @@
 import express = require('express');
 import otherAccountsservice = require('../../services/otherAccounts/service');
 import commonfunct = require('../../implementation/commonfunct');
+var fields = commonfunct.check;
 var name = { otherAccounts: null };
 
 export function listbid(req: express.Request, res: express.Response, next) {
@@ -24,8 +25,9 @@ export function listid(req: express.Request, res: express.Response, next) {
     );
 };
 export function listmore(req: express.Request, res: express.Response, next) {
-    var check = { field: ['data'], params: [req, res, next] };
-    if (commonfunct.check(check)) {
+    var check = { field: [], params: [req, res, next] };
+    check.field = ['data'];
+    if (fields(check)) {
         var question: any = {};
         if (req.body.kind) { question.kind = commonfunct.customcontainsregexp(req.body.kind); }
         if (req.body.IBAN) { question.IBAN = req.body.IBAN; }

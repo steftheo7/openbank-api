@@ -2,6 +2,7 @@
 import express = require('express');
 import atmsservice = require('../../services/atms/service');
 import commonfunct = require('../../implementation/commonfunct');
+var fields = commonfunct.check;
 var name = { atms: null };
 
 export function listbid(req: express.Request, res: express.Response, next) {
@@ -24,8 +25,9 @@ export function listid(req: express.Request, res: express.Response, next) {
     );
 };
 export function listmore(req: express.Request, res: express.Response, next) {
-    var check = { field: ['data'], params: [req, res, next] };
-    if (commonfunct.check(check)) {
+    var check = { field: [], params: [req, res, next] };
+    check.field=['data'];
+    if (fields(check)) {
         var question: any = {};
         if (req.body.city) { question.city = commonfunct.customcontainsregexp(req.body.city); }
         if (req.body.name) { question.name = commonfunct.customcontainsregexp(req.body.name); }
@@ -39,8 +41,9 @@ export function listmore(req: express.Request, res: express.Response, next) {
     }
 };
 export function set(req: express.Request, res: express.Response, next) {
-    var check = { field: ['can_edit_atms'], params: [req, res, next] };
-    if (commonfunct.check(check)) {
+    var check = { field: [], params: [req, res, next] };
+    check.field=['can_edit_atms'];
+    if (fields(check)) {
         var question: any = {};
         var input = req.body;
         if (req.params.id) { question._id = req.params.id; }
@@ -53,8 +56,9 @@ export function set(req: express.Request, res: express.Response, next) {
     }
 };
 export function del(req: express.Request, res: express.Response, next) {
-    var check = { field: ['can_edit_atms'], params: [req, res, next] };
-    if (commonfunct.check(check)) {
+    var check = { field: [], params: [req, res, next] };
+    check.field=['can_edit_atms'];
+    if (fields(check)) {
         var question: any = {};
         if (req.params.id) { question._id = req.params.id; }
         atmsservice.del(question).then(

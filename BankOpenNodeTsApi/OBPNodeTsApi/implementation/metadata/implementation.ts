@@ -2,6 +2,7 @@
 import express = require('express');
 import metadatasservice = require('../../services/metadata/service');
 import commonfunct = require('../../implementation/commonfunct');
+var fields = commonfunct.check;
 var name = { metadata: null };
 
 export function list(req: express.Request, res: express.Response, next) {
@@ -12,8 +13,9 @@ export function list(req: express.Request, res: express.Response, next) {
     );
 };
 export function listmore(req: express.Request, res: express.Response, next) {
-    var check = { field: ['data'], params: [req, res, next] };
-    if (commonfunct.check(check)) {
+    var check = { field: [], params: [req, res, next] };
+    check.field = ['data'];
+    if (fields(check)) {
         var question: any = {};
         if (req.body.id) { question._id = req.body.id; }
         metadatasservice.listMore(question).then(
@@ -24,8 +26,9 @@ export function listmore(req: express.Request, res: express.Response, next) {
     }
 };
 export function get(req: express.Request, res: express.Response, next) {
-    var check = { field: ['data'], params: [req, res, next] };
-    if (commonfunct.check(check)) {
+    var check = { field: [], params: [req, res, next] };
+    check.field = ['data'];
+    if (fields(check)) {
         var question: any = {};
         if (req.body.id) { question._id = req.body.id; }
         metadatasservice.list(question).then(

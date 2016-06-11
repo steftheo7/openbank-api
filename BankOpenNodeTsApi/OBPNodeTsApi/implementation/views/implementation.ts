@@ -3,8 +3,22 @@ import express = require('express');
 import viewsservice = require('../../services/views/service');
 import accountsservice = require('../../services/accounts/service');
 import commonfunct = require('../../implementation/commonfunct');
+var fields = commonfunct.check;
 var name = { views: null };
 
+export function reqview(req: express.Request, res: express.Response, next) {
+    //console.log(req.params.id);
+    var question: any = {};
+    if (req.user) { question.user_id = { $in: [req.user.id] } };
+    question.bank_id = req.params.bid;
+    question._id = req.params.vid;
+    viewsservice.reqView(question).then(
+        function (resp) {
+            if (resp['data']) { req.params.view = resp['data'] };
+            next();
+        }
+    );
+};
 export function listbid(req: express.Request, res: express.Response, next) {
     var question: any = {};
     question.bank_id = req.params.bid;
@@ -29,8 +43,9 @@ export function listid(req: express.Request, res: express.Response, next) {
 };
 
 export function listmore(req: express.Request, res: express.Response, next) {
-    var check = { field: ['data'], params: [req, res, next] };
-    if (commonfunct.check(check)) {
+    var check = { field: [], params: [req, res, next] };
+    check.field = ['data'];
+    if (fields(check)) {
         var question: any = {};
         if (req.body.id) { question._id = req.body.id; }
         viewsservice.listMore(question).then(

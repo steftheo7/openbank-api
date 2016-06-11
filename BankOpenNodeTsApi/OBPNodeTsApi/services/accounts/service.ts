@@ -4,13 +4,14 @@ import mongoose = require('mongoose');
 import accountsmodels = require('../../models/accounts/model');
 import commonservice = require('../../services/commonservice');
 var accountmodel = new accountsmodels.account();
+var async = require('async');
 var name = 'Account';
 
-function checkview(schemaView, rq) {
+function checkview(schemaView, rqview) {
     function change(ret) {
         ret.views_available.forEach(function (view, index) {
             //console.log("viewid", index);
-            if (view.id == rq.view.id) {
+            if (view.id == rqview.id) {
                 if (!view.can_see_bank_account_balance && !view.can_see_bank_account_currency) { delete ret.balance; }
                 if (!view.can_see_bank_account_balance && view.can_see_bank_account_currency) { delete ret.balance.amount; }
                 //if (!view.can_see_bank_account_bank_name){delete ret.bank;}
@@ -34,7 +35,7 @@ function checkview(schemaView, rq) {
 //Transform
 export function transform(schema) {
     function change(ret) {
-        //     try { ret.bank_id = ret.bank_id.text; } catch (err) { }
+        try { ret.balance.amount = parseFloat((ret.balance.amount / 100).toFixed(2)); } catch (err) { };
         try {
             ret.views_available.map(
                 function (ret2) {
@@ -44,7 +45,7 @@ export function transform(schema) {
                     delete ret2.createdAt;
                     delete ret2.updatedAt;
                 })
-        } catch (err) { }
+        } catch (err) { };
         ret.id = ret._id;
         delete ret._id;
         delete ret.__v;
@@ -87,12 +88,11 @@ export function listId(string: string) {
     var deferred = Q.defer();
     var theaccount = mongoose.model('account', accountmodel._schema);
     theaccount.findOne(string).lean()
-        .select('_id balance')
+        .select('balance.currency')
+        .select('_id views_available')
+        .populate('views_available')
         .exec(function (err, found) {
-            if (found) {
-                delete found['balance'].amount;
-                found = transform(found);
-            }
+            found = transform(found);
             commonservice.answer(err, found, name, deferred);
         });
     return deferred.promise;
@@ -100,14 +100,14 @@ export function listId(string: string) {
 export function listIdView(string) {
     var deferred = Q.defer();
     var theaccount = mongoose.model('account', accountmodel._schema);
-    var rq = string.rq;
-    delete string.rq;
+    var view = string.view;
+    delete string.view;
     theaccount.findOne(string).lean()
         .select('label number owners type balance IBAN swift_bic views_available bank_id')
         .populate('views_available') // only works if we pushed refs to children
         .exec(function (err, found: accountsmodels.accountdef) {
             found = transform(found);
-            found = checkview(found, rq);
+            found = checkview(found, view);
             if (found && !found.views_available[0])
             { commonservice.answer("No view available", null, null, deferred); }
             else {
@@ -132,6 +132,7 @@ export function listMore(string: string) {
 export function set(string: string, object: accountsmodels.accountdef) {
     var deferred = Q.defer();
     var insert = accountmodel.set(object);
+    try { insert.balance.amount = parseFloat((insert.balance.amount * 100).toFixed()); } catch (err) { };
     var theaccount = mongoose.model('account', accountmodel._schema);
     if (JSON.stringify(string) === "{}") {
         commonservice.update(insert, theaccount, deferred);
@@ -153,14 +154,30 @@ export function setid(string, object) {
     var deferred = Q.defer();
     //var insert = {$push:{ views_available: object }};
     var theaccount = mongoose.model('account', accountmodel._schema);
-    theaccount.findOneAndUpdate(string, { $inc: { 'balance.amount': object } }, { new: true })
-        .select('balance')
+    theaccount.findOneAndUpdate(string, object, { new: true })
         .exec(function (err2, found) {
             if (err2) deferred.resolve({ error: err2, status: 400 });
             else if (!found) { deferred.resolve({ error: "Item not exists", status: 409 }) }
             else {
                 found = transform(found['_doc']);
                 deferred.resolve({ data: found, status: 201 })
+            }
+        });
+    return deferred.promise;
+}
+export function setamount(string, value: number) {
+    value = parseInt((value * 100).toFixed());
+    var deferred = Q.defer();
+    //var insert = {$push:{ views_available: object }};
+    var theaccount = mongoose.model('account', accountmodel._schema);
+    theaccount.findOneAndUpdate(string, { $inc: { 'balance.amount': value } }, { new: true })
+        .select('balance')
+        .exec(function (err2, found) {
+            if (err2) deferred.resolve({ error: err2, status: 400 });
+            else if (!found) { deferred.resolve({ error: "Item not exists", status: 409 }) }
+            else {
+                found = transform(found['_doc']);
+                deferred.resolve({ data: found, status: 201 });
             }
         });
     return deferred.promise;

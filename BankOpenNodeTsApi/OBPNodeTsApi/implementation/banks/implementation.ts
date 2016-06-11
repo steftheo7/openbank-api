@@ -2,6 +2,7 @@
 import express = require('express');
 import banksservice = require('../../services/banks/service');
 import commonfunct = require('../../implementation/commonfunct');
+var fields = commonfunct.check;
 var name = { banks: null };
 
 export function list(req: express.Request, res: express.Response, next) {
@@ -21,8 +22,9 @@ export function listid(req: express.Request, res: express.Response, next) {
     );
 };
 export function listmore(req: express.Request, res: express.Response, next) {
-    var check = { field: ['data'], params: [req, res, next] };
-    if (commonfunct.check(check)) {
+    var check = { field: [], params: [req, res, next] };
+    check.field = ['data'];
+    if (fields(check)) {
         var question: any = {};
         if (req.body.short_name) { question.short_name = commonfunct.customcontainsregexp(req.body.short_name); }
         if (req.body.full_name) { question.full_name = commonfunct.customcontainsregexp(req.body.full_name); }
@@ -35,8 +37,9 @@ export function listmore(req: express.Request, res: express.Response, next) {
     }
 };
 export function set(req: express.Request, res: express.Response, next) {
-    var check = { field: ['can_add_bank', 'can_edit_banks'], params: [req, res, next] };
-    if (commonfunct.check(check)) {
+    var check = { field: [], params: [req, res, next] };
+    check.field = ['can_add_bank', 'can_edit_banks'];
+    if (fields(check)) {
         var question: any = {};
         var input = req.body;
         if (req.params.id) { question._id = req.params.id; }
@@ -48,8 +51,9 @@ export function set(req: express.Request, res: express.Response, next) {
     }
 };
 export function del(req: express.Request, res: express.Response, next) {
-    var check = { field: ['can_edit_banks'], params: [req, res, next] };
-    if (commonfunct.check(check)) {
+    var check = { field: [], params: [req, res, next] };
+    check.field = ['can_edit_banks'];
+    if (fields(check)) {
         var question: any = {};
         if (req.params.id) { question._id = req.params.id; }
         banksservice.del(question).then(

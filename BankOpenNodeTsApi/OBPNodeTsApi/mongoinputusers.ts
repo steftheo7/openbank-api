@@ -49,7 +49,9 @@ var a: any = {
             can_edit_products: true,
             can_edit_customers: true,
             can_edit_branches: true,
-            can_edit_atms: true
+            can_edit_atms: true,
+            can_add_all_transactions_for_banks: true,
+            can_edit_all_transactions_for_banks: true
 
         }
     ]

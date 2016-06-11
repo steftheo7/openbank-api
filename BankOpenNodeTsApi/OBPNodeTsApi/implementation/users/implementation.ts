@@ -2,6 +2,7 @@
 import express = require('express');
 import usersservice = require('../../services/users/service');
 import commonfunct = require('../../implementation/commonfunct');
+var fields = commonfunct.check;
 var name = { users: null };
 
 export function list(req: express.Request, res: express.Response, next) {
@@ -26,8 +27,9 @@ export function listmore(req: express.Request, res: express.Response, next) {
     );
 };
 export function set(req: express.Request, res: express.Response, next) {
-    var check = { field: ['providers'], params: [req, res, next] };
-    if (commonfunct.check(check)) {
+    var check = { field: [], params: [req, res, next] };
+    check.field = ['providers'];
+    if (fields(check)) {
         var question: any = {};
         var input = req.body;
         var provider_name = req.header('Auth-Provider-Name');

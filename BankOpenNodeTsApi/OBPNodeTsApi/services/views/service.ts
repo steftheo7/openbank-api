@@ -21,7 +21,19 @@ export function transform(schema) {
     }
     return schema;
 };
-
+export function reqView(request) {
+    var deferred = Q.defer();
+    var theview = mongoose.model('view', viewmodel._schema);
+    var tempor = [];
+    if (request.user_id) tempor.push({ _id: request._id, user_id: request.user_id, bank_id: request.bank_id });
+    tempor.push({ _id: request._id, is_public: true, bank_id: request.bank_id });
+    theview.findOne({ $or: tempor }).lean()
+        .exec(function (err, found: viewsmodels.viewdef) {
+            found = transform(found);
+            commonservice.answer(err, found, name, deferred);
+        });
+    return deferred.promise;
+}
 export function listBid(string: string) {
     var deferred = Q.defer();
     var theview = mongoose.model('view', viewmodel._schema);

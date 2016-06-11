@@ -2,11 +2,13 @@
 import express = require('express');
 import accountsservice = require('../../services/accounts/service');
 import commonfunct = require('../../implementation/commonfunct');
+var fields = commonfunct.check;
 var name = { accounts: null };
 
 export function listbid(req: express.Request, res: express.Response, next) {
-    var check = { field: ['customer_id'], params: [req, res, next] };
-    if (commonfunct.check(check)) {
+    var check = { field: [], params: [req, res, next] };
+    check.field=['customer_id'];
+    if (fields(check)) {
         var question: any = [{}];
         if (req.params.bid) {
             question[0].bank_id = req.params.bid;
@@ -15,16 +17,17 @@ export function listbid(req: express.Request, res: express.Response, next) {
         }
         else {
             question = commonfunct.bankscustomers(req);
-            question.map(function(item) { item.callfor = "bankall"; })
+            question.map(function (item) { item.callfor = "bankall"; })
         }
-        accountsservice.listBid(question).then(function(resp) {
+        accountsservice.listBid(question).then(function (resp) {
             commonfunct.response(resp, name, res, next)
         })
     }
 };
 export function listbidprivate(req: express.Request, res: express.Response, next) {
-    var check = { field: ['customer_id'], params: [req, res, next] };
-    if (commonfunct.check(check)) {
+    var check = { field: [], params: [req, res, next] };
+    check.field=['customer_id'];
+    if (fields(check)) {
         var question: any = [{}];
         if (req.params.bid) {
             question[0].bank_id = req.params.bid;
@@ -33,10 +36,10 @@ export function listbidprivate(req: express.Request, res: express.Response, next
         }
         else {
             question = commonfunct.bankscustomers(req);
-            question.map(function(item) { item.callfor = "private"; })
+            question.map(function (item) { item.callfor = "private"; })
         }
         accountsservice.listBid(question).then(
-            function(resp) {
+            function (resp) {
                 commonfunct.response(resp, name, res, next)
             }
         );
@@ -52,7 +55,7 @@ export function listbidpublic(req: express.Request, res: express.Response, next)
         question[0].callfor = "publicall";
     }
     accountsservice.listBid(question).then(
-        function(resp) {
+        function (resp) {
             commonfunct.response(resp, name, res, next)
         }
     );
@@ -61,8 +64,9 @@ export function listidview(req: express.Request, res: express.Response, next) {
     var question: any = {};
     question.bank_id = req.params.bid;
     question._id = req.params.id;
-    question.rq = { view: { id: req.params.vid }, owner: commonfunct.bankpermissions(req).customer_id.toString() }
-    accountsservice.listIdView(question).then(function(resp) {
+    //question.owners = { $in: [commonfunct.bankpermissions(req).customer_id.toString()] };
+    question.view = { id: req.params.vid };
+    accountsservice.listIdView(question).then(function (resp) {
         if (req.params.scope && req.params.scope == 'views' && resp['data'] && resp['data'].views_available) {
             resp['data'] = resp['data'].views_available;
             commonfunct.response(resp, { views: null }, res, next)
@@ -78,7 +82,7 @@ export function listidviewpublic(req: express.Request, res: express.Response, ne
     question._id = req.params.id;
     question.is_public = true;
     question.rq = { view: { id: req.params.vid, is_public: true } };
-    accountsservice.listIdView(question).then(function(resp) {
+    accountsservice.listIdView(question).then(function (resp) {
         if (req.params.scope && req.params.scope == 'views' && resp['data'] && resp['data'].views_available) {
             resp['data'] = resp['data'].views_available;
             commonfunct.response(resp, { views: null }, res, next)
@@ -90,8 +94,9 @@ export function listidviewpublic(req: express.Request, res: express.Response, ne
 };
 export function listmore(req: express.Request, res: express.Response, next) {
     //params by default is those three paraments 
-    var check = { field: ['data'], params: [req, res, next] };
-    if (commonfunct.check(check)) {
+    var check = { field: [], params: [req, res, next] };
+    check.field=['data'];
+    if (fields(check)) {
         var question: any = {};
         if (req.body.label) { question.label = commonfunct.customcontainsregexp(req.body.label); }
         if (req.body.type_id) { question.type = req.body.type_id; }
@@ -99,7 +104,7 @@ export function listmore(req: express.Request, res: express.Response, next) {
         if (req.params.id) { question._id = req.params.id; }
         if (req.params.bid) { question.bank_id = req.params.bid; }
         accountsservice.listMore(question).then(
-            function(resp) {
+            function (resp) {
                 commonfunct.response(resp, name, res, next)
             }
         );
@@ -113,7 +118,7 @@ export function set(req: express.Request, res: express.Response, next) {
     if (req.params.id) { question._id = req.params.id; }
     input.bank = req.params.bid;
     accountsservice.set(question, input).then(
-        function(resp) {
+        function (resp) {
             commonfunct.response(resp, name, res, next)
         }
     );
@@ -122,7 +127,7 @@ export function del(req: express.Request, res: express.Response, next) {
     var question: any = {};
     if (req.params.id) { question._id = req.params.id; }
     accountsservice.del(question).then(
-        function(resp) {
+        function (resp) {
             commonfunct.response(resp, name, res, next)
         }
     );

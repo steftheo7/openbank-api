@@ -40,16 +40,16 @@ export class user {
             type: String, required: true, trim: true
         },
         can_add_bank: {
-            type: Boolean
+            type: Boolean, default: false
         },
         can_add_users: {
-            type: Boolean
+            type: Boolean, default: false
         },
         can_edit_banks: {
-            type: Boolean
+            type: Boolean, default: false
         },
         can_edit_users: {
-            type: Boolean
+            type: Boolean, default: false
         },
         providers: [
             {
