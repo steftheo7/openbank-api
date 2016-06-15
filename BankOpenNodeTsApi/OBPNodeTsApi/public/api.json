@@ -19,6 +19,9 @@
                 "description": "Welcome Message",
                 "operationId": "getWeb",
                 "responses": {
+                    "404": {
+                        "description": "Not Found Response Message"
+                    },
                     "200": {
                         "description": "Successful html response"
                     }
@@ -34,6 +37,9 @@
                 "description": "Html Form Register User",
                 "operationId": "getRegistration",
                 "responses": {
+                    "404": {
+                        "description": "Not Found Response Message"
+                    },
                     "200": {
                         "description": "Returns Form Registration"
                     }
@@ -70,6 +76,12 @@
                     }
                 ],
                 "responses": {
+                    "403": {
+                        "description": "Forbidden Response Message"
+                    },
+                    "404": {
+                        "description": "Not Found Response Message"
+                    },
                     "200": {
                         "description": "Successful json response",
                         "schema": {
@@ -111,6 +123,12 @@
                     }
                 ],
                 "responses": {
+                    "403": {
+                        "description": "Forbidden Response Message"
+                    },
+                    "404": {
+                        "description": "Not Found Response Message"
+                    },
                     "200": {
                         "description": "Successful json response",
                         "schema": {
@@ -178,6 +196,12 @@
                     }
                 ],
                 "responses": {
+                    "403": {
+                        "description": "Forbidden Response Message"
+                    },
+                    "404": {
+                        "description": "Not Found Response Message"
+                    },
                     "200": {
                         "description": "Successful json response",
                         "schema": {
@@ -199,6 +223,12 @@
                     "application/json"
                 ],
                 "responses": {
+                    "403": {
+                        "description": "Forbidden Response Message"
+                    },
+                    "404": {
+                        "description": "Not Found Response Message"
+                    },
                     "200": {
                         "description": "Successful json response",
                         "schema": {
@@ -240,6 +270,12 @@
                     }
                 ],
                 "responses": {
+                    "403": {
+                        "description": "Forbidden Response Message"
+                    },
+                    "404": {
+                        "description": "Not Found Response Message"
+                    },
                     "200": {
                         "description": "Successful json response",
                         "schema": {
@@ -297,6 +333,12 @@
                     }
                 ],
                 "responses": {
+                    "403": {
+                        "description": "Forbidden Response Message"
+                    },
+                    "404": {
+                        "description": "Not Found Response Message"
+                    },
                     "200": {
                         "description": "Successful json response",
                         "schema": {
@@ -355,6 +397,12 @@
                     }
                 ],
                 "responses": {
+                    "403": {
+                        "description": "Forbidden Response Message"
+                    },
+                    "404": {
+                        "description": "Not Found Response Message"
+                    },
                     "200": {
                         "description": "Successful json response",
                         "schema": {
@@ -384,6 +432,12 @@
                     }
                 ],
                 "responses": {
+                    "403": {
+                        "description": "Forbidden Response Message"
+                    },
+                    "404": {
+                        "description": "Not Found Response Message"
+                    },
                     "200": {
                         "description": "Successful json response",
                         "schema": {
@@ -449,6 +503,12 @@
                     }
                 ],
                 "responses": {
+                    "403": {
+                        "description": "Forbidden Response Message"
+                    },
+                    "404": {
+                        "description": "Not Found Response Message"
+                    },
                     "200": {
                         "description": "Successful json response",
                         "schema": {
@@ -480,6 +540,12 @@
                     }
                 ],
                 "responses": {
+                    "403": {
+                        "description": "Forbidden Response Message"
+                    },
+                    "404": {
+                        "description": "Not Found Response Message"
+                    },
                     "200": {
                         "description": "Successful json response",
                         "schema": {
@@ -529,6 +595,12 @@
                     }
                 ],
                 "responses": {
+                    "403": {
+                        "description": "Forbidden Response Message"
+                    },
+                    "404": {
+                        "description": "Not Found Response Message"
+                    },
                     "200": {
                         "description": "Successful json response",
                         "schema": {
@@ -594,6 +666,12 @@
                     }
                 ],
                 "responses": {
+                    "403": {
+                        "description": "Forbidden Response Message"
+                    },
+                    "404": {
+                        "description": "Not Found Response Message"
+                    },
                     "200": {
                         "description": "Successful json response",
                         "schema": {
@@ -660,6 +738,12 @@
                     }
                 ],
                 "responses": {
+                    "403": {
+                        "description": "Forbidden Response Message"
+                    },
+                    "404": {
+                        "description": "Not Found Response Message"
+                    },
                     "200": {
                         "description": "Successful json response",
                         "schema": {
@@ -697,6 +781,12 @@
                     }
                 ],
                 "responses": {
+                    "403": {
+                        "description": "Forbidden Response Message"
+                    },
+                    "404": {
+                        "description": "Not Found Response Message"
+                    },
                     "200": {
                         "description": "Successful json response",
                         "schema": {
@@ -770,6 +860,12 @@
                     }
                 ],
                 "responses": {
+                    "403": {
+                        "description": "Forbidden Response Message"
+                    },
+                    "404": {
+                        "description": "Not Found Response Message"
+                    },
                     "200": {
                         "description": "Successful json response",
                         "schema": {
@@ -801,6 +897,12 @@
                     }
                 ],
                 "responses": {
+                    "403": {
+                        "description": "Forbidden Response Message"
+                    },
+                    "404": {
+                        "description": "Not Found Response Message"
+                    },
                     "200": {
                         "description": "Successful json response",
                         "schema": {
@@ -850,6 +952,12 @@
                     }
                 ],
                 "responses": {
+                    "403": {
+                        "description": "Forbidden Response Message"
+                    },
+                    "404": {
+                        "description": "Not Found Response Message"
+                    },
                     "200": {
                         "description": "Successful json response",
                         "schema": {
@@ -915,6 +1023,12 @@
                     }
                 ],
                 "responses": {
+                    "403": {
+                        "description": "Forbidden Response Message"
+                    },
+                    "404": {
+                        "description": "Not Found Response Message"
+                    },
                     "200": {
                         "description": "Successful json response",
                         "schema": {
@@ -981,6 +1095,12 @@
                     }
                 ],
                 "responses": {
+                    "403": {
+                        "description": "Forbidden Response Message"
+                    },
+                    "404": {
+                        "description": "Not Found Response Message"
+                    },
                     "200": {
                         "description": "Successful json response",
                         "schema": {
@@ -1018,6 +1138,12 @@
                     }
                 ],
                 "responses": {
+                    "403": {
+                        "description": "Forbidden Response Message"
+                    },
+                    "404": {
+                        "description": "Not Found Response Message"
+                    },
                     "200": {
                         "description": "Successful json response",
                         "schema": {
@@ -1091,6 +1217,12 @@
                     }
                 ],
                 "responses": {
+                    "403": {
+                        "description": "Forbidden Response Message"
+                    },
+                    "404": {
+                        "description": "Not Found Response Message"
+                    },
                     "200": {
                         "description": "Successful json response",
                         "schema": {
@@ -1122,6 +1254,12 @@
                     }
                 ],
                 "responses": {
+                    "403": {
+                        "description": "Forbidden Response Message"
+                    },
+                    "404": {
+                        "description": "Not Found Response Message"
+                    },
                     "200": {
                         "description": "Successful json response",
                         "schema": {
@@ -1171,6 +1309,12 @@
                     }
                 ],
                 "responses": {
+                    "403": {
+                        "description": "Forbidden Response Message"
+                    },
+                    "404": {
+                        "description": "Not Found Response Message"
+                    },
                     "200": {
                         "description": "Successful json response",
                         "schema": {
@@ -1236,6 +1380,12 @@
                     }
                 ],
                 "responses": {
+                    "403": {
+                        "description": "Forbidden Response Message"
+                    },
+                    "404": {
+                        "description": "Not Found Response Message"
+                    },
                     "200": {
                         "description": "Successful json response",
                         "schema": {
@@ -1302,6 +1452,12 @@
                     }
                 ],
                 "responses": {
+                    "403": {
+                        "description": "Forbidden Response Message"
+                    },
+                    "404": {
+                        "description": "Not Found Response Message"
+                    },
                     "200": {
                         "description": "Successful json response",
                         "schema": {
@@ -1339,6 +1495,12 @@
                     }
                 ],
                 "responses": {
+                    "403": {
+                        "description": "Forbidden Response Message"
+                    },
+                    "404": {
+                        "description": "Not Found Response Message"
+                    },
                     "200": {
                         "description": "Successful json response",
                         "schema": {
@@ -1412,6 +1574,12 @@
                     }
                 ],
                 "responses": {
+                    "403": {
+                        "description": "Forbidden Response Message"
+                    },
+                    "404": {
+                        "description": "Not Found Response Message"
+                    },
                     "200": {
                         "description": "Successful json response",
                         "schema": {
@@ -1459,6 +1627,12 @@
                     }
                 ],
                 "responses": {
+                    "403": {
+                        "description": "Forbidden Response Message"
+                    },
+                    "404": {
+                        "description": "Not Found Response Message"
+                    },
                     "200": {
                         "description": "Successful json response",
                         "schema": {
@@ -1506,6 +1680,12 @@
                     }
                 ],
                 "responses": {
+                    "403": {
+                        "description": "Forbidden Response Message"
+                    },
+                    "404": {
+                        "description": "Not Found Response Message"
+                    },
                     "200": {
                         "description": "Successful json response",
                         "schema": {
@@ -1571,6 +1751,12 @@
                     }
                 ],
                 "responses": {
+                    "403": {
+                        "description": "Forbidden Response Message"
+                    },
+                    "404": {
+                        "description": "Not Found Response Message"
+                    },
                     "200": {
                         "description": "Successful json response",
                         "schema": {
@@ -1636,6 +1822,12 @@
                     }
                 ],
                 "responses": {
+                    "403": {
+                        "description": "Forbidden Response Message"
+                    },
+                    "404": {
+                        "description": "Not Found Response Message"
+                    },
                     "200": {
                         "description": "Successful json response",
                         "schema": {
@@ -1702,6 +1894,12 @@
                     }
                 ],
                 "responses": {
+                    "403": {
+                        "description": "Forbidden Response Message"
+                    },
+                    "404": {
+                        "description": "Not Found Response Message"
+                    },
                     "200": {
                         "description": "Successful json response",
                         "schema": {
@@ -1755,6 +1953,12 @@
                     }
                 ],
                 "responses": {
+                    "403": {
+                        "description": "Forbidden Response Message"
+                    },
+                    "404": {
+                        "description": "Not Found Response Message"
+                    },
                     "200": {
                         "description": "Successful json response",
                         "schema": {
@@ -1828,6 +2032,12 @@
                     }
                 ],
                 "responses": {
+                    "403": {
+                        "description": "Forbidden Response Message"
+                    },
+                    "404": {
+                        "description": "Not Found Response Message"
+                    },
                     "200": {
                         "description": "Successful json response",
                         "schema": {
@@ -1875,6 +2085,12 @@
                     }
                 ],
                 "responses": {
+                    "403": {
+                        "description": "Forbidden Response Message"
+                    },
+                    "404": {
+                        "description": "Not Found Response Message"
+                    },
                     "200": {
                         "description": "Successful json response",
                         "schema": {
@@ -1928,6 +2144,12 @@
                     }
                 ],
                 "responses": {
+                    "403": {
+                        "description": "Forbidden Response Message"
+                    },
+                    "404": {
+                        "description": "Not Found Response Message"
+                    },
                     "200": {
                         "description": "Successful json response",
                         "schema": {
@@ -1990,6 +2212,12 @@
                     }
                 ],
                 "responses": {
+                    "403": {
+                        "description": "Forbidden Response Message"
+                    },
+                    "404": {
+                        "description": "Not Found Response Message"
+                    },
                     "200": {
                         "description": "Successful json response",
                         "schema": {
@@ -2056,6 +2284,12 @@
                     }
                 ],
                 "responses": {
+                    "403": {
+                        "description": "Forbidden Response Message"
+                    },
+                    "404": {
+                        "description": "Not Found Response Message"
+                    },
                     "200": {
                         "description": "Successful json response",
                         "schema": {
@@ -2109,6 +2343,12 @@
                     }
                 ],
                 "responses": {
+                    "403": {
+                        "description": "Forbidden Response Message"
+                    },
+                    "404": {
+                        "description": "Not Found Response Message"
+                    },
                     "200": {
                         "description": "Successful json response",
                         "schema": {
@@ -2179,6 +2419,12 @@
                     }
                 ],
                 "responses": {
+                    "403": {
+                        "description": "Forbidden Response Message"
+                    },
+                    "404": {
+                        "description": "Not Found Response Message"
+                    },
                     "200": {
                         "description": "Successful json response",
                         "schema": {
@@ -2226,6 +2472,12 @@
                     }
                 ],
                 "responses": {
+                    "403": {
+                        "description": "Forbidden Response Message"
+                    },
+                    "404": {
+                        "description": "Not Found Response Message"
+                    },
                     "200": {
                         "description": "Successful json response",
                         "schema": {
@@ -2298,6 +2550,12 @@
                     }
                 ],
                 "responses": {
+                    "403": {
+                        "description": "Forbidden Response Message"
+                    },
+                    "404": {
+                        "description": "Not Found Response Message"
+                    },
                     "200": {
                         "description": "Successful json response",
                         "schema": {
@@ -2378,6 +2636,12 @@
                     }
                 ],
                 "responses": {
+                    "403": {
+                        "description": "Forbidden Response Message"
+                    },
+                    "404": {
+                        "description": "Not Found Response Message"
+                    },
                     "200": {
                         "description": "Successful json response",
                         "schema": {
@@ -2425,6 +2689,12 @@
                     }
                 ],
                 "responses": {
+                    "403": {
+                        "description": "Forbidden Response Message"
+                    },
+                    "404": {
+                        "description": "Not Found Response Message"
+                    },
                     "200": {
                         "description": "Successful json response",
                         "schema": {
@@ -2490,6 +2760,12 @@
                     }
                 ],
                 "responses": {
+                    "403": {
+                        "description": "Forbidden Response Message"
+                    },
+                    "404": {
+                        "description": "Not Found Response Message"
+                    },
                     "200": {
                         "description": "Successful json response",
                         "schema": {
@@ -2556,6 +2832,12 @@
                     }
                 ],
                 "responses": {
+                    "403": {
+                        "description": "Forbidden Response Message"
+                    },
+                    "404": {
+                        "description": "Not Found Response Message"
+                    },
                     "200": {
                         "description": "Successful json response",
                         "schema": {
@@ -2629,6 +2911,12 @@
                     }
                 ],
                 "responses": {
+                    "403": {
+                        "description": "Forbidden Response Message"
+                    },
+                    "404": {
+                        "description": "Not Found Response Message"
+                    },
                     "200": {
                         "description": "Successful json response",
                         "schema": {
@@ -2676,6 +2964,12 @@
                     }
                 ],
                 "responses": {
+                    "403": {
+                        "description": "Forbidden Response Message"
+                    },
+                    "404": {
+                        "description": "Not Found Response Message"
+                    },
                     "200": {
                         "description": "Successful json response",
                         "schema": {
@@ -2741,6 +3035,12 @@
                     }
                 ],
                 "responses": {
+                    "403": {
+                        "description": "Forbidden Response Message"
+                    },
+                    "404": {
+                        "description": "Not Found Response Message"
+                    },
                     "200": {
                         "description": "Successful json response",
                         "schema": {
@@ -2807,6 +3107,12 @@
                     }
                 ],
                 "responses": {
+                    "403": {
+                        "description": "Forbidden Response Message"
+                    },
+                    "404": {
+                        "description": "Not Found Response Message"
+                    },
                     "200": {
                         "description": "Successful json response",
                         "schema": {
@@ -2880,6 +3186,12 @@
                     }
                 ],
                 "responses": {
+                    "403": {
+                        "description": "Forbidden Response Message"
+                    },
+                    "404": {
+                        "description": "Not Found Response Message"
+                    },
                     "200": {
                         "description": "Successful json response",
                         "schema": {
@@ -2943,6 +3255,12 @@
                     }
                 ],
                 "responses": {
+                    "403": {
+                        "description": "Forbidden Response Message"
+                    },
+                    "404": {
+                        "description": "Not Found Response Message"
+                    },
                     "200": {
                         "description": "Successful json response",
                         "schema": {
@@ -3018,6 +3336,12 @@
                     }
                 ],
                 "responses": {
+                    "403": {
+                        "description": "Forbidden Response Message"
+                    },
+                    "404": {
+                        "description": "Not Found Response Message"
+                    },
                     "200": {
                         "description": "Successful json response",
                         "schema": {
@@ -3092,6 +3416,12 @@
                     }
                 ],
                 "responses": {
+                    "403": {
+                        "description": "Forbidden Response Message"
+                    },
+                    "404": {
+                        "description": "Not Found Response Message"
+                    },
                     "200": {
                         "description": "Successful json response",
                         "schema": {
@@ -3173,6 +3503,12 @@
                     }
                 ],
                 "responses": {
+                    "403": {
+                        "description": "Forbidden Response Message"
+                    },
+                    "404": {
+                        "description": "Not Found Response Message"
+                    },
                     "200": {
                         "description": "Successful json response",
                         "schema": {
@@ -3236,6 +3572,12 @@
                     }
                 ],
                 "responses": {
+                    "403": {
+                        "description": "Forbidden Response Message"
+                    },
+                    "404": {
+                        "description": "Not Found Response Message"
+                    },
                     "200": {
                         "description": "Successful json response",
                         "schema": {
@@ -3307,6 +3649,12 @@
                     }
                 ],
                 "responses": {
+                    "403": {
+                        "description": "Forbidden Response Message"
+                    },
+                    "404": {
+                        "description": "Not Found Response Message"
+                    },
                     "200": {
                         "description": "Successful json response",
                         "schema": {
@@ -3370,6 +3718,12 @@
                     }
                 ],
                 "responses": {
+                    "403": {
+                        "description": "Forbidden Response Message"
+                    },
+                    "404": {
+                        "description": "Not Found Response Message"
+                    },
                     "200": {
                         "description": "Successful json response",
                         "schema": {
@@ -3451,6 +3805,12 @@
                     }
                 ],
                 "responses": {
+                    "403": {
+                        "description": "Forbidden Response Message"
+                    },
+                    "404": {
+                        "description": "Not Found Response Message"
+                    },
                     "200": {
                         "description": "Successful json response",
                         "schema": {
@@ -3532,6 +3892,12 @@
                     }
                 ],
                 "responses": {
+                    "403": {
+                        "description": "Forbidden Response Message"
+                    },
+                    "404": {
+                        "description": "Not Found Response Message"
+                    },
                     "200": {
                         "description": "Successful json response",
                         "schema": {
@@ -3614,6 +3980,12 @@
                     }
                 ],
                 "responses": {
+                    "403": {
+                        "description": "Forbidden Response Message"
+                    },
+                    "404": {
+                        "description": "Not Found Response Message"
+                    },
                     "200": {
                         "description": "Successful json response",
                         "schema": {
@@ -3683,6 +4055,12 @@
                     }
                 ],
                 "responses": {
+                    "403": {
+                        "description": "Forbidden Response Message"
+                    },
+                    "404": {
+                        "description": "Not Found Response Message"
+                    },
                     "200": {
                         "description": "Successful json response",
                         "schema": {
@@ -3772,6 +4150,12 @@
                     }
                 ],
                 "responses": {
+                    "403": {
+                        "description": "Forbidden Response Message"
+                    },
+                    "404": {
+                        "description": "Not Found Response Message"
+                    },
                     "200": {
                         "description": "Successful json response",
                         "schema": {
@@ -3835,6 +4219,12 @@
                     }
                 ],
                 "responses": {
+                    "403": {
+                        "description": "Forbidden Response Message"
+                    },
+                    "404": {
+                        "description": "Not Found Response Message"
+                    },
                     "200": {
                         "description": "Successful json response",
                         "schema": {
@@ -3898,6 +4288,12 @@
                     }
                 ],
                 "responses": {
+                    "403": {
+                        "description": "Forbidden Response Message"
+                    },
+                    "404": {
+                        "description": "Not Found Response Message"
+                    },
                     "200": {
                         "description": "Successful json response",
                         "schema": {
@@ -3973,6 +4369,12 @@
                     }
                 ],
                 "responses": {
+                    "403": {
+                        "description": "Forbidden Response Message"
+                    },
+                    "404": {
+                        "description": "Not Found Response Message"
+                    },
                     "200": {
                         "description": "Successful json response",
                         "schema": {
@@ -4064,6 +4466,12 @@
                     }
                 ],
                 "responses": {
+                    "403": {
+                        "description": "Forbidden Response Message"
+                    },
+                    "404": {
+                        "description": "Not Found Response Message"
+                    },
                     "200": {
                         "description": "Successful json response",
                         "schema": {
@@ -4102,6 +4510,54 @@
                         "x-example": ""
                     },
                     {
+                        "name": "obp_sort_by",
+                        "in": "header",
+                        "description": "Sort",
+                        "required": true,
+                        "type": "string",
+                        "x-example": ""
+                    },
+                    {
+                        "name": "obp_sort_direction",
+                        "in": "header",
+                        "description": "ASC/DEC",
+                        "required": true,
+                        "type": "string",
+                        "x-example": ""
+                    },
+                    {
+                        "name": "obp_limit",
+                        "in": "header",
+                        "description": "Limit",
+                        "required": true,
+                        "type": "string",
+                        "x-example": ""
+                    },
+                    {
+                        "name": "obp_offset",
+                        "in": "header",
+                        "description": "Offset",
+                        "required": true,
+                        "type": "string",
+                        "x-example": ""
+                    },
+                    {
+                        "name": "obp_from_date",
+                        "in": "header",
+                        "description": "From Date",
+                        "required": true,
+                        "type": "string",
+                        "x-example": ""
+                    },
+                    {
+                        "name": "obp_to_date",
+                        "in": "header",
+                        "description": "to Date",
+                        "required": true,
+                        "type": "string",
+                        "x-example": ""
+                    },
+                    {
                         "name": "BANK_ID",
                         "in": "path",
                         "description": "Swift Bank Code",
@@ -4127,6 +4583,12 @@
                     }
                 ],
                 "responses": {
+                    "403": {
+                        "description": "Forbidden Response Message"
+                    },
+                    "404": {
+                        "description": "Not Found Response Message"
+                    },
                     "200": {
                         "description": "Successful json response",
                         "schema": {
@@ -4198,6 +4660,12 @@
                     }
                 ],
                 "responses": {
+                    "403": {
+                        "description": "Forbidden Response Message"
+                    },
+                    "404": {
+                        "description": "Not Found Response Message"
+                    },
                     "200": {
                         "description": "Successful json response",
                         "schema": {
@@ -4289,6 +4757,12 @@
                     }
                 ],
                 "responses": {
+                    "403": {
+                        "description": "Forbidden Response Message"
+                    },
+                    "404": {
+                        "description": "Not Found Response Message"
+                    },
                     "200": {
                         "description": "Successful json response",
                         "schema": {
@@ -4366,6 +4840,12 @@
                     }
                 ],
                 "responses": {
+                    "403": {
+                        "description": "Forbidden Response Message"
+                    },
+                    "404": {
+                        "description": "Not Found Response Message"
+                    },
                     "200": {
                         "description": "Successful json response",
                         "schema": {
@@ -4463,6 +4943,12 @@
                     }
                 ],
                 "responses": {
+                    "403": {
+                        "description": "Forbidden Response Message"
+                    },
+                    "404": {
+                        "description": "Not Found Response Message"
+                    },
                     "200": {
                         "description": "Successful json response",
                         "schema": {
@@ -4562,6 +5048,12 @@
                     }
                 ],
                 "responses": {
+                    "403": {
+                        "description": "Forbidden Response Message"
+                    },
+                    "404": {
+                        "description": "Not Found Response Message"
+                    },
                     "200": {
                         "description": "Successful json response",
                         "schema": {
@@ -4621,6 +5113,12 @@
                     }
                 ],
                 "responses": {
+                    "403": {
+                        "description": "Forbidden Response Message"
+                    },
+                    "404": {
+                        "description": "Not Found Response Message"
+                    },
                     "200": {
                         "description": "Successful json response",
                         "schema": {
@@ -4658,6 +5156,12 @@
                     }
                 ],
                 "responses": {
+                    "403": {
+                        "description": "Forbidden Response Message"
+                    },
+                    "404": {
+                        "description": "Not Found Response Message"
+                    },
                     "200": {
                         "description": "Successful json response",
                         "schema": {
@@ -4715,6 +5219,12 @@
                     }
                 ],
                 "responses": {
+                    "403": {
+                        "description": "Forbidden Response Message"
+                    },
+                    "404": {
+                        "description": "Not Found Response Message"
+                    },
                     "200": {
                         "description": "Successful json response",
                         "schema": {
@@ -4772,6 +5282,12 @@
                     }
                 ],
                 "responses": {
+                    "403": {
+                        "description": "Forbidden Response Message"
+                    },
+                    "404": {
+                        "description": "Not Found Response Message"
+                    },
                     "200": {
                         "description": "Successful json response",
                         "schema": {
