@@ -77,12 +77,11 @@ export function listAll() {
 export function listMore(string: string, paraments) {
     var deferred = Q.defer();
     var thetransaction = mongoose.model('transaction', transactionmodel._schema);
-    var transaction = paraments.view.transaction;
+    var transaction_fields = paraments.view.transaction;
     var this_fields = paraments.view.this_account;
     var other_fields = paraments.view.other_account;
-    var view = paraments.view;
     thetransaction.find(string).sort({ createdAt: paraments.sort_direction }).limit(paraments.limit).lean()
-        .select(transaction)
+        .select(transaction_fields)
         .populate({ path: 'this_account', select: this_fields, populate: populatefields }) // only works if we pushed refs to children
         .populate({ path: 'other_account_insystem', select: other_fields, populate: populatefields }) // only works if we pushed refs to children
         .populate('other_account') // only works if we pushed refs to children
@@ -103,9 +102,13 @@ export function list(string) {
     var thetransaction = mongoose.model('transaction', transactionmodel._schema);
     var fields = 'label number owners type IBAN swift_bic views_available bank_id';
     var view = string.view; delete string.view;
+    var transaction_fields = view.transaction;
+    var this_fields = view.this_account;
+    var other_fields = view.other_account;
     thetransaction.findOne(string).lean()
-        .populate({ path: 'this_account', select: fields, populate: populatefields }) // only works if we pushed refs to children
-        .populate({ path: 'other_account_insystem', select: fields, populate: populatefields }) // only works if we pushed refs to children
+        .select(transaction_fields)
+        .populate({ path: 'this_account', select: this_fields, populate: populatefields }) // only works if we pushed refs to children
+        .populate({ path: 'other_account_insystem', select: other_fields, populate: populatefields }) // only works if we pushed refs to children
         .populate('other_account') // only works if we pushed refs to children
         .populate('metadata.narrative', 'text -_id') // only works if we pushed refs to children
         .populate('metadata.comments', 'text -_id') // only works if we pushed refs to children

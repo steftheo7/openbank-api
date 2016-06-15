@@ -8,8 +8,15 @@ var name = 'transactionRequest';
 //Transform
 export function transform(schema) {
     function change(ret) {
+        ret.from = { account_id: ret.account_id.toString(), bank_id: ret.bank_id.toString() };
+        delete ret.account_id;
+        delete ret.bank_id;
+        ret.body = { to: ret.to, value: ret.value };
+        delete ret.to;
+        delete ret.value;
         ret.id = ret._id;
         ret.start_date = ret.createdAt;
+        delete ret.supported_challenge_types;
         delete ret._id;
         delete ret.__v;
         delete ret.createdAt;

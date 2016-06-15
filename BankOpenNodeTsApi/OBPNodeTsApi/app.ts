@@ -32,9 +32,13 @@ passport.use(new CustomStrategy(
     function (req, callback) {
         var question: any = {};
         if (req.header('Auth-Provider-Name')) { question.auth_provider_name = req.header('Auth-Provider-Name'); }
+        else if (req.cookies.AuthProviderName) { question.auth_provider_name = req.cookies.AuthProviderName; }
         else { callback(null); }
+
         if (req.header('Auth-ID')) { question.auth_id = req.header('Auth-ID'); }
+        else if (req.cookies.AuthID) { question.auth_id = req.cookies.AuthID; }
         else { callback(null); }
+
         if (JSON.stringify(question) === "{}") {
             callback(null);
         }
@@ -73,7 +77,9 @@ var app = express();
 process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
 app.use(function (req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
-    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Track-ID,Auth-Provider-Name,Auth-ID");
+    res.header("Access-Control-Allow-Headers",
+        "Origin, X-Requested-With, Content-Type, Accept, Track-ID,Auth-Provider-Name,Auth-ID,"+
+        "obp_sort_by, obp_sort_direction, obp_limit, obp_offset, obp_from_date, obp_to_date");
     //res.header("Access-Control-Allow-Methods", "*")
     //res.header("Access-Control-Allow-Headers", "*")
     next();

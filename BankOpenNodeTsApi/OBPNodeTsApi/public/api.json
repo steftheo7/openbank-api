@@ -3782,62 +3782,13 @@
                 "security": []
             }
         },
-        "/api/transactions": {
-            "delete": {
-                "tags": [
-                    "Transactions"
-                ],
-                "description": "Delete transaction",
-                "operationId": "deleteTransactions",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "parameters": [
-                    {
-                        "name": "Auth-Provider-Name",
-                        "in": "header",
-                        "description": "Auth-Provider-Name",
-                        "required": true,
-                        "type": "string",
-                        "x-example": ""
-                    },
-                    {
-                        "name": "Auth-ID",
-                        "in": "header",
-                        "description": "Auth-ID",
-                        "required": true,
-                        "type": "string",
-                        "x-example": ""
-                    },
-                    {
-                        "name": "Transaction",
-                        "in": "body",
-                        "description": "Query for the list",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/Transaction"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Successful json response",
-                        "schema": {
-                            "$ref": "#/definitions/SetDelDef"
-                        }
-                    }
-                },
-                "security": []
-            },
+        "/api/banks/{BANK_ID}/accounts/{ACCOUNT_ID}/{VIEW_ID}/transaction-requests": {
             "get": {
                 "tags": [
                     "Transactions"
                 ],
-                "description": "List all transactions",
-                "operationId": "getTransactions",
+                "description": "List all transactions request",
+                "operationId": "getTransactionsRequest",
                 "produces": [
                     "application/json"
                 ],
@@ -3846,7 +3797,7 @@
                         "name": "Auth-Provider-Name",
                         "in": "header",
                         "description": "Auth-Provider-Name",
-                        "required": true,
+                        "required": false,
                         "type": "string",
                         "x-example": ""
                     },
@@ -3854,6 +3805,30 @@
                         "name": "Auth-ID",
                         "in": "header",
                         "description": "Auth-ID",
+                        "required": false,
+                        "type": "string",
+                        "x-example": ""
+                    },
+                    {
+                        "name": "BANK_ID",
+                        "in": "path",
+                        "description": "Swift Bank Code",
+                        "required": true,
+                        "type": "string",
+                        "x-example": ""
+                    },
+                    {
+                        "name": "ACCOUNT_ID",
+                        "in": "path",
+                        "description": "Account ID",
+                        "required": true,
+                        "type": "string",
+                        "x-example": ""
+                    },
+                    {
+                        "name": "VIEW_ID",
+                        "in": "path",
+                        "description": "View ID",
                         "required": true,
                         "type": "string",
                         "x-example": ""
@@ -3863,18 +3838,83 @@
                     "200": {
                         "description": "Successful json response",
                         "schema": {
-                            "$ref": "#/definitions/TransactionsResponse"
+                            "$ref": "#/definitions/TransactionsRequestResponse"
                         }
                     }
                 },
                 "security": []
-            },
-            "post": {
+            }
+        },
+        "/api/banks/{BANK_ID}/accounts/{ACCOUNT_ID}/{VIEW_ID}/transaction-request-types": {
+            "get": {
                 "tags": [
                     "Transactions"
                 ],
-                "description": "List all transactions",
-                "operationId": "postTransactions",
+                "description": "List all transactions request <Under Construction>",
+                "operationId": "getTransactionsRequestTypes",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "Auth-Provider-Name",
+                        "in": "header",
+                        "description": "Auth-Provider-Name",
+                        "required": false,
+                        "type": "string",
+                        "x-example": ""
+                    },
+                    {
+                        "name": "Auth-ID",
+                        "in": "header",
+                        "description": "Auth-ID",
+                        "required": false,
+                        "type": "string",
+                        "x-example": ""
+                    },
+                    {
+                        "name": "BANK_ID",
+                        "in": "path",
+                        "description": "Swift Bank Code",
+                        "required": true,
+                        "type": "string",
+                        "x-example": ""
+                    },
+                    {
+                        "name": "ACCOUNT_ID",
+                        "in": "path",
+                        "description": "Account ID",
+                        "required": true,
+                        "type": "string",
+                        "x-example": ""
+                    },
+                    {
+                        "name": "VIEW_ID",
+                        "in": "path",
+                        "description": "View ID",
+                        "required": true,
+                        "type": "string",
+                        "x-example": ""
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful json response",
+                        "schema": {
+                            "$ref": "#/definitions/TransactionsRequestResponse"
+                        }
+                    }
+                },
+                "security": []
+            }
+        },
+        "/api/banks/{BANK_ID}/transaction-request-types/{TYPE}/transaction-requests": {
+            "put": {
+                "tags": [
+                    "Transactions"
+                ],
+                "description": "Set a transactions request",
+                "operationId": "putTransactionsRequest",
                 "consumes": [
                     "application/json"
                 ],
@@ -3907,13 +3947,422 @@
                         "x-example": ""
                     },
                     {
-                        "name": "GetTransactionDef",
+                        "name": "BANK_ID",
+                        "in": "path",
+                        "description": "Swift Bank Code",
+                        "required": true,
+                        "type": "string",
+                        "x-example": ""
+                    },
+                    {
+                        "name": "TYPE",
+                        "in": "path",
+                        "description": "type",
+                        "required": true,
+                        "type": "string",
+                        "x-example": ""
+                    },
+                    {
+                        "name": "TransactionDef",
                         "in": "body",
                         "description": "Query for the list",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/GetTransactionDef"
+                            "$ref": "#/definitions/TransactionsRequestDef"
                         }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful json response",
+                        "schema": {
+                            "$ref": "#/definitions/TransactionsRequestResponse"
+                        }
+                    }
+                },
+                "security": []
+            }
+        },
+        "/api/banks/{BANK_ID}/accounts/{ACCOUNT_ID}/{VIEW_ID}/transaction-request-types/{TYPE}/transaction-requests": {
+            "put": {
+                "tags": [
+                    "Transactions"
+                ],
+                "description": "Set a transactions request",
+                "operationId": "putTransactionsRequest2",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "Track-ID",
+                        "in": "header",
+                        "description": "Trackid UUID",
+                        "required": true,
+                        "type": "string",
+                        "x-example": ""
+                    },
+                    {
+                        "name": "Auth-Provider-Name",
+                        "in": "header",
+                        "description": "Auth-Provider-Name",
+                        "required": true,
+                        "type": "string",
+                        "x-example": ""
+                    },
+                    {
+                        "name": "Auth-ID",
+                        "in": "header",
+                        "description": "Auth-ID",
+                        "required": true,
+                        "type": "string",
+                        "x-example": ""
+                    },
+                    {
+                        "name": "BANK_ID",
+                        "in": "path",
+                        "description": "Swift Bank Code",
+                        "required": true,
+                        "type": "string",
+                        "x-example": ""
+                    },
+                    {
+                        "name": "ACCOUNT_ID",
+                        "in": "path",
+                        "description": "Account ID",
+                        "required": true,
+                        "type": "string",
+                        "x-example": ""
+                    },
+                    {
+                        "name": "VIEW_ID",
+                        "in": "path",
+                        "description": "View ID",
+                        "required": true,
+                        "type": "string",
+                        "x-example": ""
+                    },
+                    {
+                        "name": "TYPE",
+                        "in": "path",
+                        "description": "type",
+                        "required": true,
+                        "type": "string",
+                        "x-example": ""
+                    },
+                    {
+                        "name": "TransactionDef",
+                        "in": "body",
+                        "description": "Query for the list",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/TransactionRequestDef"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful json response",
+                        "schema": {
+                            "$ref": "#/definitions/TransactionsRequestResponse"
+                        }
+                    }
+                },
+                "security": []
+            }
+        },
+        "/api/banks/{BANK_ID}/accounts/{ACCOUNT_ID}/{VIEW_ID}/transactions": {
+            "get": {
+                "tags": [
+                    "Transactions"
+                ],
+                "description": "List all transactions",
+                "operationId": "getTransactions",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "Auth-Provider-Name",
+                        "in": "header",
+                        "description": "Auth-Provider-Name",
+                        "required": true,
+                        "type": "string",
+                        "x-example": ""
+                    },
+                    {
+                        "name": "Auth-ID",
+                        "in": "header",
+                        "description": "Auth-ID",
+                        "required": true,
+                        "type": "string",
+                        "x-example": ""
+                    },
+                    {
+                        "name": "BANK_ID",
+                        "in": "path",
+                        "description": "Swift Bank Code",
+                        "required": true,
+                        "type": "string",
+                        "x-example": ""
+                    },
+                    {
+                        "name": "ACCOUNT_ID",
+                        "in": "path",
+                        "description": "Account ID",
+                        "required": true,
+                        "type": "string",
+                        "x-example": ""
+                    },
+                    {
+                        "name": "VIEW_ID",
+                        "in": "path",
+                        "description": "View ID",
+                        "required": true,
+                        "type": "string",
+                        "x-example": ""
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful json response",
+                        "schema": {
+                            "$ref": "#/definitions/TransactionsResponse"
+                        }
+                    }
+                },
+                "security": []
+            }
+        },
+        "/api/banks/{BANK_ID}/accounts/{ACCOUNT_ID}/{VIEW_ID}/transactions/{TRANSACTION_ID}/transaction": {
+            "get": {
+                "tags": [
+                    "Transactions"
+                ],
+                "description": "List transaction by ID",
+                "operationId": "getTransactions2",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "Auth-Provider-Name",
+                        "in": "header",
+                        "description": "Auth-Provider-Name",
+                        "required": true,
+                        "type": "string",
+                        "x-example": ""
+                    },
+                    {
+                        "name": "Auth-ID",
+                        "in": "header",
+                        "description": "Auth-ID",
+                        "required": true,
+                        "type": "string",
+                        "x-example": ""
+                    },
+                    {
+                        "name": "BANK_ID",
+                        "in": "path",
+                        "description": "Swift Bank Code",
+                        "required": true,
+                        "type": "string",
+                        "x-example": ""
+                    },
+                    {
+                        "name": "ACCOUNT_ID",
+                        "in": "path",
+                        "description": "Account ID",
+                        "required": true,
+                        "type": "string",
+                        "x-example": ""
+                    },
+                    {
+                        "name": "VIEW_ID",
+                        "in": "path",
+                        "description": "View ID",
+                        "required": true,
+                        "type": "string",
+                        "x-example": ""
+                    },
+                    {
+                        "name": "TRANSACTION_ID",
+                        "in": "path",
+                        "description": "Transaction ID",
+                        "required": true,
+                        "type": "string",
+                        "x-example": ""
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful json response",
+                        "schema": {
+                            "$ref": "#/definitions/TransactionResponse"
+                        }
+                    }
+                },
+                "security": []
+            }
+        },
+        "/api/banks/{BANK_ID}/accounts/{ACCOUNT_ID}/{VIEW_ID}/transactions/{TRANSACTION_ID}/metadata/{TYPE}": {
+            "delete": {
+                "tags": [
+                    "Transactions"
+                ],
+                "description": "Delete transaction metadata <Under Construction>",
+                "operationId": "deleteTransactions",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "Auth-Provider-Name",
+                        "in": "header",
+                        "description": "Auth-Provider-Name",
+                        "required": true,
+                        "type": "string",
+                        "x-example": ""
+                    },
+                    {
+                        "name": "Auth-ID",
+                        "in": "header",
+                        "description": "Auth-ID",
+                        "required": true,
+                        "type": "string",
+                        "x-example": ""
+                    },
+                    {
+                        "name": "Transaction",
+                        "in": "body",
+                        "description": "Query for the list",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/Transaction"
+                        }
+                    },
+                    {
+                        "name": "BANK_ID",
+                        "in": "path",
+                        "description": "Swift Bank Code",
+                        "required": true,
+                        "type": "string",
+                        "x-example": ""
+                    },
+                    {
+                        "name": "ACCOUNT_ID",
+                        "in": "path",
+                        "description": "Account ID",
+                        "required": true,
+                        "type": "string",
+                        "x-example": ""
+                    },
+                    {
+                        "name": "VIEW_ID",
+                        "in": "path",
+                        "description": "View ID",
+                        "required": true,
+                        "type": "string",
+                        "x-example": ""
+                    },
+                    {
+                        "name": "TRANSACTION_ID",
+                        "in": "path",
+                        "description": "Transaction ID",
+                        "required": true,
+                        "type": "string",
+                        "x-example": ""
+                    },
+                    {
+                        "name": "TYPE",
+                        "in": "path",
+                        "description": "Type",
+                        "required": true,
+                        "type": "string",
+                        "x-example": ""
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful json response",
+                        "schema": {
+                            "$ref": "#/definitions/SetDelDef"
+                        }
+                    }
+                },
+                "security": []
+            },
+            "get": {
+                "tags": [
+                    "Transactions"
+                ],
+                "description": "List transactions metadata type <Under Construction>",
+                "operationId": "getTransactions3",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "Auth-Provider-Name",
+                        "in": "header",
+                        "description": "Auth-Provider-Name",
+                        "required": true,
+                        "type": "string",
+                        "x-example": ""
+                    },
+                    {
+                        "name": "Auth-ID",
+                        "in": "header",
+                        "description": "Auth-ID",
+                        "required": true,
+                        "type": "string",
+                        "x-example": ""
+                    },
+                    {
+                        "name": "BANK_ID",
+                        "in": "path",
+                        "description": "Swift Bank Code",
+                        "required": true,
+                        "type": "string",
+                        "x-example": ""
+                    },
+                    {
+                        "name": "ACCOUNT_ID",
+                        "in": "path",
+                        "description": "Account ID",
+                        "required": true,
+                        "type": "string",
+                        "x-example": ""
+                    },
+                    {
+                        "name": "VIEW_ID",
+                        "in": "path",
+                        "description": "View ID",
+                        "required": true,
+                        "type": "string",
+                        "x-example": ""
+                    },
+                    {
+                        "name": "TRANSACTION_ID",
+                        "in": "path",
+                        "description": "Transaction ID",
+                        "required": true,
+                        "type": "string",
+                        "x-example": ""
+                    },
+                    {
+                        "name": "TYPE",
+                        "in": "path",
+                        "description": "Type",
+                        "required": true,
+                        "type": "string",
+                        "x-example": ""
                     }
                 ],
                 "responses": {
@@ -3930,7 +4379,7 @@
                 "tags": [
                     "Transactions"
                 ],
-                "description": "Set a transaction",
+                "description": "Set a transaction metadata type <Under Construction>",
                 "operationId": "putTransactions",
                 "consumes": [
                     "application/json"
@@ -3964,6 +4413,46 @@
                         "x-example": ""
                     },
                     {
+                        "name": "BANK_ID",
+                        "in": "path",
+                        "description": "Swift Bank Code",
+                        "required": true,
+                        "type": "string",
+                        "x-example": ""
+                    },
+                    {
+                        "name": "ACCOUNT_ID",
+                        "in": "path",
+                        "description": "Account ID",
+                        "required": true,
+                        "type": "string",
+                        "x-example": ""
+                    },
+                    {
+                        "name": "VIEW_ID",
+                        "in": "path",
+                        "description": "View ID",
+                        "required": true,
+                        "type": "string",
+                        "x-example": ""
+                    },
+                    {
+                        "name": "TRANSACTION_ID",
+                        "in": "path",
+                        "description": "Transaction ID",
+                        "required": true,
+                        "type": "string",
+                        "x-example": ""
+                    },
+                    {
+                        "name": "TYPE",
+                        "in": "path",
+                        "description": "Type",
+                        "required": true,
+                        "type": "string",
+                        "x-example": ""
+                    },
+                    {
                         "name": "TransactionDef",
                         "in": "body",
                         "description": "Query for the list",
@@ -3978,6 +4467,105 @@
                         "description": "Successful json response",
                         "schema": {
                             "$ref": "#/definitions/TransactionResponse"
+                        }
+                    }
+                },
+                "security": []
+            }
+        },
+        "/api/banks/{BANK_ID}/accounts/{ACCOUNT_ID}/{VIEW_ID}/transactions/{TRANSACTION_ID}/metadata/{TYPE}/{TYPE_ID}": {
+            "delete": {
+                "tags": [
+                    "Transactions"
+                ],
+                "description": "Delete transaction metadata by id <Under Construction>",
+                "operationId": "deleteTransactions2",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "Auth-Provider-Name",
+                        "in": "header",
+                        "description": "Auth-Provider-Name",
+                        "required": true,
+                        "type": "string",
+                        "x-example": ""
+                    },
+                    {
+                        "name": "Auth-ID",
+                        "in": "header",
+                        "description": "Auth-ID",
+                        "required": true,
+                        "type": "string",
+                        "x-example": ""
+                    },
+                    {
+                        "name": "BANK_ID",
+                        "in": "path",
+                        "description": "Swift Bank Code",
+                        "required": true,
+                        "type": "string",
+                        "x-example": ""
+                    },
+                    {
+                        "name": "ACCOUNT_ID",
+                        "in": "path",
+                        "description": "Account ID",
+                        "required": true,
+                        "type": "string",
+                        "x-example": ""
+                    },
+                    {
+                        "name": "VIEW_ID",
+                        "in": "path",
+                        "description": "View ID",
+                        "required": true,
+                        "type": "string",
+                        "x-example": ""
+                    },
+                    {
+                        "name": "TRANSACTION_ID",
+                        "in": "path",
+                        "description": "Transaction ID",
+                        "required": true,
+                        "type": "string",
+                        "x-example": ""
+                    },
+                    {
+                        "name": "TYPE",
+                        "in": "path",
+                        "description": "Type",
+                        "required": true,
+                        "type": "string",
+                        "x-example": ""
+                    },
+                    {
+                        "name": "TYPE_ID",
+                        "in": "path",
+                        "description": "Type ID",
+                        "required": true,
+                        "type": "string",
+                        "x-example": ""
+                    },
+                    {
+                        "name": "Transaction",
+                        "in": "body",
+                        "description": "Query for the list",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/Transaction"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful json response",
+                        "schema": {
+                            "$ref": "#/definitions/SetDelDef"
                         }
                     }
                 },
@@ -4223,6 +4811,174 @@
                     "type": "array",
                     "items": {
                         "$ref": "#/definitions/MetadataDef"
+                    }
+                }
+            }
+        },
+        "TransactionsRequestResponse": {
+            "description": "Model for TransactionsRequestResponse",
+            "required": [
+                "transaction-requests"
+            ],
+            "properties": {
+                "transaction-requests": {
+                    "type": "array",
+                    "items": {
+                        "description": "Model for TransactionsRequestDef",
+                        "properties": {
+                            "description": {
+                                "type": "string"
+                            },
+                            "resource_url": {
+                                "type": "string"
+                            },
+                            "status": {
+                                "type": "string"
+                            },
+                            "transaction_ids": {
+                                "type": "string"
+                            },
+                            "start_date": {
+                                "type": "string"
+                            },
+                            "end_date": {
+                                "type": "string"
+                            },
+                            "challenge": {
+                                "type": "string"
+                            },
+                            "from": {
+                                "type": "object",
+                                "properties": {
+                                    "account_id": {
+                                        "type": "string"
+                                    },
+                                    "bank_id": {
+                                        "type": "string"
+                                    }
+                                }
+                            },
+                            "body": {
+                                "type": "object",
+                                "properties": {
+                                    "to": {
+                                        "type": "object",
+                                        "properties": {
+                                            "account_id": {
+                                                "type": "string"
+                                            },
+                                            "bank_id": {
+                                                "type": "string"
+                                            }
+                                        }
+                                    },
+                                    "value": {
+                                        "type": "object",
+                                        "properties": {
+                                            "currency": {
+                                                "type": "string"
+                                            },
+                                            "amount": {
+                                                "type": "number"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "TransactionsRequestDef": {
+            "description": "Model for TransactionsRequestDef",
+            "required": [
+                "from",
+                "to"
+            ],
+            "properties": {
+                "description": {
+                    "type": "string"
+                },
+                "challenge_type": {
+                    "type": "string"
+                },
+                "from": {
+                    "type": "object",
+                    "properties": {
+                        "account_id": {
+                            "type": "string"
+                        },
+                        "other_account_id": {
+                            "type": "string"
+                        },
+                        "bank_id": {
+                            "type": "string"
+                        }
+                    }
+                },
+                "to": {
+                    "type": "object",
+                    "properties": {
+                        "account_id": {
+                            "type": "string"
+                        },
+                        "other_account_id": {
+                            "type": "string"
+                        },
+                        "bank_id": {
+                            "type": "string"
+                        }
+                    }
+                },
+                "value": {
+                    "type": "object",
+                    "properties": {
+                        "currency": {
+                            "type": "string"
+                        },
+                        "amount": {
+                            "type": "number"
+                        }
+                    }
+                }
+            }
+        },
+        "TransactionRequestDef": {
+            "description": "Model for TransactionsRequestDef",
+            "required": [
+                "to"
+            ],
+            "properties": {
+                "description": {
+                    "type": "string"
+                },
+                "challenge_type": {
+                    "type": "string"
+                },
+                "to": {
+                    "type": "object",
+                    "properties": {
+                        "account_id": {
+                            "type": "string"
+                        },
+                        "other_account_id": {
+                            "type": "string"
+                        },
+                        "bank_id": {
+                            "type": "string"
+                        }
+                    }
+                },
+                "value": {
+                    "type": "object",
+                    "properties": {
+                        "currency": {
+                            "type": "string"
+                        },
+                        "amount": {
+                            "type": "number"
+                        }
                     }
                 }
             }
@@ -4572,20 +5328,6 @@
                 }
             }
         },
-        "GetTransactionDef": {
-            "description": "Model for GetTransactionDef",
-            "required": [
-                "id"
-            ],
-            "properties": {
-                "id": {
-                    "type": "string"
-                },
-                "uuid": {
-                    "type": "string"
-                }
-            }
-        },
         "TransactionDef": {
             "description": "Model for TransactionDef",
             "required": [
@@ -4607,13 +5349,7 @@
                 "other_account": {
                     "type": "string"
                 },
-                "other_account_insystem": {
-                    "type": "string"
-                },
                 "this_account": {
-                    "type": "string"
-                },
-                "this_account_insystem": {
                     "type": "string"
                 },
                 "uuid": {

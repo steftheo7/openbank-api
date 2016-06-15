@@ -31,6 +31,7 @@ export function listmore(req: express.Request, res: express.Response, next) {
 };
 export function set(req: express.Request, res: express.Response, next) {
     function setRequest() {
+        input.end_date = new Date().toISOString();
         transactionRequestsservice.set(question, input).then(
             function (resp) {
                 if (resp['data']) {
@@ -90,7 +91,7 @@ export function set(req: express.Request, res: express.Response, next) {
         var transaction: any = {};
         var input = req.body;
         var fromaccount: boolean, toacccount: boolean;
-        input.resource_url = req.url;
+        input.resource_url = '/api' + req.url;
         input.transaction_ids = [];
         transaction.details = {};
         transaction.details.posted_by_user_id = req.user.id.toString();
@@ -118,10 +119,16 @@ export function set(req: express.Request, res: express.Response, next) {
 
             question.from.bank_id = temp.bank_id;
             question.from._id = temp.account_id;
-            
+
             accountsservice.listId(question.from).then(function (resp) {
                 var flag: boolean;
-                try { flag = resp['data'].views_available[0].can_initiate_transaction; } catch (err) { };
+                try {
+                    resp['data'].views_available.forEach(function (view) {
+                        if (view.id == req.params.vid) {
+                            flag = view.can_initiate_transaction;
+                        }
+                    });
+                } catch (err) { };
                 if (!flag) {
                     check.field = ['can_add_all_transactions_for_banks'];
                     if (fields(check)) { flag = true };

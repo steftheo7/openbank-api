@@ -11,6 +11,104 @@ export function bankscustomers(req) {
     return req.user.bank_permissions.filter(function (x) { return x.customer_id; });
 }
 
+export function viewfields(view, type: string) {
+    //type must be only transaction/account/otheraccount
+    var params: any = {};
+    var bank_id = { full_name: 'bank_id.full_name', short_name: 'bank_id.short_name' };
+    if ((type == 'transaction') || (type == 'account')) {
+        var balance = { currency: 'balance.currency', amount: 'balance.amount' };
+        params.this_account = {
+            _id: 1, 'bank_id.full_name': 0, 'bank_id.short_name': 0,
+            'balance.currency': 0, 'balance.amount': 0
+        };
+        if (view.can_see_bank_account_owners) { params.this_account.owners = 1 };
+        if (view.can_see_bank_account_number) { params.this_account.number = 1 };
+        if (view.can_see_bank_account_type) { params.this_account.type = 1 };
+        if (view.can_see_bank_account_iban) { params.this_account.IBAN = 1 };
+        if (view.can_see_bank_account_swift_bic) { params.this_account.swift_bic = 1 };
+        if (type == 'account') {
+            if (view.can_see_bank_account_balance) { params.this_account[balance.amount] = 1 }
+            if (view.can_see_bank_account_currency) { params.this_account[balance.currency] = 1 }
+            if (view.can_see_bank_account_label) { params.this_account.label = 1 };
+            for (var items in params.this_account)
+            { if (params.this_account[items] == 0) { delete params.this_account[items] } };
+            params = params.this_account;
+        } else {
+            for (var items in params.this_account)
+            { if (params.this_account[items] == 0) { delete params.this_account[items] } }
+        };
+    };
+    if ((type == 'transaction') || (type == 'otheraccount')) {
+        params.other_account = {
+            _id: 1, 'bank_id.full_name': 0, 'bank_id._id': 0, 'metadata.more_info': 0, 'metadata.url': 0,
+            'metadata.image_url': 0, 'metadata.open_corporates_url': 0, 'metadata.corporate_location': 0,
+            'metadata.physical_location': 0, 'metadata.public_alias': 0, 'metadata.private_alias': 0
+        };
+        var metadata = {
+            more_info: 'metadata.more_info', url: 'metadata.url', image_url: 'metadata.image_url',
+            open_corporates_url: 'metadata.open_corporates_url', corporate_location: 'metadata.corporate_location',
+            physical_location: 'metadata.physical_location', public_alias: 'metadata.public_alias',
+            private_alias: 'metadata.private_alias'
+        };
+        if (view.can_see_other_account_number) { params.other_account.number = 1 };
+        if (view.can_see_other_account_kind) { params.other_account.type = 1 };
+        if (view.can_see_other_account_iban) { params.other_account.IBAN = 1 };
+        if (view.can_see_other_account_swift_bic) { params.other_account.swift_bic = 1 };
+        if (view.can_see_other_account_bank_name) { params.this_account[bank_id.full_name] = 1 };
+        if (view.can_see_other_account_national_identifier) { params.other_account[bank_id.short_name] = 1 };
+        if (view.can_see_other_account_metadata) { params.other_account.metadata = 1 };
+        if (view.can_see_more_info) { params.other_account[metadata.more_info] = 1 };
+        if (view.can_see_url) { params.other_account[metadata.url] = 1 };
+        if (view.can_see_image_url) { params.other_account[metadata.image_url] = 1 };
+        if (view.can_see_open_corporates_url) { params.other_account[metadata.open_corporates_url] = 1 };
+        if (view.can_see_corporate_location) { params.other_account[metadata.corporate_location] = 1 };
+        if (view.can_see_physical_location) { params.other_account[metadata.physical_location] = 1 };
+        if (view.can_see_public_alias) { params.other_account[metadata.public_alias] = 1 };
+        if (view.can_see_private_alias) { params.other_account[metadata.private_alias] = 1 };
+        for (var items in params.other_account)
+        { if (params.other_account[items] == 0) { delete params.other_account[items] } };
+        if (type == 'otheraccount') { params = params.other_account; };
+    };
+    if (type == 'transaction') {
+        params.transaction = {
+            _id: 1, uuid: 1, 'details.status': 1, 'details.description': 1, 'details.posted_by_user_id': 1,
+            'details.approved_by_user_id': 1, 'details.paused_by_user_id': 1, 'details.cancelled_by_user_id': 1,
+            'details.posted_by_ip_address': 1, 'details.approved_by_ip_address': 1,
+            'details.paused_by_ip_address': 1, 'details.cancelled_by_ip_address': 1, 'details.value': 1,
+            'details.new_balance.currency': 0, 'details.new_balance.amount': 0, 'details.type': 0,
+            'details.posted': 0, 'details.completed': 0, 'metadata.comments': 0, 'metadata.narrative': 0,
+            'metadata.tags': 0, 'metadata.images': 0, 'metadata.where': 0
+        };
+        var details = {
+            currency: 'details.new_balance.currency', amount: 'details.new_balance.amount', type: 'details.type',
+            posted: 'details.posted', completed: 'details.completed'
+        };
+        var meta = {
+            comments: 'metadata.comments', narrative: 'metadata.narrative', tags: 'metadata.tags',
+            images: 'metadata.images', where: 'metadata.where'
+        }
+        if (view.can_see_transaction_this_bank_account) { params.transaction.this_account = 1 };
+        if (view.can_see_transaction_other_bank_account) { params.transaction.other_account = 1; params.transaction.other_account_insystem = 1 };
+        if (view.can_see_transaction_metadata) { params.transaction.metadata = 1 };
+        if (view.can_see_transaction_label) { };
+        if (view.can_see_transaction_balance && view.can_see_transaction_currency) { params.transaction[details.currency] = 1 }
+        if (view.can_see_transaction_balance && view.can_see_transaction_amount) { params.transaction[details.amount] = 1 }
+        if (view.can_see_transaction_type) { params.transaction[details.type] = 1 }
+        if (view.can_see_transaction_start_date) { params.transaction[details.posted] = 1 }
+        if (view.can_see_transaction_finish_date) { params.transaction[details.completed] = 1 }
+        if (view.can_see_bank_account_bank_name) { params.this_account[bank_id.full_name] = 1 }
+        if (view.can_see_bank_account_national_identifier) { params.this_account[bank_id.short_name] = 1 }
+        if (view.can_see_comments) { params.transaction[meta.comments] = 1 }
+        if (view.can_see_narrative) { params.transaction[meta.narrative] = 1 }
+        if (view.can_see_tags) { params.transaction[meta.tags] = 1 }
+        if (view.can_see_images) { params.transaction[meta.images] = 1 }
+        if (view.can_see_where_tag) { params.transaction[meta.where] = 1 }
+        for (var items in params.transaction)
+        { if (params.transaction[items] == 0) { delete params.transaction[items] } };
+    };
+    return params;
+}
+
 //This function is for message error handling before calling the DB
 export function check(checker) {
     var req = checker.params[0];
@@ -34,12 +132,14 @@ export function check(checker) {
         localflag = false;
         var msg: string;
         function dubaccount(fromAcc) {
-            try {
-                if ((fromAcc == req.body.to.account_id) || (fromAcc == req.body.to.other_account_id)) {
-                    msg = "From and To Account are the same";
-                    return true;
-                }
-            } catch (err) { }
+            if (fromAcc) {
+                try {
+                    if ((fromAcc == req.body.to.account_id) || (fromAcc == req.body.to.other_account_id)) {
+                        msg = "From and To Account are the same";
+                        return true;
+                    }
+                } catch (err) { }
+            }
             return false;
         }
         function checkbank(bank, path) {
@@ -155,7 +255,7 @@ export function check(checker) {
         //fieldname: { stat: 404, message: "not Found", flag: function (x: Boolean) { x = true; return x; } }, //example
         data: { stat: 412, message: "No input data or wrong input data", flag: function (x: Boolean) { if (JSON.stringify(req.body) === "{}") { x = true } return x; } },
         bank_id: { stat: 412, message: "User has no relation with this bank", flag: function (x: Boolean) { bankchecked = true; if (req.params.bid && !bankpermissions(req)) { x = true }; return x; } },
-        view_id: { stat: 404, message: "No View Available", flag: function (x: Boolean) { viewchecked = true; if (!req.params.view) { x = true }; return x; } },
+        view_id: { stat: 404, message: "No View Available", flag: function (x: Boolean) { viewchecked = true; if (!req.params.view && req.params.vid) { x = true }; return x; } },
         customer_id: { stat: 404, message: "User is not a customer for this bank", flag: function (x: Boolean) { return permission('customer_id'); } },
         can_do: { stat: 403, message: "Can Do Error", flag: function (x: Boolean) { return permission('can_do'); } },
         providers: { stat: 501, message: "Providers Error", flag: function (x: Boolean) { return providers(x); } },

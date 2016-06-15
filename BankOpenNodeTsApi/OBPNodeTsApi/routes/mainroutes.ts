@@ -16,14 +16,14 @@ router.get('/Register', function (req, res, next) {
 router.post('/Register', function (req, res, next) {
     var input = req.body;
     if (JSON.stringify(input) !== "{}") {
-        var providers = [];
-        var bank_permisions = [];
-        providers[0] = { auth_provider_name: input.auth_provider_name, auth_id: input.auth_id };
-        bank_permisions[0] = {
+        try { delete input.can_edit_banks; } catch (err) { };
+        try { delete input.can_edit_users; } catch (err) { };
+        var providers = [{ auth_provider_name: input.auth_provider_name, auth_id: input.auth_id }];
+        var bank_permisions = [{
             bank_id: input.bank_id, customer_id: input.customer_id,
             can_edit_branches: input.can_edit_branches, can_edit_atms: input.can_edit_atms,
             can_edit_products: input.can_edit_products
-        };
+        }];
         input.providers = providers;
         input.bank_permisions = bank_permisions;
         delete input.auth_provider_name;
