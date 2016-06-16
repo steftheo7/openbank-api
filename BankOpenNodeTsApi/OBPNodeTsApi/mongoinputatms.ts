@@ -52,29 +52,3 @@ obj.payload.forEach(function (item) {
 
     }
 })
-
-
-
-
-
-
-
-
-//var bank = new banks.bank();
-//var chris = bank.set( 11 , 'NBG GR', false);
-//var chris = bank.set(115, 'NBG GR 15');
-//console.log(chris.isNew);
-/////call the built-in save method to save to the database
-//chris.save(function (err, item: banks.bankdef) {
-//    if (err) throw err;
-//    console.log('bank saved successfully!');
-//    if (item != null) {
-
-//    }
-//});
-  
-
-/////call the built-in find return fields from the database
-//var thebank = mongoose.model('bank', bank._schema);
-
-////http://mongoosejs.com/docs/2.7.x/docs/finding-documents.html
