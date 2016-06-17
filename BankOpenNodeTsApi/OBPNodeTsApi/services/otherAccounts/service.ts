@@ -111,7 +111,8 @@ export function list(string: string) {
 
 export function set(string: string, object: otherAccountsmodels.otherAccountdef) {
     var deferred = Q.defer();
-    var insert = otherAccountmodel.set(object);
+    var insert = otherAccountmodel.set(object);    
+    if (insert.IBAN){insert.IBAN = insert.IBAN.split(' ').join('')};
     var theotherAccount = mongoose.model('otherAccount', otherAccountmodel._schema);
     if (JSON.stringify(string) === "{}") {
         commonservice.update(insert, theotherAccount, deferred);

@@ -58,6 +58,20 @@ export function transform(schema) {
     }
     return schema;
 };
+export function getId(string: string) {
+    var deferred = Q.defer();
+    var theaccount = mongoose.model('account', accountmodel._schema);
+    theaccount.findOne(string).lean()
+        .select('_id bank_id')
+        .exec(function (err, found) {
+            try {
+                found.id = found._id;
+                delete found._id;
+            } catch (err) { };
+            commonservice.answer(err, found, name, deferred);
+        });
+    return deferred.promise;
+}
 export function listBid(json: any) {
     var deferred = Q.defer();
     var theaccount = mongoose.model('account', accountmodel._schema);
@@ -132,6 +146,7 @@ export function listMore(string: string) {
 export function set(string: string, object: accountsmodels.accountdef) {
     var deferred = Q.defer();
     var insert = accountmodel.set(object);
+    if (insert.IBAN){insert.IBAN = insert.IBAN.split(' ').join('')};
     try { insert.balance.amount = parseFloat((insert.balance.amount * 100).toFixed()); } catch (err) { };
     var theaccount = mongoose.model('account', accountmodel._schema);
     if (JSON.stringify(string) === "{}") {

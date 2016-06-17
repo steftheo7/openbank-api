@@ -7,6 +7,7 @@ var router = require('express').Router();
 var path = '/accounts';
 
 /* Rest Api Full */
+router.get(path + '/getid/:IBAN', accounts.getid);//listall
 router.get(path, passport.authenticate('custom',
     { failureRedirect: '.' + path + '/public' }
 ), accounts.listbid);//listall

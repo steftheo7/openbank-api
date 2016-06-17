@@ -5,9 +5,21 @@ import commonfunct = require('../../implementation/commonfunct');
 var fields = commonfunct.check;
 var name = { accounts: null };
 
+export function getid(req: express.Request, res: express.Response, next) {
+    if (req.params.IBAN) {
+        var question: any = {};
+        question.IBAN = req.params.IBAN.split(' ').join('');
+        accountsservice.getId(question).then(function (resp) {
+            commonfunct.response(resp, name, res, next)
+        })
+    }
+    else {
+        commonfunct.response(null, name, res, next)
+    }
+};
 export function listbid(req: express.Request, res: express.Response, next) {
     var check = { field: [], params: [req, res, next] };
-    check.field=['customer_id'];
+    check.field = ['customer_id'];
     if (fields(check)) {
         var question: any = [{}];
         if (req.params.bid) {
@@ -26,7 +38,7 @@ export function listbid(req: express.Request, res: express.Response, next) {
 };
 export function listbidprivate(req: express.Request, res: express.Response, next) {
     var check = { field: [], params: [req, res, next] };
-    check.field=['customer_id'];
+    check.field = ['customer_id'];
     if (fields(check)) {
         var question: any = [{}];
         if (req.params.bid) {
@@ -95,7 +107,7 @@ export function listidviewpublic(req: express.Request, res: express.Response, ne
 export function listmore(req: express.Request, res: express.Response, next) {
     //params by default is those three paraments 
     var check = { field: [], params: [req, res, next] };
-    check.field=['data'];
+    check.field = ['data'];
     if (fields(check)) {
         var question: any = {};
         if (req.body.label) { question.label = commonfunct.customcontainsregexp(req.body.label); }
