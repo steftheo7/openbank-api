@@ -25,8 +25,7 @@
                     "200": {
                         "description": "Successful html response"
                     }
-                },
-                "security": []
+                }
             }
         },
         "/Register": {
@@ -46,8 +45,7 @@
                     "200": {
                         "description": "Returns Form Registration"
                     }
-                },
-                "security": []
+                }
             }
         },
         "/api/user": {
@@ -66,16 +64,14 @@
                         "in": "header",
                         "description": "Auth-Provider-Name",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "Auth-ID",
                         "in": "header",
                         "description": "Auth-ID",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     }
                 ],
                 "responses": {
@@ -94,15 +90,14 @@
                             "$ref": "#/definitions/UsersResponse"
                         }
                     }
-                },
-                "security": []
+                }
             },
             "put": {
                 "tags": [
                     "Users"
                 ],
                 "description": "Set a user (this action will be restricted to data owners in next versions)",
-                "operationId": "putUsers",
+                "operationId": "putUser",
                 "consumes": [
                     "application/json"
                 ],
@@ -115,8 +110,7 @@
                         "in": "header",
                         "description": "Trackid UUID",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "UserDef",
@@ -141,8 +135,7 @@
                             "$ref": "#/definitions/UsersResponse"
                         }
                     }
-                },
-                "security": []
+                }
             }
         },
         "/api/user/{USER_ID}": {
@@ -151,7 +144,7 @@
                     "Users"
                 ],
                 "description": "Set a user (this action will be restricted to data owners in next versions)",
-                "operationId": "putUsers2",
+                "operationId": "putUserID",
                 "consumes": [
                     "application/json"
                 ],
@@ -164,32 +157,28 @@
                         "in": "header",
                         "description": "Trackid UUID",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "Auth-Provider-Name",
                         "in": "header",
                         "description": "Auth-Provider-Name",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "Auth-ID",
                         "in": "header",
                         "description": "Auth-ID",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "USER_ID",
                         "in": "path",
                         "description": "User Code",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "UserDef",
@@ -217,8 +206,7 @@
                             "$ref": "#/definitions/UsersResponse"
                         }
                     }
-                },
-                "security": []
+                }
             }
         },
         "/api/banks": {
@@ -244,8 +232,7 @@
                             "$ref": "#/definitions/BanksResponse"
                         }
                     }
-                },
-                "security": []
+                }
             },
             "post": {
                 "tags": [
@@ -265,8 +252,7 @@
                         "in": "header",
                         "description": "Trackid UUID",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "GetBankDef",
@@ -291,15 +277,14 @@
                             "$ref": "#/definitions/BanksResponse"
                         }
                     }
-                },
-                "security": []
+                }
             },
             "put": {
                 "tags": [
                     "Banks"
                 ],
                 "description": "Set a bank (this action will be restricted to data owners in next versions)",
-                "operationId": "putBanks",
+                "operationId": "putBank",
                 "consumes": [
                     "application/json"
                 ],
@@ -312,24 +297,21 @@
                         "in": "header",
                         "description": "Trackid UUID",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "Auth-Provider-Name",
                         "in": "header",
                         "description": "Auth-Provider-Name",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "Auth-ID",
                         "in": "header",
                         "description": "Auth-ID",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "BankDef",
@@ -357,8 +339,7 @@
                             "$ref": "#/definitions/BankResponse"
                         }
                     }
-                },
-                "security": []
+                }
             }
         },
         "/api/banks/{BANK_ID}": {
@@ -380,32 +361,28 @@
                         "in": "header",
                         "description": "Trackid UUID",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "Auth-Provider-Name",
                         "in": "header",
                         "description": "Auth-Provider-Name",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "Auth-ID",
                         "in": "header",
                         "description": "Auth-ID",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "BANK_ID",
                         "in": "path",
                         "description": "Swift Bank Code",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     }
                 ],
                 "responses": {
@@ -424,15 +401,14 @@
                             "$ref": "#/definitions/SetDelDef"
                         }
                     }
-                },
-                "security": []
+                }
             },
             "get": {
                 "tags": [
                     "Banks"
                 ],
                 "description": "List a Bank",
-                "operationId": "getBanks2",
+                "operationId": "getBank",
                 "produces": [
                     "application/json"
                 ],
@@ -442,8 +418,7 @@
                         "in": "path",
                         "description": "Swift Bank Code",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     }
                 ],
                 "responses": {
@@ -459,15 +434,14 @@
                             "$ref": "#/definitions/BankResponse"
                         }
                     }
-                },
-                "security": []
+                }
             },
             "put": {
                 "tags": [
                     "Banks"
                 ],
                 "description": "Set a bank (this action will be restricted to data owners in next versions)",
-                "operationId": "putBanks2",
+                "operationId": "putBankID",
                 "consumes": [
                     "application/json"
                 ],
@@ -480,32 +454,28 @@
                         "in": "header",
                         "description": "Trackid UUID",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "Auth-Provider-Name",
                         "in": "header",
                         "description": "Auth-Provider-Name",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "Auth-ID",
                         "in": "header",
                         "description": "Auth-ID",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "BANK_ID",
                         "in": "path",
                         "description": "Swift Bank Code",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "BankDef",
@@ -533,8 +503,7 @@
                             "$ref": "#/definitions/BankResponse"
                         }
                     }
-                },
-                "security": []
+                }
             }
         },
         "/api/banks/{BANK_ID}/branches": {
@@ -553,8 +522,7 @@
                         "in": "path",
                         "description": "Swift Bank Code",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     }
                 ],
                 "responses": {
@@ -570,8 +538,7 @@
                             "$ref": "#/definitions/BranchesResponse"
                         }
                     }
-                },
-                "security": []
+                }
             },
             "post": {
                 "tags": [
@@ -591,16 +558,14 @@
                         "in": "header",
                         "description": "Trackid UUID",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "BANK_ID",
                         "in": "path",
                         "description": "Swift Bank Code",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "GetBranchAtmDef",
@@ -625,15 +590,14 @@
                             "$ref": "#/definitions/BranchesResponse"
                         }
                     }
-                },
-                "security": []
+                }
             },
             "put": {
                 "tags": [
                     "Branches"
                 ],
                 "description": "Set a branch",
-                "operationId": "putBranches",
+                "operationId": "putBranch",
                 "consumes": [
                     "application/json"
                 ],
@@ -646,32 +610,28 @@
                         "in": "header",
                         "description": "Trackid UUID",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "Auth-Provider-Name",
                         "in": "header",
                         "description": "Auth-Provider-Name",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "Auth-ID",
                         "in": "header",
                         "description": "Auth-ID",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "BANK_ID",
                         "in": "path",
                         "description": "Swift Bank Code",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "BranchAtmDef",
@@ -699,8 +659,7 @@
                             "$ref": "#/definitions/BranchAtmResponse"
                         }
                     }
-                },
-                "security": []
+                }
             }
         },
         "/api/banks/{BANK_ID}/branches/{BRANCH_ID}": {
@@ -722,40 +681,35 @@
                         "in": "header",
                         "description": "Trackid UUID",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "Auth-Provider-Name",
                         "in": "header",
                         "description": "Auth-Provider-Name",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "Auth-ID",
                         "in": "header",
                         "description": "Auth-ID",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "BANK_ID",
                         "in": "path",
                         "description": "Swift Bank Code",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "BRANCH_ID",
                         "in": "path",
                         "description": "Branch ID",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     }
                 ],
                 "responses": {
@@ -774,15 +728,14 @@
                             "$ref": "#/definitions/SetDelDef"
                         }
                     }
-                },
-                "security": []
+                }
             },
             "get": {
                 "tags": [
                     "Branches"
                 ],
                 "description": "List a branch",
-                "operationId": "getBranches2",
+                "operationId": "getBranch",
                 "produces": [
                     "application/json"
                 ],
@@ -792,16 +745,14 @@
                         "in": "path",
                         "description": "Swift Bank Code",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "BRANCH_ID",
                         "in": "path",
                         "description": "Branch ID",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     }
                 ],
                 "responses": {
@@ -817,15 +768,14 @@
                             "$ref": "#/definitions/BranchAtmResponse"
                         }
                     }
-                },
-                "security": []
+                }
             },
             "put": {
                 "tags": [
                     "Branches"
                 ],
                 "description": "Set a branch",
-                "operationId": "putBranches2",
+                "operationId": "putBranchID",
                 "consumes": [
                     "application/json"
                 ],
@@ -838,40 +788,35 @@
                         "in": "header",
                         "description": "Trackid UUID",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "Auth-Provider-Name",
                         "in": "header",
                         "description": "Auth-Provider-Name",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "Auth-ID",
                         "in": "header",
                         "description": "Auth-ID",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "BANK_ID",
                         "in": "path",
                         "description": "Swift Bank Code",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "BRANCH_ID",
                         "in": "path",
                         "description": "Branch ID",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "BranchAtmDef",
@@ -899,8 +844,7 @@
                             "$ref": "#/definitions/BranchAtmResponse"
                         }
                     }
-                },
-                "security": []
+                }
             }
         },
         "/api/banks/{BANK_ID}/atms": {
@@ -919,8 +863,7 @@
                         "in": "path",
                         "description": "Swift Bank Code",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     }
                 ],
                 "responses": {
@@ -936,8 +879,7 @@
                             "$ref": "#/definitions/AtmsResponse"
                         }
                     }
-                },
-                "security": []
+                }
             },
             "post": {
                 "tags": [
@@ -957,16 +899,14 @@
                         "in": "header",
                         "description": "Trackid UUID",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "BANK_ID",
                         "in": "path",
                         "description": "Swift Bank Code",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "GetBranchAtmDef",
@@ -991,15 +931,14 @@
                             "$ref": "#/definitions/AtmsResponse"
                         }
                     }
-                },
-                "security": []
+                }
             },
             "put": {
                 "tags": [
                     "Atms"
                 ],
                 "description": "Set a atm",
-                "operationId": "putAtms",
+                "operationId": "putAtm",
                 "consumes": [
                     "application/json"
                 ],
@@ -1012,32 +951,28 @@
                         "in": "header",
                         "description": "Trackid UUID",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "Auth-Provider-Name",
                         "in": "header",
                         "description": "Auth-Provider-Name",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "Auth-ID",
                         "in": "header",
                         "description": "Auth-ID",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "BANK_ID",
                         "in": "path",
                         "description": "Swift Bank Code",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "BranchAtmDef",
@@ -1065,8 +1000,7 @@
                             "$ref": "#/definitions/BranchAtmResponse"
                         }
                     }
-                },
-                "security": []
+                }
             }
         },
         "/api/banks/{BANK_ID}/atms/{ATM_ID}": {
@@ -1088,40 +1022,35 @@
                         "in": "header",
                         "description": "Trackid UUID",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "Auth-Provider-Name",
                         "in": "header",
                         "description": "Auth-Provider-Name",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "Auth-ID",
                         "in": "header",
                         "description": "Auth-ID",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "BANK_ID",
                         "in": "path",
                         "description": "Swift Bank Code",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "ATM_ID",
                         "in": "path",
                         "description": "Atm ID",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     }
                 ],
                 "responses": {
@@ -1140,15 +1069,14 @@
                             "$ref": "#/definitions/SetDelDef"
                         }
                     }
-                },
-                "security": []
+                }
             },
             "get": {
                 "tags": [
                     "Atms"
                 ],
                 "description": "List a atm",
-                "operationId": "getAtms2",
+                "operationId": "getAtm",
                 "produces": [
                     "application/json"
                 ],
@@ -1158,20 +1086,18 @@
                         "in": "path",
                         "description": "Swift Bank Code",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "ATM_ID",
                         "in": "path",
                         "description": "Atm ID",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     }
                 ],
                 "responses": {
-                   "500": {
+                    "500": {
                         "description": "Server Response Message"
                     },
                     "404": {
@@ -1183,15 +1109,14 @@
                             "$ref": "#/definitions/BranchAtmResponse"
                         }
                     }
-                },
-                "security": []
+                }
             },
             "put": {
                 "tags": [
                     "Atms"
                 ],
                 "description": "Set a atm",
-                "operationId": "putAtms2",
+                "operationId": "putAtmID",
                 "consumes": [
                     "application/json"
                 ],
@@ -1204,40 +1129,35 @@
                         "in": "header",
                         "description": "Trackid UUID",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "Auth-Provider-Name",
                         "in": "header",
                         "description": "Auth-Provider-Name",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "Auth-ID",
                         "in": "header",
                         "description": "Auth-ID",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "BANK_ID",
                         "in": "path",
                         "description": "Swift Bank Code",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "ATM_ID",
                         "in": "path",
                         "description": "Atm ID",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "BranchAtmDef",
@@ -1265,8 +1185,7 @@
                             "$ref": "#/definitions/BranchAtmResponse"
                         }
                     }
-                },
-                "security": []
+                }
             }
         },
         "/api/banks/{BANK_ID}/products": {
@@ -1285,8 +1204,7 @@
                         "in": "path",
                         "description": "Swift Bank Code",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     }
                 ],
                 "responses": {
@@ -1302,8 +1220,7 @@
                             "$ref": "#/definitions/ProductsResponse"
                         }
                     }
-                },
-                "security": []
+                }
             },
             "post": {
                 "tags": [
@@ -1323,16 +1240,14 @@
                         "in": "header",
                         "description": "Trackid UUID",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "BANK_ID",
                         "in": "path",
                         "description": "Swift Bank Code",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "GetProductDef",
@@ -1357,15 +1272,14 @@
                             "$ref": "#/definitions/ProductsResponse"
                         }
                     }
-                },
-                "security": []
+                }
             },
             "put": {
                 "tags": [
                     "Products"
                 ],
                 "description": "Set a product",
-                "operationId": "putProducts",
+                "operationId": "putProduct",
                 "consumes": [
                     "application/json"
                 ],
@@ -1378,32 +1292,28 @@
                         "in": "header",
                         "description": "Trackid UUID",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "Auth-Provider-Name",
                         "in": "header",
                         "description": "Auth-Provider-Name",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "Auth-ID",
                         "in": "header",
                         "description": "Auth-ID",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "BANK_ID",
                         "in": "path",
                         "description": "Swift Bank Code",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "ProductDef",
@@ -1431,8 +1341,7 @@
                             "$ref": "#/definitions/ProductResponse"
                         }
                     }
-                },
-                "security": []
+                }
             }
         },
         "/api/banks/{BANK_ID}/products/{PRODUCT_ID}": {
@@ -1454,40 +1363,35 @@
                         "in": "header",
                         "description": "Trackid UUID",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "Auth-Provider-Name",
                         "in": "header",
                         "description": "Auth-Provider-Name",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "Auth-ID",
                         "in": "header",
                         "description": "Auth-ID",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "BANK_ID",
                         "in": "path",
                         "description": "Swift Bank Code",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "PRODUCT_ID",
                         "in": "path",
                         "description": "Product ID",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     }
                 ],
                 "responses": {
@@ -1506,15 +1410,14 @@
                             "$ref": "#/definitions/SetDelDef"
                         }
                     }
-                },
-                "security": []
+                }
             },
             "get": {
                 "tags": [
                     "Products"
                 ],
                 "description": "List a product",
-                "operationId": "getProducts2",
+                "operationId": "getProduct",
                 "produces": [
                     "application/json"
                 ],
@@ -1524,16 +1427,14 @@
                         "in": "path",
                         "description": "Swift Bank Code",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "PRODUCT_ID",
                         "in": "path",
                         "description": "Product ID",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     }
                 ],
                 "responses": {
@@ -1552,15 +1453,14 @@
                             "$ref": "#/definitions/ProductResponse"
                         }
                     }
-                },
-                "security": []
+                }
             },
             "put": {
                 "tags": [
                     "Products"
                 ],
                 "description": "Set a product",
-                "operationId": "putProducts2",
+                "operationId": "putProductID",
                 "consumes": [
                     "application/json"
                 ],
@@ -1573,40 +1473,35 @@
                         "in": "header",
                         "description": "Trackid UUID",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "Auth-Provider-Name",
                         "in": "header",
                         "description": "Auth-Provider-Name",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "Auth-ID",
                         "in": "header",
                         "description": "Auth-ID",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "BANK_ID",
                         "in": "path",
                         "description": "Swift Bank Code",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "PRODUCT_ID",
                         "in": "path",
                         "description": "Product ID",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "ProductDef",
@@ -1634,8 +1529,7 @@
                             "$ref": "#/definitions/ProductResponse"
                         }
                     }
-                },
-                "security": []
+                }
             }
         },
         "/api/banks/{BANK_ID}/customer": {
@@ -1644,7 +1538,7 @@
                     "Customers"
                 ],
                 "description": "List all customers",
-                "operationId": "getCustomers",
+                "operationId": "getCustomerOwner",
                 "produces": [
                     "application/json"
                 ],
@@ -1654,24 +1548,21 @@
                         "in": "header",
                         "description": "Auth-Provider-Name",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "Auth-ID",
                         "in": "header",
                         "description": "Auth-ID",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "BANK_ID",
                         "in": "path",
                         "description": "Swift Bank Code",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     }
                 ],
                 "responses": {
@@ -1690,8 +1581,7 @@
                             "$ref": "#/definitions/CustomerResponse"
                         }
                     }
-                },
-                "security": []
+                }
             }
         },
         "/api/banks/{BANK_ID}/customers": {
@@ -1700,7 +1590,7 @@
                     "Customers"
                 ],
                 "description": "List all customers",
-                "operationId": "getCustomers2",
+                "operationId": "getCustomers",
                 "produces": [
                     "application/json"
                 ],
@@ -1710,24 +1600,21 @@
                         "in": "header",
                         "description": "Auth-Provider-Name",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "Auth-ID",
                         "in": "header",
                         "description": "Auth-ID",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "BANK_ID",
                         "in": "path",
                         "description": "Swift Bank Code",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     }
                 ],
                 "responses": {
@@ -1746,8 +1633,7 @@
                             "$ref": "#/definitions/CustomersResponse"
                         }
                     }
-                },
-                "security": []
+                }
             },
             "post": {
                 "tags": [
@@ -1767,32 +1653,28 @@
                         "in": "header",
                         "description": "Trackid UUID",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "Auth-Provider-Name",
                         "in": "header",
                         "description": "Auth-Provider-Name",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "Auth-ID",
                         "in": "header",
                         "description": "Auth-ID",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "BANK_ID",
                         "in": "path",
                         "description": "Swift Bank Code",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "GetCustomerDef",
@@ -1820,15 +1702,14 @@
                             "$ref": "#/definitions/CustomersResponse"
                         }
                     }
-                },
-                "security": []
+                }
             },
             "put": {
                 "tags": [
                     "Customers"
                 ],
                 "description": "Set a customer",
-                "operationId": "putCustomers",
+                "operationId": "putCustomer",
                 "consumes": [
                     "application/json"
                 ],
@@ -1841,32 +1722,28 @@
                         "in": "header",
                         "description": "Trackid UUID",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "Auth-Provider-Name",
                         "in": "header",
                         "description": "Auth-Provider-Name",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "Auth-ID",
                         "in": "header",
                         "description": "Auth-ID",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "BANK_ID",
                         "in": "path",
                         "description": "Swift Bank Code",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "CustomerDef",
@@ -1894,8 +1771,7 @@
                             "$ref": "#/definitions/CustomerResponse"
                         }
                     }
-                },
-                "security": []
+                }
             }
         },
         "/api/banks/{BANK_ID}/customers/{CUSTOMER_ID}": {
@@ -1917,40 +1793,35 @@
                         "in": "header",
                         "description": "Trackid UUID",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "Auth-Provider-Name",
                         "in": "header",
                         "description": "Auth-Provider-Name",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "Auth-ID",
                         "in": "header",
                         "description": "Auth-ID",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "BANK_ID",
                         "in": "path",
                         "description": "Swift Bank Code",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "CUSTOMER_ID",
                         "in": "path",
                         "description": "Customer ID",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     }
                 ],
                 "responses": {
@@ -1969,15 +1840,14 @@
                             "$ref": "#/definitions/SetDelDef"
                         }
                     }
-                },
-                "security": []
+                }
             },
             "get": {
                 "tags": [
                     "Customers"
                 ],
                 "description": "List a customer",
-                "operationId": "getCustomers3",
+                "operationId": "getCustomer",
                 "produces": [
                     "application/json"
                 ],
@@ -1987,32 +1857,28 @@
                         "in": "header",
                         "description": "Auth-Provider-Name",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "Auth-ID",
                         "in": "header",
                         "description": "Auth-ID",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "BANK_ID",
                         "in": "path",
                         "description": "Swift Bank Code",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "CUSTOMER_ID",
                         "in": "path",
                         "description": "Customer ID",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     }
                 ],
                 "responses": {
@@ -2031,15 +1897,14 @@
                             "$ref": "#/definitions/CustomerResponse"
                         }
                     }
-                },
-                "security": []
+                }
             },
             "put": {
                 "tags": [
                     "Customers"
                 ],
                 "description": "Set a customer",
-                "operationId": "putCustomers2",
+                "operationId": "putCustomerID",
                 "consumes": [
                     "application/json"
                 ],
@@ -2052,40 +1917,35 @@
                         "in": "header",
                         "description": "Trackid UUID",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "Auth-Provider-Name",
                         "in": "header",
                         "description": "Auth-Provider-Name",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "Auth-ID",
                         "in": "header",
                         "description": "Auth-ID",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "BANK_ID",
                         "in": "path",
                         "description": "Swift Bank Code",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "CUSTOMER_ID",
                         "in": "path",
                         "description": "Customer ID",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "CustomerDef",
@@ -2113,8 +1973,7 @@
                             "$ref": "#/definitions/CustomerResponse"
                         }
                     }
-                },
-                "security": []
+                }
             }
         },
         "/api/banks/{BANK_ID}/messages": {
@@ -2133,24 +1992,21 @@
                         "in": "header",
                         "description": "Auth-Provider-Name",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "Auth-ID",
                         "in": "header",
                         "description": "Auth-ID",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "BANK_ID",
                         "in": "path",
                         "description": "Swift Bank Code",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     }
                 ],
                 "responses": {
@@ -2169,8 +2025,7 @@
                             "$ref": "#/definitions/MessagesResponse"
                         }
                     }
-                },
-                "security": []
+                }
             },
             "post": {
                 "tags": [
@@ -2187,32 +2042,28 @@
                         "in": "header",
                         "description": "Trackid UUID",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "Auth-Provider-Name",
                         "in": "header",
                         "description": "Auth-Provider-Name",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "Auth-ID",
                         "in": "header",
                         "description": "Auth-ID",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "BANK_ID",
                         "in": "path",
                         "description": "Swift Bank Code",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     }
                 ],
                 "responses": {
@@ -2231,15 +2082,14 @@
                             "$ref": "#/definitions/MessagesResponse"
                         }
                     }
-                },
-                "security": []
+                }
             },
             "put": {
                 "tags": [
                     "Customers"
                 ],
                 "description": "List all Messages",
-                "operationId": "putMessages",
+                "operationId": "putMessage",
                 "produces": [
                     "application/json"
                 ],
@@ -2249,32 +2099,28 @@
                         "in": "header",
                         "description": "Trackid UUID",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "Auth-Provider-Name",
                         "in": "header",
                         "description": "Auth-Provider-Name",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "Auth-ID",
                         "in": "header",
                         "description": "Auth-ID",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "BANK_ID",
                         "in": "path",
                         "description": "Swift Bank Code",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "MessageDef",
@@ -2302,8 +2148,7 @@
                             "$ref": "#/definitions/MessageResponse"
                         }
                     }
-                },
-                "security": []
+                }
             }
         },
         "/api/banks/{BANK_ID}/messages/{MESSAGE_ID}": {
@@ -2325,40 +2170,35 @@
                         "in": "header",
                         "description": "Trackid UUID",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "Auth-Provider-Name",
                         "in": "header",
                         "description": "Auth-Provider-Name",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "Auth-ID",
                         "in": "header",
                         "description": "Auth-ID",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "BANK_ID",
                         "in": "path",
                         "description": "Swift Bank Code",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "MESSAGE_ID",
                         "in": "path",
                         "description": "Message ID",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     }
                 ],
                 "responses": {
@@ -2377,15 +2217,14 @@
                             "$ref": "#/definitions/SetDelDef"
                         }
                     }
-                },
-                "security": []
+                }
             },
             "get": {
                 "tags": [
                     "Customers"
                 ],
                 "description": "List a message",
-                "operationId": "getMessage3",
+                "operationId": "getMessage",
                 "produces": [
                     "application/json"
                 ],
@@ -2395,32 +2234,28 @@
                         "in": "header",
                         "description": "Auth-Provider-Name",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "Auth-ID",
                         "in": "header",
                         "description": "Auth-ID",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "BANK_ID",
                         "in": "path",
                         "description": "Swift Bank Code",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "MESSAGE_ID",
                         "in": "path",
                         "description": "Message ID",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     }
                 ],
                 "responses": {
@@ -2439,15 +2274,14 @@
                             "$ref": "#/definitions/CustomerResponse"
                         }
                     }
-                },
-                "security": []
+                }
             },
             "put": {
                 "tags": [
                     "Customers"
                 ],
                 "description": "List all Messages",
-                "operationId": "putMessages3",
+                "operationId": "putMessageID",
                 "produces": [
                     "application/json"
                 ],
@@ -2457,40 +2291,35 @@
                         "in": "header",
                         "description": "Trackid UUID",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "Auth-Provider-Name",
                         "in": "header",
                         "description": "Auth-Provider-Name",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "Auth-ID",
                         "in": "header",
                         "description": "Auth-ID",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "BANK_ID",
                         "in": "path",
                         "description": "Swift Bank Code",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "MESSAGE_ID",
                         "in": "path",
                         "description": "Message ID",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "MessageDef",
@@ -2518,8 +2347,7 @@
                             "$ref": "#/definitions/MessageResponse"
                         }
                     }
-                },
-                "security": []
+                }
             }
         },
         "/api/banks/{BANK_ID}/customer/messages": {
@@ -2528,7 +2356,7 @@
                     "Customers"
                 ],
                 "description": "List all Messages",
-                "operationId": "getMessages2",
+                "operationId": "getMessagesOwner",
                 "produces": [
                     "application/json"
                 ],
@@ -2538,24 +2366,21 @@
                         "in": "header",
                         "description": "Auth-Provider-Name",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "Auth-ID",
                         "in": "header",
                         "description": "Auth-ID",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "BANK_ID",
                         "in": "path",
                         "description": "Swift Bank Code",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     }
                 ],
                 "responses": {
@@ -2574,8 +2399,7 @@
                             "$ref": "#/definitions/MessagesResponse"
                         }
                     }
-                },
-                "security": []
+                }
             }
         },
         "/api/banks/{BANK_ID}/customer/{CUSTOMER_ID}/messages": {
@@ -2584,7 +2408,7 @@
                     "Customers"
                 ],
                 "description": "List all Messages",
-                "operationId": "putMessages2",
+                "operationId": "putMessageToCustomer",
                 "produces": [
                     "application/json"
                 ],
@@ -2594,40 +2418,35 @@
                         "in": "header",
                         "description": "Trackid UUID",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "Auth-Provider-Name",
                         "in": "header",
                         "description": "Auth-Provider-Name",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "Auth-ID",
                         "in": "header",
                         "description": "Auth-ID",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "BANK_ID",
                         "in": "path",
                         "description": "Swift Bank Code",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "CUSTOMER_ID",
                         "in": "path",
                         "description": "Customer ID",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "MessageDef",
@@ -2655,8 +2474,7 @@
                             "$ref": "#/definitions/MessageResponse"
                         }
                     }
-                },
-                "security": []
+                }
             }
         },
         "/api/banks/{BANK_ID}/customer/{CUSTOMER_ID}/messages/{MESSAGE_ID}": {
@@ -2665,7 +2483,7 @@
                     "Customers"
                 ],
                 "description": "List all Messages",
-                "operationId": "putMessages4",
+                "operationId": "putMessageIDtoCustomer",
                 "produces": [
                     "application/json"
                 ],
@@ -2675,48 +2493,42 @@
                         "in": "header",
                         "description": "Trackid UUID",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "Auth-Provider-Name",
                         "in": "header",
                         "description": "Auth-Provider-Name",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "Auth-ID",
                         "in": "header",
                         "description": "Auth-ID",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "BANK_ID",
                         "in": "path",
                         "description": "Swift Bank Code",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "CUSTOMER_ID",
                         "in": "path",
                         "description": "Customer ID",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "MESSAGE_ID",
                         "in": "path",
                         "description": "Message ID",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "MessageDef",
@@ -2744,8 +2556,7 @@
                             "$ref": "#/definitions/MessageResponse"
                         }
                     }
-                },
-                "security": []
+                }
             }
         },
         "/api/banks/{BANK_ID}/views": {
@@ -2754,7 +2565,7 @@
                     "Views"
                 ],
                 "description": "List all Views",
-                "operationId": "getViews4",
+                "operationId": "getViews",
                 "produces": [
                     "application/json"
                 ],
@@ -2764,24 +2575,21 @@
                         "in": "header",
                         "description": "Auth-Provider-Name",
                         "required": false,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "Auth-ID",
                         "in": "header",
                         "description": "Auth-ID",
                         "required": false,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "BANK_ID",
                         "in": "path",
                         "description": "Swift Bank Code",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     }
                 ],
                 "responses": {
@@ -2800,15 +2608,14 @@
                             "$ref": "#/definitions/ViewsResponse"
                         }
                     }
-                },
-                "security": []
+                }
             },
             "put": {
                 "tags": [
                     "Views"
                 ],
                 "description": "Set a view",
-                "operationId": "putViews4",
+                "operationId": "putView",
                 "consumes": [
                     "application/json"
                 ],
@@ -2821,32 +2628,28 @@
                         "in": "header",
                         "description": "Trackid UUID",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "Auth-Provider-Name",
                         "in": "header",
                         "description": "Auth-Provider-Name",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "Auth-ID",
                         "in": "header",
                         "description": "Auth-ID",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "BANK_ID",
                         "in": "path",
                         "description": "Swift Bank Code",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "ViewDef",
@@ -2874,8 +2677,7 @@
                             "$ref": "#/definitions/ViewResponse"
                         }
                     }
-                },
-                "security": []
+                }
             }
         },
         "/api/banks/{BANK_ID}/views/{VIEW_ID}": {
@@ -2884,7 +2686,7 @@
                     "Views"
                 ],
                 "description": "Delete view",
-                "operationId": "deleteViews2",
+                "operationId": "deleteView",
                 "consumes": [
                     "application/json"
                 ],
@@ -2897,40 +2699,35 @@
                         "in": "header",
                         "description": "Trackid UUID",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "Auth-Provider-Name",
                         "in": "header",
                         "description": "Auth-Provider-Name",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "Auth-ID",
                         "in": "header",
                         "description": "Auth-ID",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "BANK_ID",
                         "in": "path",
                         "description": "Swift Bank Code",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "VIEW_ID",
                         "in": "path",
                         "description": "View ID",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     }
                 ],
                 "responses": {
@@ -2949,15 +2746,14 @@
                             "$ref": "#/definitions/SetDelDef"
                         }
                     }
-                },
-                "security": []
+                }
             },
             "put": {
                 "tags": [
                     "Views"
                 ],
                 "description": "Set a view",
-                "operationId": "putViews3",
+                "operationId": "putViewID",
                 "consumes": [
                     "application/json"
                 ],
@@ -2970,40 +2766,35 @@
                         "in": "header",
                         "description": "Trackid UUID",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "Auth-Provider-Name",
                         "in": "header",
                         "description": "Auth-Provider-Name",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "Auth-ID",
                         "in": "header",
                         "description": "Auth-ID",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "BANK_ID",
                         "in": "path",
                         "description": "Swift Bank Code",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "VIEW_ID",
                         "in": "path",
                         "description": "View ID",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "ViewDef",
@@ -3031,8 +2822,7 @@
                             "$ref": "#/definitions/ViewResponse"
                         }
                     }
-                },
-                "security": []
+                }
             }
         },
         "/api/banks/{BANK_ID}/accounts": {
@@ -3051,24 +2841,21 @@
                         "in": "header",
                         "description": "Auth-Provider-Name",
                         "required": false,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "Auth-ID",
                         "in": "header",
                         "description": "Auth-ID",
                         "required": false,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "BANK_ID",
                         "in": "path",
                         "description": "Swift Bank Code",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     }
                 ],
                 "responses": {
@@ -3087,15 +2874,14 @@
                             "$ref": "#/definitions/AccountsResponse"
                         }
                     }
-                },
-                "security": []
+                }
             },
             "put": {
                 "tags": [
                     "Accounts"
                 ],
                 "description": "Set a account",
-                "operationId": "putAccounts",
+                "operationId": "putAccount",
                 "consumes": [
                     "application/json"
                 ],
@@ -3108,32 +2894,28 @@
                         "in": "header",
                         "description": "Trackid UUID",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "Auth-Provider-Name",
                         "in": "header",
                         "description": "Auth-Provider-Name",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "Auth-ID",
                         "in": "header",
                         "description": "Auth-ID",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "BANK_ID",
                         "in": "path",
                         "description": "Swift Bank Code",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "AccountDef",
@@ -3161,8 +2943,7 @@
                             "$ref": "#/definitions/AccountResponse"
                         }
                     }
-                },
-                "security": []
+                }
             }
         },
         "/api/banks/{BANK_ID}/accounts/{ACCOUNT_ID}": {
@@ -3184,40 +2965,35 @@
                         "in": "header",
                         "description": "Trackid UUID",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "Auth-Provider-Name",
                         "in": "header",
                         "description": "Auth-Provider-Name",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "Auth-ID",
                         "in": "header",
                         "description": "Auth-ID",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "BANK_ID",
                         "in": "path",
                         "description": "Swift Bank Code",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "ACCOUNT_ID",
                         "in": "path",
                         "description": "Account ID",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     }
                 ],
                 "responses": {
@@ -3236,15 +3012,14 @@
                             "$ref": "#/definitions/SetDelDef"
                         }
                     }
-                },
-                "security": []
+                }
             },
             "put": {
                 "tags": [
                     "Accounts"
                 ],
                 "description": "Set a account",
-                "operationId": "putAccounts2",
+                "operationId": "putAccountID",
                 "consumes": [
                     "application/json"
                 ],
@@ -3257,40 +3032,35 @@
                         "in": "header",
                         "description": "Trackid UUID",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "Auth-Provider-Name",
                         "in": "header",
                         "description": "Auth-Provider-Name",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "Auth-ID",
                         "in": "header",
                         "description": "Auth-ID",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "BANK_ID",
                         "in": "path",
                         "description": "Swift Bank Code",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "ACCOUNT_ID",
                         "in": "path",
                         "description": "Account ID",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "AccountDef",
@@ -3318,17 +3088,16 @@
                             "$ref": "#/definitions/AccountResponse"
                         }
                     }
-                },
-                "security": []
+                }
             }
         },
-        "/api/banks/{BANK_ID}/accounts/{ACCOUNT_ID}/{private/public}": {
+        "/api/banks/{BANK_ID}/accounts/{ACCOUNT_ID}/{private_public}": {
             "get": {
                 "tags": [
                     "Accounts"
                 ],
-                "description": "List all accounts",
-                "operationId": "getAccounts3",
+                "description": "List all public or private accounts",
+                "operationId": "getAccountsPrivatePublic",
                 "produces": [
                     "application/json"
                 ],
@@ -3338,40 +3107,35 @@
                         "in": "header",
                         "description": "Auth-Provider-Name",
                         "required": false,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "Auth-ID",
                         "in": "header",
                         "description": "Auth-ID",
                         "required": false,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "BANK_ID",
                         "in": "path",
                         "description": "Swift Bank Code",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "ACCOUNT_ID",
                         "in": "path",
                         "description": "Account ID",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
-                        "name": "private/public",
+                        "name": "private_public",
                         "in": "path",
                         "description": "private or public",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     }
                 ],
                 "responses": {
@@ -3390,8 +3154,7 @@
                             "$ref": "#/definitions/AccountsResponse"
                         }
                     }
-                },
-                "security": []
+                }
             }
         },
         "/api/banks/{BANK_ID}/accounts/{ACCOUNT_ID}/views": {
@@ -3400,7 +3163,7 @@
                     "Views"
                 ],
                 "description": "Set a view",
-                "operationId": "putViews",
+                "operationId": "putViewAccount",
                 "consumes": [
                     "application/json"
                 ],
@@ -3413,40 +3176,35 @@
                         "in": "header",
                         "description": "Trackid UUID",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "Auth-Provider-Name",
                         "in": "header",
                         "description": "Auth-Provider-Name",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "Auth-ID",
                         "in": "header",
                         "description": "Auth-ID",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "BANK_ID",
                         "in": "path",
                         "description": "Swift Bank Code",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "ACCOUNT_ID",
                         "in": "path",
                         "description": "Account ID",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "ViewDef",
@@ -3474,8 +3232,7 @@
                             "$ref": "#/definitions/ViewResponse"
                         }
                     }
-                },
-                "security": []
+                }
             }
         },
         "/api/banks/{BANK_ID}/accounts/{ACCOUNT_ID}/views/{VIEW_ID}": {
@@ -3484,7 +3241,7 @@
                     "Views"
                 ],
                 "description": "Delete view",
-                "operationId": "deleteViews",
+                "operationId": "deleteViewAccount",
                 "consumes": [
                     "application/json"
                 ],
@@ -3497,48 +3254,42 @@
                         "in": "header",
                         "description": "Trackid UUID",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "Auth-Provider-Name",
                         "in": "header",
                         "description": "Auth-Provider-Name",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "Auth-ID",
                         "in": "header",
                         "description": "Auth-ID",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "BANK_ID",
                         "in": "path",
                         "description": "Swift Bank Code",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "ACCOUNT_ID",
                         "in": "path",
                         "description": "Account ID",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "VIEW_ID",
                         "in": "path",
                         "description": "View ID",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     }
                 ],
                 "responses": {
@@ -3557,15 +3308,14 @@
                             "$ref": "#/definitions/SetDelDef"
                         }
                     }
-                },
-                "security": []
+                }
             },
             "put": {
                 "tags": [
                     "Views"
                 ],
                 "description": "Set a view",
-                "operationId": "putViews2",
+                "operationId": "putViewIDAccount",
                 "consumes": [
                     "application/json"
                 ],
@@ -3578,48 +3328,42 @@
                         "in": "header",
                         "description": "Trackid UUID",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "Auth-Provider-Name",
                         "in": "header",
                         "description": "Auth-Provider-Name",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "Auth-ID",
                         "in": "header",
                         "description": "Auth-ID",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "BANK_ID",
                         "in": "path",
                         "description": "Swift Bank Code",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "ACCOUNT_ID",
                         "in": "path",
                         "description": "Account ID",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "VIEW_ID",
                         "in": "path",
                         "description": "View ID",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "ViewDef",
@@ -3647,8 +3391,7 @@
                             "$ref": "#/definitions/ViewResponse"
                         }
                     }
-                },
-                "security": []
+                }
             }
         },
         "/api/banks/{BANK_ID}/accounts/{ACCOUNT_ID}/{VIEW_ID}/account": {
@@ -3657,7 +3400,7 @@
                     "Accounts"
                 ],
                 "description": "List all accounts",
-                "operationId": "getAccounts4",
+                "operationId": "getAccount",
                 "produces": [
                     "application/json"
                 ],
@@ -3667,40 +3410,35 @@
                         "in": "header",
                         "description": "Auth-Provider-Name",
                         "required": false,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "Auth-ID",
                         "in": "header",
                         "description": "Auth-ID",
                         "required": false,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "BANK_ID",
                         "in": "path",
                         "description": "Swift Bank Code",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "ACCOUNT_ID",
                         "in": "path",
                         "description": "Account ID",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "VIEW_ID",
                         "in": "path",
                         "description": "View ID",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     }
                 ],
                 "responses": {
@@ -3719,8 +3457,7 @@
                             "$ref": "#/definitions/AccountsResponse"
                         }
                     }
-                },
-                "security": []
+                }
             }
         },
         "/api/banks/{BANK_ID}/accounts/{ACCOUNT_ID}/{VIEW_ID}/{scope}": {
@@ -3729,7 +3466,7 @@
                     "Accounts"
                 ],
                 "description": "List all accounts",
-                "operationId": "getAccounts5",
+                "operationId": "getAccountsScope",
                 "produces": [
                     "application/json"
                 ],
@@ -3739,48 +3476,42 @@
                         "in": "header",
                         "description": "Auth-Provider-Name",
                         "required": false,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "Auth-ID",
                         "in": "header",
                         "description": "Auth-ID",
                         "required": false,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "BANK_ID",
                         "in": "path",
                         "description": "Swift Bank Code",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "ACCOUNT_ID",
                         "in": "path",
                         "description": "Account ID",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "VIEW_ID",
                         "in": "path",
                         "description": "View ID",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "scope",
                         "in": "path",
                         "description": "Permissions or Views",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     }
                 ],
                 "responses": {
@@ -3799,8 +3530,7 @@
                             "$ref": "#/definitions/AccountsResponse"
                         }
                     }
-                },
-                "security": []
+                }
             }
         },
         "/api/banks/{BANK_ID}/accounts/{ACCOUNT_ID}/{VIEW_ID}/other_accounts": {
@@ -3819,40 +3549,35 @@
                         "in": "header",
                         "description": "Auth-Provider-Name",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "Auth-ID",
                         "in": "header",
                         "description": "Auth-ID",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "BANK_ID",
                         "in": "path",
                         "description": "Swift Bank Code",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "ACCOUNT_ID",
                         "in": "path",
                         "description": "Account ID",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "VIEW_ID",
                         "in": "path",
                         "description": "View ID",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     }
                 ],
                 "responses": {
@@ -3871,8 +3596,7 @@
                             "$ref": "#/definitions/OtherAccountsResponse"
                         }
                     }
-                },
-                "security": []
+                }
             },
             "post": {
                 "tags": [
@@ -3892,48 +3616,42 @@
                         "in": "header",
                         "description": "Trackid UUID",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "Auth-Provider-Name",
                         "in": "header",
                         "description": "Auth-Provider-Name",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "Auth-ID",
                         "in": "header",
                         "description": "Auth-ID",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "BANK_ID",
                         "in": "path",
                         "description": "Swift Bank Code",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "ACCOUNT_ID",
                         "in": "path",
                         "description": "Account ID",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "VIEW_ID",
                         "in": "path",
                         "description": "View ID",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "GetotherAccountDef",
@@ -3961,15 +3679,14 @@
                             "$ref": "#/definitions/OtherAccountsResponse"
                         }
                     }
-                },
-                "security": []
+                }
             },
             "put": {
                 "tags": [
                     "OtherAccounts"
                 ],
                 "description": "Set a otherAccount",
-                "operationId": "putOtherAccounts",
+                "operationId": "putOtherAccount",
                 "consumes": [
                     "application/json"
                 ],
@@ -3982,48 +3699,42 @@
                         "in": "header",
                         "description": "Trackid UUID",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "Auth-Provider-Name",
                         "in": "header",
                         "description": "Auth-Provider-Name",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "Auth-ID",
                         "in": "header",
                         "description": "Auth-ID",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "BANK_ID",
                         "in": "path",
                         "description": "Swift Bank Code",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "ACCOUNT_ID",
                         "in": "path",
                         "description": "Account ID",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "VIEW_ID",
                         "in": "path",
                         "description": "View ID",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "OtherAccountDef",
@@ -4051,8 +3762,7 @@
                             "$ref": "#/definitions/OtherAccountResponse"
                         }
                     }
-                },
-                "security": []
+                }
             }
         },
         "/api/banks/{BANK_ID}/accounts/{ACCOUNT_ID}/{VIEW_ID}/other_accounts/{OTHER_ACCOUNT_ID}": {
@@ -4074,56 +3784,49 @@
                         "in": "header",
                         "description": "Trackid UUID",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "Auth-Provider-Name",
                         "in": "header",
                         "description": "Auth-Provider-Name",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "Auth-ID",
                         "in": "header",
                         "description": "Auth-ID",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "BANK_ID",
                         "in": "path",
                         "description": "Swift Bank Code",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "ACCOUNT_ID",
                         "in": "path",
                         "description": "Account ID",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "VIEW_ID",
                         "in": "path",
                         "description": "View ID",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "OTHER_ACCOUNT_ID",
                         "in": "path",
                         "description": "OtherAccount ID",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     }
                 ],
                 "responses": {
@@ -4142,15 +3845,14 @@
                             "$ref": "#/definitions/SetDelDef"
                         }
                     }
-                },
-                "security": []
+                }
             },
             "get": {
                 "tags": [
                     "OtherAccounts"
                 ],
                 "description": "List a otherAccount",
-                "operationId": "getOtherAccounts2",
+                "operationId": "getOtherAccount",
                 "produces": [
                     "application/json"
                 ],
@@ -4160,48 +3862,42 @@
                         "in": "header",
                         "description": "Auth-Provider-Name",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "Auth-ID",
                         "in": "header",
                         "description": "Auth-ID",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "BANK_ID",
                         "in": "path",
                         "description": "Swift Bank Code",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "ACCOUNT_ID",
                         "in": "path",
                         "description": "Account ID",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "VIEW_ID",
                         "in": "path",
                         "description": "View ID",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "OTHER_ACCOUNT_ID",
                         "in": "path",
                         "description": "OtherAccount ID",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     }
                 ],
                 "responses": {
@@ -4220,15 +3916,14 @@
                             "$ref": "#/definitions/OtherAccountResponse"
                         }
                     }
-                },
-                "security": []
+                }
             },
             "put": {
                 "tags": [
                     "OtherAccounts"
                 ],
                 "description": "Set a otherAccount",
-                "operationId": "putOtherAccounts2",
+                "operationId": "putOtherAccountID",
                 "consumes": [
                     "application/json"
                 ],
@@ -4241,56 +3936,49 @@
                         "in": "header",
                         "description": "Trackid UUID",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "Auth-Provider-Name",
                         "in": "header",
                         "description": "Auth-Provider-Name",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "Auth-ID",
                         "in": "header",
                         "description": "Auth-ID",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "BANK_ID",
                         "in": "path",
                         "description": "Swift Bank Code",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "ACCOUNT_ID",
                         "in": "path",
                         "description": "Account ID",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "VIEW_ID",
                         "in": "path",
                         "description": "View ID",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "OTHER_ACCOUNT_ID",
                         "in": "path",
                         "description": "OtherAccount ID",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "OtherAccountDef",
@@ -4318,8 +4006,7 @@
                             "$ref": "#/definitions/OtherAccountResponse"
                         }
                     }
-                },
-                "security": []
+                }
             }
         },
         "/api/banks/{BANK_ID}/accounts/{ACCOUNT_ID}/{VIEW_ID}/transaction-requests": {
@@ -4338,40 +4025,35 @@
                         "in": "header",
                         "description": "Auth-Provider-Name",
                         "required": false,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "Auth-ID",
                         "in": "header",
                         "description": "Auth-ID",
                         "required": false,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "BANK_ID",
                         "in": "path",
                         "description": "Swift Bank Code",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "ACCOUNT_ID",
                         "in": "path",
                         "description": "Account ID",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "VIEW_ID",
                         "in": "path",
                         "description": "View ID",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     }
                 ],
                 "responses": {
@@ -4390,8 +4072,7 @@
                             "$ref": "#/definitions/TransactionsRequestResponse"
                         }
                     }
-                },
-                "security": []
+                }
             }
         },
         "/api/banks/{BANK_ID}/accounts/{ACCOUNT_ID}/{VIEW_ID}/transaction-request-types": {
@@ -4410,40 +4091,35 @@
                         "in": "header",
                         "description": "Auth-Provider-Name",
                         "required": false,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "Auth-ID",
                         "in": "header",
                         "description": "Auth-ID",
                         "required": false,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "BANK_ID",
                         "in": "path",
                         "description": "Swift Bank Code",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "ACCOUNT_ID",
                         "in": "path",
                         "description": "Account ID",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "VIEW_ID",
                         "in": "path",
                         "description": "View ID",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     }
                 ],
                 "responses": {
@@ -4462,8 +4138,7 @@
                             "$ref": "#/definitions/TransactionsRequestResponse"
                         }
                     }
-                },
-                "security": []
+                }
             }
         },
         "/api/banks/{BANK_ID}/transaction-request-types/{TYPE}/transaction-requests": {
@@ -4485,40 +4160,35 @@
                         "in": "header",
                         "description": "Trackid UUID",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "Auth-Provider-Name",
                         "in": "header",
                         "description": "Auth-Provider-Name",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "Auth-ID",
                         "in": "header",
                         "description": "Auth-ID",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "BANK_ID",
                         "in": "path",
                         "description": "Swift Bank Code",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "TYPE",
                         "in": "path",
                         "description": "type",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "TransactionDef",
@@ -4546,8 +4216,7 @@
                             "$ref": "#/definitions/TransactionsRequestResponse"
                         }
                     }
-                },
-                "security": []
+                }
             }
         },
         "/api/banks/{BANK_ID}/accounts/{ACCOUNT_ID}/{VIEW_ID}/transaction-request-types/{TYPE}/transaction-requests": {
@@ -4556,7 +4225,7 @@
                     "Transactions"
                 ],
                 "description": "Set a transactions request",
-                "operationId": "putTransactionsRequest2",
+                "operationId": "putTransactionsRequestAccount",
                 "consumes": [
                     "application/json"
                 ],
@@ -4569,56 +4238,49 @@
                         "in": "header",
                         "description": "Trackid UUID",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "Auth-Provider-Name",
                         "in": "header",
                         "description": "Auth-Provider-Name",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "Auth-ID",
                         "in": "header",
                         "description": "Auth-ID",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "BANK_ID",
                         "in": "path",
                         "description": "Swift Bank Code",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "ACCOUNT_ID",
                         "in": "path",
                         "description": "Account ID",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "VIEW_ID",
                         "in": "path",
                         "description": "View ID",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "TYPE",
                         "in": "path",
                         "description": "type",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "TransactionDef",
@@ -4646,8 +4308,7 @@
                             "$ref": "#/definitions/TransactionsRequestResponse"
                         }
                     }
-                },
-                "security": []
+                }
             }
         },
         "/api/banks/{BANK_ID}/accounts/{ACCOUNT_ID}/{VIEW_ID}/transactions": {
@@ -4666,88 +4327,77 @@
                         "in": "header",
                         "description": "Auth-Provider-Name",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "Auth-ID",
                         "in": "header",
                         "description": "Auth-ID",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "obp_sort_by",
                         "in": "header",
                         "description": "Sort",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "obp_sort_direction",
                         "in": "header",
                         "description": "ASC/DEC",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "obp_limit",
                         "in": "header",
                         "description": "Limit",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "obp_offset",
                         "in": "header",
                         "description": "Offset",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "obp_from_date",
                         "in": "header",
                         "description": "From Date",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "obp_to_date",
                         "in": "header",
                         "description": "to Date",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "BANK_ID",
                         "in": "path",
                         "description": "Swift Bank Code",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "ACCOUNT_ID",
                         "in": "path",
                         "description": "Account ID",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "VIEW_ID",
                         "in": "path",
                         "description": "View ID",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     }
                 ],
                 "responses": {
@@ -4766,8 +4416,7 @@
                             "$ref": "#/definitions/TransactionsResponse"
                         }
                     }
-                },
-                "security": []
+                }
             }
         },
         "/api/banks/{BANK_ID}/accounts/{ACCOUNT_ID}/{VIEW_ID}/transactions/{TRANSACTION_ID}/transaction": {
@@ -4776,7 +4425,7 @@
                     "Transactions"
                 ],
                 "description": "List transaction by ID",
-                "operationId": "getTransactions2",
+                "operationId": "getTransaction",
                 "produces": [
                     "application/json"
                 ],
@@ -4786,48 +4435,42 @@
                         "in": "header",
                         "description": "Auth-Provider-Name",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "Auth-ID",
                         "in": "header",
                         "description": "Auth-ID",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "BANK_ID",
                         "in": "path",
                         "description": "Swift Bank Code",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "ACCOUNT_ID",
                         "in": "path",
                         "description": "Account ID",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "VIEW_ID",
                         "in": "path",
                         "description": "View ID",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "TRANSACTION_ID",
                         "in": "path",
                         "description": "Transaction ID",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     }
                 ],
                 "responses": {
@@ -4846,8 +4489,7 @@
                             "$ref": "#/definitions/TransactionResponse"
                         }
                     }
-                },
-                "security": []
+                }
             }
         },
         "/api/banks/{BANK_ID}/accounts/{ACCOUNT_ID}/{VIEW_ID}/transactions/{TRANSACTION_ID}/metadata/{TYPE}": {
@@ -4856,7 +4498,7 @@
                     "Transactions"
                 ],
                 "description": "Delete transaction metadata <Under Construction>",
-                "operationId": "deleteTransactions",
+                "operationId": "deleteTransactionType",
                 "consumes": [
                     "application/json"
                 ],
@@ -4869,16 +4511,14 @@
                         "in": "header",
                         "description": "Auth-Provider-Name",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "Auth-ID",
                         "in": "header",
                         "description": "Auth-ID",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "Transaction",
@@ -4894,40 +4534,35 @@
                         "in": "path",
                         "description": "Swift Bank Code",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "ACCOUNT_ID",
                         "in": "path",
                         "description": "Account ID",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "VIEW_ID",
                         "in": "path",
                         "description": "View ID",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "TRANSACTION_ID",
                         "in": "path",
                         "description": "Transaction ID",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "TYPE",
                         "in": "path",
                         "description": "Type",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     }
                 ],
                 "responses": {
@@ -4946,15 +4581,14 @@
                             "$ref": "#/definitions/SetDelDef"
                         }
                     }
-                },
-                "security": []
+                }
             },
             "get": {
                 "tags": [
                     "Transactions"
                 ],
                 "description": "List transactions metadata type <Under Construction>",
-                "operationId": "getTransactions3",
+                "operationId": "getTransactionsMetadataType",
                 "produces": [
                     "application/json"
                 ],
@@ -4964,56 +4598,49 @@
                         "in": "header",
                         "description": "Auth-Provider-Name",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "Auth-ID",
                         "in": "header",
                         "description": "Auth-ID",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "BANK_ID",
                         "in": "path",
                         "description": "Swift Bank Code",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "ACCOUNT_ID",
                         "in": "path",
                         "description": "Account ID",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "VIEW_ID",
                         "in": "path",
                         "description": "View ID",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "TRANSACTION_ID",
                         "in": "path",
                         "description": "Transaction ID",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "TYPE",
                         "in": "path",
                         "description": "Type",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     }
                 ],
                 "responses": {
@@ -5032,8 +4659,7 @@
                             "$ref": "#/definitions/TransactionsResponse"
                         }
                     }
-                },
-                "security": []
+                }
             },
             "put": {
                 "tags": [
@@ -5053,64 +4679,56 @@
                         "in": "header",
                         "description": "Trackid UUID",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "Auth-Provider-Name",
                         "in": "header",
                         "description": "Auth-Provider-Name",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "Auth-ID",
                         "in": "header",
                         "description": "Auth-ID",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "BANK_ID",
                         "in": "path",
                         "description": "Swift Bank Code",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "ACCOUNT_ID",
                         "in": "path",
                         "description": "Account ID",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "VIEW_ID",
                         "in": "path",
                         "description": "View ID",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "TRANSACTION_ID",
                         "in": "path",
                         "description": "Transaction ID",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "TYPE",
                         "in": "path",
                         "description": "Type",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "TransactionDef",
@@ -5138,8 +4756,7 @@
                             "$ref": "#/definitions/TransactionResponse"
                         }
                     }
-                },
-                "security": []
+                }
             }
         },
         "/api/banks/{BANK_ID}/accounts/{ACCOUNT_ID}/{VIEW_ID}/transactions/{TRANSACTION_ID}/metadata/{TYPE}/{TYPE_ID}": {
@@ -5148,7 +4765,7 @@
                     "Transactions"
                 ],
                 "description": "Delete transaction metadata by id <Under Construction>",
-                "operationId": "deleteTransactions2",
+                "operationId": "deleteTransactionTypeID",
                 "consumes": [
                     "application/json"
                 ],
@@ -5161,64 +4778,56 @@
                         "in": "header",
                         "description": "Auth-Provider-Name",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "Auth-ID",
                         "in": "header",
                         "description": "Auth-ID",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "BANK_ID",
                         "in": "path",
                         "description": "Swift Bank Code",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "ACCOUNT_ID",
                         "in": "path",
                         "description": "Account ID",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "VIEW_ID",
                         "in": "path",
                         "description": "View ID",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "TRANSACTION_ID",
                         "in": "path",
                         "description": "Transaction ID",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "TYPE",
                         "in": "path",
                         "description": "Type",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "TYPE_ID",
                         "in": "path",
                         "description": "Type ID",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "Transaction",
@@ -5246,8 +4855,7 @@
                             "$ref": "#/definitions/SetDelDef"
                         }
                     }
-                },
-                "security": []
+                }
             }
         },
         "/api/metadata": {
@@ -5269,24 +4877,21 @@
                         "in": "header",
                         "description": "Trackid UUID",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "Auth-Provider-Name",
                         "in": "header",
                         "description": "Auth-Provider-Name",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "Auth-ID",
                         "in": "header",
                         "description": "Auth-ID",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "Transaction",
@@ -5314,8 +4919,7 @@
                             "$ref": "#/definitions/SetDelDef"
                         }
                     }
-                },
-                "security": []
+                }
             },
             "get": {
                 "tags": [
@@ -5332,16 +4936,14 @@
                         "in": "header",
                         "description": "Auth-Provider-Name",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "Auth-ID",
                         "in": "header",
                         "description": "Auth-ID",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     }
                 ],
                 "responses": {
@@ -5360,8 +4962,7 @@
                             "$ref": "#/definitions/MetadatasResponse"
                         }
                     }
-                },
-                "security": []
+                }
             },
             "post": {
                 "tags": [
@@ -5381,24 +4982,21 @@
                         "in": "header",
                         "description": "Trackid UUID",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "Auth-Provider-Name",
                         "in": "header",
                         "description": "Auth-Provider-Name",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "Auth-ID",
                         "in": "header",
                         "description": "Auth-ID",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "GetMetadataDef",
@@ -5426,8 +5024,7 @@
                             "$ref": "#/definitions/MetadatasResponse"
                         }
                     }
-                },
-                "security": []
+                }
             },
             "put": {
                 "tags": [
@@ -5447,24 +5044,21 @@
                         "in": "header",
                         "description": "Trackid UUID",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "Auth-Provider-Name",
                         "in": "header",
                         "description": "Auth-Provider-Name",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "Auth-ID",
                         "in": "header",
                         "description": "Auth-ID",
                         "required": true,
-                        "type": "string",
-                        "x-example": ""
+                        "type": "string"
                     },
                     {
                         "name": "MetadataDef",
@@ -5492,8 +5086,7 @@
                             "$ref": "#/definitions/MetadataResponse"
                         }
                     }
-                },
-                "security": []
+                }
             }
         }
     },
@@ -5512,7 +5105,21 @@
         "MetadataResponse": {
             "description": "Model for MetadatasResponse",
             "properties": {
-                "$ref": "#/definitions/MetadataDef/properties"
+                "code": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "islocked": {
+                    "type": "boolean"
+                },
+                "postedBy": {
+                    "type": "string"
+                },
+                "text": {
+                    "$ref": "#/definitions/FaceImage"
+                }
             }
         },
         "MetadatasResponse": {
@@ -5534,6 +5141,7 @@
             "required": [
                 "transaction-requests"
             ],
+            "type": "object",
             "properties": {
                 "transaction-requests": {
                     "type": "array",
@@ -5734,7 +5342,219 @@
         "ViewResponse": {
             "description": "Model for ViewsResponse",
             "properties": {
-                "$ref": "#/definitions/ViewDef/properties"
+                "account_id": {
+                    "type": "string"
+                },
+                "bank_id": {
+                    "type": "string"
+                },
+                "can_add_comment": {
+                    "type": "boolean"
+                },
+                "can_add_corporate_location": {
+                    "type": "boolean"
+                },
+                "can_add_image": {
+                    "type": "boolean"
+                },
+                "can_add_image_url": {
+                    "type": "boolean"
+                },
+                "can_add_more_info": {
+                    "type": "boolean"
+                },
+                "can_add_open_corporates_url": {
+                    "type": "boolean"
+                },
+                "can_add_physical_location": {
+                    "type": "boolean"
+                },
+                "can_add_private_alias": {
+                    "type": "boolean"
+                },
+                "can_add_public_alias": {
+                    "type": "boolean"
+                },
+                "can_add_tag": {
+                    "type": "boolean"
+                },
+                "can_add_url": {
+                    "type": "boolean"
+                },
+                "can_add_where_tag": {
+                    "type": "boolean"
+                },
+                "can_approve_transaction": {
+                    "type": "boolean"
+                },
+                "can_cancel_transaction": {
+                    "type": "boolean"
+                },
+                "can_delete_comment": {
+                    "type": "boolean"
+                },
+                "can_delete_corporate_location": {
+                    "type": "boolean"
+                },
+                "can_delete_image": {
+                    "type": "boolean"
+                },
+                "can_delete_physical_location": {
+                    "type": "boolean"
+                },
+                "can_delete_tag": {
+                    "type": "boolean"
+                },
+                "can_delete_where_tag": {
+                    "type": "boolean"
+                },
+                "can_edit_narrative": {
+                    "type": "boolean"
+                },
+                "can_initiate_transaction": {
+                    "type": "boolean"
+                },
+                "can_pause_transaction": {
+                    "type": "boolean"
+                },
+                "can_see_bank_account_balance": {
+                    "type": "boolean"
+                },
+                "can_see_bank_account_bank_name": {
+                    "type": "boolean"
+                },
+                "can_see_bank_account_currency": {
+                    "type": "boolean"
+                },
+                "can_see_bank_account_iban": {
+                    "type": "boolean"
+                },
+                "can_see_bank_account_label": {
+                    "type": "boolean"
+                },
+                "can_see_bank_account_national_identifier": {
+                    "type": "boolean"
+                },
+                "can_see_bank_account_number": {
+                    "type": "boolean"
+                },
+                "can_see_bank_account_owners": {
+                    "type": "boolean"
+                },
+                "can_see_bank_account_swift_bic": {
+                    "type": "boolean"
+                },
+                "can_see_bank_account_type": {
+                    "type": "boolean"
+                },
+                "can_see_comments": {
+                    "type": "boolean"
+                },
+                "can_see_corporate_location": {
+                    "type": "boolean"
+                },
+                "can_see_images": {
+                    "type": "boolean"
+                },
+                "can_see_image_url": {
+                    "type": "boolean"
+                },
+                "can_see_more_info": {
+                    "type": "boolean"
+                },
+                "can_see_narrative": {
+                    "type": "boolean"
+                },
+                "can_see_open_corporates_url": {
+                    "type": "boolean"
+                },
+                "can_see_other_account_bank_name": {
+                    "type": "boolean"
+                },
+                "can_see_other_account_iban": {
+                    "type": "boolean"
+                },
+                "can_see_other_account_kind": {
+                    "type": "boolean"
+                },
+                "can_see_other_account_metadata": {
+                    "type": "boolean"
+                },
+                "can_see_other_account_national_identifier": {
+                    "type": "boolean"
+                },
+                "can_see_other_account_number": {
+                    "type": "boolean"
+                },
+                "can_see_other_account_swift_bic": {
+                    "type": "boolean"
+                },
+                "can_see_physical_location": {
+                    "type": "boolean"
+                },
+                "can_see_private_alias": {
+                    "type": "boolean"
+                },
+                "can_see_public_alias": {
+                    "type": "boolean"
+                },
+                "can_see_tags": {
+                    "type": "boolean"
+                },
+                "can_see_transaction_amount": {
+                    "type": "boolean"
+                },
+                "can_see_transaction_balance": {
+                    "type": "boolean"
+                },
+                "can_see_transaction_currency": {
+                    "type": "boolean"
+                },
+                "can_see_transaction_finish_date": {
+                    "type": "boolean"
+                },
+                "can_see_transaction_label": {
+                    "type": "boolean"
+                },
+                "can_see_transaction_metadata": {
+                    "type": "boolean"
+                },
+                "can_see_transaction_other_bank_account": {
+                    "type": "boolean"
+                },
+                "can_see_transaction_start_date": {
+                    "type": "boolean"
+                },
+                "can_see_transaction_this_bank_account": {
+                    "type": "boolean"
+                },
+                "can_see_transaction_type": {
+                    "type": "boolean"
+                },
+                "can_see_url": {
+                    "type": "boolean"
+                },
+                "can_see_where_tag": {
+                    "type": "boolean"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "hide_metadata_if_alias_used": {
+                    "type": "boolean"
+                },
+                "islocked": {
+                    "type": "boolean"
+                },
+                "is_public": {
+                    "type": "boolean"
+                },
+                "short_name": {
+                    "type": "string"
+                },
+                "which_alias_to_use": {
+                    "type": "string"
+                }
             }
         },
         "ViewsResponse": {
@@ -6025,7 +5845,27 @@
         "TransactionResponse": {
             "description": "Model for TransactionsResponse",
             "properties": {
-                "$ref": "#/definitions/TransactionDef/properties"
+                "details": {
+                    "$ref": "#/definitions/Details"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "islocked": {
+                    "type": "boolean"
+                },
+                "metadata": {
+                    "$ref": "#/definitions/Metadata2"
+                },
+                "other_account": {
+                    "type": "string"
+                },
+                "this_account": {
+                    "type": "string"
+                },
+                "uuid": {
+                    "type": "string"
+                }
             }
         },
         "TransactionsResponse": {
@@ -6161,7 +6001,30 @@
         "OtherAccountResponse": {
             "description": "Model for OtherAccountsResponse",
             "properties": {
-                "$ref": "#/definitions/OtherAccountDef/properties"
+                "bank": {
+                    "type": "string"
+                },
+                "holder": {
+                    "$ref": "#/definitions/Holder"
+                },
+                "IBAN": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "kind": {
+                    "type": "string"
+                },
+                "metadata": {
+                    "$ref": "#/definitions/Metadata"
+                },
+                "number": {
+                    "type": "string"
+                },
+                "swift_bic": {
+                    "type": "string"
+                }
             }
         },
         "OtherAccountsResponse": {
@@ -6273,7 +6136,62 @@
         "AccountResponse": {
             "description": "Model for AccountsResponse",
             "properties": {
-                "$ref": "#/definitions/AccountDef/properties"
+                "balance": {
+                    "type": "object",
+                    "properties": {
+                        "currency": {
+                            "type": "string"
+                        },
+                        "amount": {
+                            "type": "number"
+                        }
+                    }
+                },
+                "bank_id": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "IBAN": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "label": {
+                    "type": "string"
+                },
+                "meta": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "number": {
+                    "type": "string"
+                },
+                "owners": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "swift_bic": {
+                    "type": "string"
+                },
+                "type": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "views_available": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
             }
         },
         "AccountsResponse": {
@@ -6357,7 +6275,60 @@
         "CustomerResponse": {
             "description": "Model for CustomersResponse",
             "properties": {
-                "$ref": "#/definitions/CustomerDef/properties"
+                "accounts": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "bank_id": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "crm": {
+                    "$ref": "#/definitions/FaceImage"
+                },
+                "customer_number": {
+                    "type": "string"
+                },
+                "date_values": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/StringValues"
+                    }
+                },
+                "email": {
+                    "type": "string"
+                },
+                "faceImage": {
+                    "$ref": "#/definitions/FaceImage"
+                },
+                "legal_name": {
+                    "type": "string"
+                },
+                "metadata": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "mobile_phone_number": {
+                    "type": "string"
+                },
+                "numeric_values": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/StringValues"
+                    }
+                },
+                "string_values": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/StringValues"
+                    }
+                }
             }
         },
         "CustomersResponse": {
@@ -6478,7 +6449,36 @@
         "ProductResponse": {
             "description": "Model for ProductsResponse",
             "properties": {
-                "$ref": "#/definitions/ProductDef/properties"
+                "bank_id": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "category": {
+                    "type": "string"
+                },
+                "family": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "meta": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "more_info_url": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "super_family": {
+                    "type": "string"
+                }
             }
         },
         "ProductsResponse": {
@@ -6550,7 +6550,30 @@
         "BranchAtmResponse": {
             "description": "Model for BranchAtmsResponse",
             "properties": {
-                "$ref": "#/definitions/BranchAtmDef/properties"
+                "acceptsDeposits": {
+                    "type": "boolean"
+                },
+                "address": {
+                    "$ref": "#/definitions/Address"
+                },
+                "bank": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "lobby": {
+                    "$ref": "#/definitions/Lobby"
+                },
+                "location": {
+                    "$ref": "#/definitions/Location"
+                },
+                "meta": {
+                    "$ref": "#/definitions/Meta"
+                },
+                "name": {
+                    "type": "string"
+                }
             }
         },
         "AtmsResponse": {
@@ -6695,7 +6718,18 @@
         "BankResponse": {
             "description": "Model for BanksResponse",
             "properties": {
-                "$ref": "#/definitions/BankDef/properties"
+                "full_name": {
+                    "type": "string"
+                },
+                "logo": {
+                    "type": "string"
+                },
+                "short_name": {
+                    "type": "string"
+                },
+                "website": {
+                    "type": "string"
+                }
             }
         },
         "BanksResponse": {
@@ -6749,7 +6783,36 @@
         "UsersResponse": {
             "description": "Model for UsersResponse",
             "properties": {
-                "$ref": "#/definitions/UserDef/properties"
+                "bank_permissions": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/BankPermissions"
+                    }
+                },
+                "can_add_bank": {
+                    "type": "boolean"
+                },
+                "can_add_users": {
+                    "type": "boolean"
+                },
+                "can_edit_banks": {
+                    "type": "boolean"
+                },
+                "can_edit_users": {
+                    "type": "boolean"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "providers": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/Providers"
+                    }
+                },
+                "short_name": {
+                    "type": "string"
+                }
             }
         },
         "UserDef": {
@@ -6865,7 +6928,5 @@
                 }
             }
         }
-    },
-    "securityDefinitions": {},
-    "security": []
+    }
 }

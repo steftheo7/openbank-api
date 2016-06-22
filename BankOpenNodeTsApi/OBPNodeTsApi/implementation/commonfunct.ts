@@ -192,7 +192,7 @@ export function check(checker) {
         msgdata.TransactionAccount.message = msg;
         return localflag;
     }
-    function permission(name: string) {
+    function permission(callername: string) {
         var msg: string = "User has no " + tmpname;
         var x: Boolean = true;
         var tempcheck: Boolean;
@@ -201,8 +201,8 @@ export function check(checker) {
             else {
                 if (!bankchecked) {
                     if (msgdata.bank_id.flag(tempcheck)) {
-                        msgdata[name].message = msgdata.bank_id.message;
-                        msgdata[name].stat = msgdata.bank_id.stat;
+                        msgdata[callername].message = msgdata.bank_id.message;
+                        msgdata[callername].stat = msgdata.bank_id.stat;
                         return x = true;
                     }
                 }
