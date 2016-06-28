@@ -1,6 +1,7 @@
 // transactions implementation
 import express = require('express');
 import transactionsservice = require('../../services/transactions/service');
+import transactionsmodels = require('../../models/transactions/model');
 import commonfunct = require('../../implementation/commonfunct');
 var fields = commonfunct.check;
 var viewfields = commonfunct.viewfields;
@@ -67,17 +68,33 @@ export function listscope(req: express.Request, res: express.Response, next) {
     }
 };
 export function set(req: express.Request, res: express.Response, next) {
+    var check = { field: [], params: [req, res, next] };
+    var scopefield = {
+        narrative: { field: ['can_edit_narrative'] },
+        comments: { field: ['can_add_comment'] },
+        tags: { field: ['can_add_tag'] },
+        images: { field: ['can_add_image'] },
+        where: { field: ['can_add_where_tag'] },
+    };
     var question: any = {};
-    var input = req.body;
-    if (req.params.id) { question._id = req.params.id; }
+    var input: transactionsmodels.transactiondef;
+    input.metadata[req.params.scope] = req.body;
+    if (req.params.scopeid) { question.metadata[req.params.scope]._id = req.params.scopeid; }
     transactionsservice.set(question, input).then(
         function (resp) {
             commonfunct.response(resp, name, res, next)
         });
 };
 export function del(req: express.Request, res: express.Response, next) {
+    var check = { field: [], params: [req, res, next] };
+    var scopefield = {
+        comments: { field: ['can_delete_comment'] },
+        tags: { field: ['can_delete_tag'] },
+        images: { field: ['can_delete_image'] },
+        where: { field: ['can_delete_where_tag'] },
+    };
     var question: any = {};
-    if (req.params.id) { question._id = req.params.id; }
+    if (req.params.scopeid) { question.metadata[req.params.scope]._id = req.params.scopeid; }
     transactionsservice.del(question).then(
         function (resp) {
             commonfunct.response(resp, name, res, next)

@@ -31,7 +31,7 @@ var a: any = {
     can_see_transaction_this_bank_account: false,
     can_see_transaction_other_bank_account: false,
     can_see_transaction_metadata: false,
-    can_see_transaction_label: false,
+    can_see_transaction_description: false,
     can_see_transaction_amount: false,
     can_see_transaction_type: false,
     can_see_transaction_currency: true,

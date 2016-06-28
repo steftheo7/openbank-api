@@ -71,7 +71,7 @@ export function viewfields(view, type: string) {
     };
     if (type == 'transaction') {
         params.transaction = {
-            _id: 1, uuid: 1, 'details.status': 1, 'details.description': 1, 'details.posted_by_user_id': 1,
+            _id: 1, uuid: 1, 'details.status': 1, 'details.description': 0, 'details.posted_by_user_id': 1,
             'details.approved_by_user_id': 1, 'details.paused_by_user_id': 1, 'details.cancelled_by_user_id': 1,
             'details.posted_by_ip_address': 1, 'details.approved_by_ip_address': 1,
             'details.paused_by_ip_address': 1, 'details.cancelled_by_ip_address': 1, 'details.value': 1,
@@ -81,7 +81,7 @@ export function viewfields(view, type: string) {
         };
         var details = {
             currency: 'details.new_balance.currency', amount: 'details.new_balance.amount', type: 'details.type',
-            posted: 'details.posted', completed: 'details.completed'
+            posted: 'details.posted', completed: 'details.completed', description: 'details.description'
         };
         var meta = {
             comments: 'metadata.comments', narrative: 'metadata.narrative', tags: 'metadata.tags',
@@ -90,7 +90,7 @@ export function viewfields(view, type: string) {
         if (view.can_see_transaction_this_bank_account) { params.transaction.this_account = 1 };
         if (view.can_see_transaction_other_bank_account) { params.transaction.other_account = 1; params.transaction.other_account_insystem = 1 };
         if (view.can_see_transaction_metadata) { params.transaction.metadata = 1 };
-        if (view.can_see_transaction_label) { };
+        if (view.can_see_transaction_description) { params.transaction[details.description] = 1 };
         if (view.can_see_transaction_balance && view.can_see_transaction_currency) { params.transaction[details.currency] = 1 }
         if (view.can_see_transaction_balance && view.can_see_transaction_amount) { params.transaction[details.amount] = 1 }
         if (view.can_see_transaction_type) { params.transaction[details.type] = 1 }
@@ -132,63 +132,44 @@ export function check(checker) {
         localflag = false;
         var msg: string;
         function dubaccount(fromAcc) {
-            if (fromAcc) {
-                try {
-                    if ((fromAcc == req.body.to.account_id) || (fromAcc == req.body.to.other_account_id)) {
-                        msg = "From and To Account are the same";
-                        return true;
-                    }
-                } catch (err) { }
-            }
+            try {
+                if (fromAcc == req.body.to.account_id) {
+                    msg = "From and To Account are the same";
+                    return true;
+                }
+            } catch (err) { }
             return false;
         }
-        function checkbank(bank, path) {
-            if (!bank) {
+        function accountfields(account_id, bank_id, path) {
+            if (!account_id) {
+                msg = "Account_ID Missing in Path " + path;
+                return true;
+            }
+            else if (!bank_id) {
                 msg = "Bank_ID missing in Path " + path;
-                return true;
-            }
-            return false;
-        }
-        function accountfields(account_id, other_account_id, bank, path) {
-            if (account_id && other_account_id) {
-                msg = "Account_id And Other_account_id cannot be together in Path " + path;
-                return true;
-            }
-            else if (!account_id && !other_account_id) {
-                msg = "account_id or other_account_id Missing in Path " + path;
-                return true;
-            }
-            else if (checkbank(bank, path)) {
                 return true;
             }
             else return false;
         }
-        if (req.params.acid) {
-            if (checkbank(req.params.bid, 'url') || dubaccount(req.params.acid))
+        if (req.params.acid || req.body.from) {
+            var account_id: string, bank_id: string, path: string;
+            if (req.params.acid) { account_id = req.params.acid; bank_id = req.params.bid, path = 'url' }
+            else { account_id = req.body.from.account_id; bank_id = req.body.from.bank_id, path = 'from' };
+            if (accountfields(account_id, bank_id, path) || dubaccount(req.params.acid))
                 localflag = true;
-        }
-        else if (req.body.from) {
-            var account_id = req.body.from.account_id;
-            var other_account_id = req.body.from.other_account_id;
-            if (accountfields(account_id, other_account_id, req.body.from.bank_id, 'from')) {
-                localflag = true;
-            }
-            else if (dubaccount(account_id) || dubaccount(other_account_id)) {
-                localflag = true;
-            }
         }
         else {
             msg = "from Missing";
             localflag = true;
-        }
+        };
         if (req.body.to) {
-            if (accountfields(req.body.to.account_id, req.body.to.other_account_id, req.body.to.bank_id, 'to'))
-            { localflag = true; }
+            if (accountfields(req.body.to.account_id, req.body.to.bank_id, 'to'))
+                localflag = true;
         }
         else {
             msg = "to Missing";
             localflag = true;
-        }
+        };
         msgdata.TransactionAccount.message = msg;
         return localflag;
     }

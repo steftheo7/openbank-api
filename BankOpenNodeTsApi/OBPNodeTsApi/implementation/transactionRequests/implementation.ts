@@ -5,6 +5,7 @@ import transactionsservice = require('../../services/transactions/service');
 import commonfunct = require('../../implementation/commonfunct');
 var fields = commonfunct.check;
 import accountsservice = require('../../services/accounts/service');
+import otheraccountsservice = require('../../services/otherAccounts/service');
 import Q = require('q');
 var name = { 'transaction-requests': null };
 
@@ -69,7 +70,8 @@ export function set(req: express.Request, res: express.Response, next) {
                         if (transaction.other_account_insystem) {
                             otheraccount = true;
                             transaction.details.value.amount = -1 * input.value.amount;
-                            if (transaction.this_account != transaction.this_account_insystem) { transaction.other_account = transaction.this_account };
+                            if (transaction.this_account != transaction.this_account_insystem)
+                            { transaction.other_account = transaction.this_account };
                             transaction.this_account = transaction.other_account_insystem;
                             transaction.other_account_insystem = transaction.this_account_insystem;
                             transactionsservice.set(null, transaction).then(
@@ -100,9 +102,10 @@ export function set(req: express.Request, res: express.Response, next) {
         transaction.details.description = input.description;
         transaction.details.value = input.value;
         transaction.details.value.amount = -1 * transaction.details.value.amount;
-        question.from = {};
+
         if (req.params.id) { question._id = req.params.id; };
         if (req.params.acid || input.from.account_id) {
+            question.from = {};
             var temp: any = {};
             if (req.params.acid) {
                 temp.bank_id = req.params.bid;
@@ -116,10 +119,8 @@ export function set(req: express.Request, res: express.Response, next) {
 
             input.bank_id = temp.bank_id;
             input.account_id = temp.account_id;
-
             question.from.bank_id = temp.bank_id;
             question.from._id = temp.account_id;
-
             accountsservice.listId(question.from).then(function (resp) {
                 var flag: boolean;
                 try {
@@ -139,19 +140,22 @@ export function set(req: express.Request, res: express.Response, next) {
                     delete question.from;
                     Q.nextTick(transactionRequest);
                 }
-                else if (resp['error']) {
-                    resp['error'] = resp['error'].toString() + " in Path From/Url";
-                    commonfunct.response(resp, name, res, next)
-                }
                 else {
-                    commonfunct.response(null, null, res, next)
+                    otheraccountsservice.listId(question.from._id).then(function (resp) {
+                        //fuction for outsystem account
+                        if (resp['data']) {
+                            fromaccount = true;
+                            transaction.this_account = temp.account_id;
+                            delete question.from;
+                            Q.nextTick(transactionRequest);
+                        }
+                        else {
+                            resp['error'] = "Account not Exist in Path From/Url";
+                            commonfunct.response(resp, name, res, next)
+                        }
+                    });
                 }
             });
-        }
-        else if (input.from.other_account_id) {
-            transaction.this_account = input.from.account_id;
-            input.from.account_id = input.from.other_account_id;
-            fromaccount = true;
         };
 
         if (input.to.account_id) {
@@ -173,15 +177,20 @@ export function set(req: express.Request, res: express.Response, next) {
                     }
                 }
                 else {
-                    resp['error'] = resp['error'].toString() + " in Path To";
-                    commonfunct.response(resp, name, res, next)
+                    otheraccountsservice.listId(question.to._id).then(function (resp) {
+                        if (resp['data']) {
+                            toacccount = true;
+                            transaction.other_account = input.to.account_id;
+                            delete question.to;
+                            Q.nextTick(transactionRequest);
+                        }
+                        else {
+                            resp['error'] = "Account not Exist in Path To";
+                            commonfunct.response(resp, name, res, next)
+                        }
+                    });
                 }
             });
-        }
-        else if (input.to.other_account_id) {
-            transaction.other_account = input.to.other_account_id;
-            input.to.account_id = input.to.other_account_id;
-            toacccount = true;
         };
         Q.nextTick(transactionRequest);
     }

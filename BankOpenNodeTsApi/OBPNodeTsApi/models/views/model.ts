@@ -90,7 +90,7 @@ export class view {
         can_see_transaction_this_bank_account: { type: Boolean, default: false },
         can_see_transaction_other_bank_account: { type: Boolean, default: false },
         can_see_transaction_metadata: { type: Boolean, default: false },
-        can_see_transaction_label: { type: Boolean, default: false },
+        can_see_transaction_description: { type: Boolean, default: false },
         can_see_transaction_amount: { type: Boolean, default: false },
         can_see_transaction_type: { type: Boolean, default: false },
         can_see_transaction_currency: { type: Boolean, default: false },

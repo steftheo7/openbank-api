@@ -34,7 +34,7 @@
                     "Users"
                 ],
                 "description": "Html Form Register User",
-                "operationId": "getRegistration",
+                "operationId": "getRegisterForm",
                 "responses": {
                     "500": {
                         "description": "Server Response Message"
@@ -3091,7 +3091,111 @@
                 }
             }
         },
-        "/api/banks/{BANK_ID}/accounts/{ACCOUNT_ID}/{private_public}": {
+        "/api/accounts/{private_public}": {
+            "get": {
+                "tags": [
+                    "Accounts"
+                ],
+                "description": "List all public or private accounts",
+                "operationId": "getAccountsAllBanksPrivatePublic",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "Auth-Provider-Name",
+                        "in": "header",
+                        "description": "Auth-Provider-Name",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "Auth-ID",
+                        "in": "header",
+                        "description": "Auth-ID",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "private_public",
+                        "in": "path",
+                        "description": "private or public",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "403": {
+                        "description": "Forbidden Response Message"
+                    },
+                    "500": {
+                        "description": "Server Response Message"
+                    },
+                    "404": {
+                        "description": "Not Found Response Message"
+                    },
+                    "200": {
+                        "description": "Successful json response",
+                        "schema": {
+                            "$ref": "#/definitions/AccountsResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/accounts/getid/{IBAN}": {
+            "get": {
+                "tags": [
+                    "Accounts"
+                ],
+                "description": "Return account_id and bank_id by giving an IBAN",
+                "operationId": "getAccountIDfromIBAN",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "Auth-Provider-Name",
+                        "in": "header",
+                        "description": "Auth-Provider-Name",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "Auth-ID",
+                        "in": "header",
+                        "description": "Auth-ID",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "IBAN",
+                        "in": "path",
+                        "description": "IBAN",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "403": {
+                        "description": "Forbidden Response Message"
+                    },
+                    "500": {
+                        "description": "Server Response Message"
+                    },
+                    "404": {
+                        "description": "Not Found Response Message"
+                    },
+                    "200": {
+                        "description": "Return account_id and bank_id json response",
+                        "schema": {
+                            "$ref": "#/definitions/getAccountID"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/banks/{BANK_ID}/accounts/{private_public}": {
             "get": {
                 "tags": [
                     "Accounts"
@@ -3120,13 +3224,6 @@
                         "name": "BANK_ID",
                         "in": "path",
                         "description": "Swift Bank Code",
-                        "required": true,
-                        "type": "string"
-                    },
-                    {
-                        "name": "ACCOUNT_ID",
-                        "in": "path",
-                        "description": "Account ID",
                         "required": true,
                         "type": "string"
                     },
@@ -5091,6 +5188,17 @@
         }
     },
     "definitions": {
+        "getAccountID": {
+            "description": "Model for getaccountid",
+            "properties": {
+                "id": {
+                    "type": "string"
+                },
+                "bank_id": {
+                    "type": "string"
+                }
+            }
+        },
         "Transaction": {
             "description": "Model for Transaction",
             "required": [
@@ -5231,9 +5339,6 @@
                         "account_id": {
                             "type": "string"
                         },
-                        "other_account_id": {
-                            "type": "string"
-                        },
                         "bank_id": {
                             "type": "string"
                         }
@@ -5243,9 +5348,6 @@
                     "type": "object",
                     "properties": {
                         "account_id": {
-                            "type": "string"
-                        },
-                        "other_account_id": {
                             "type": "string"
                         },
                         "bank_id": {
@@ -5282,9 +5384,6 @@
                     "type": "object",
                     "properties": {
                         "account_id": {
-                            "type": "string"
-                        },
-                        "other_account_id": {
                             "type": "string"
                         },
                         "bank_id": {
@@ -6783,26 +6882,23 @@
         "UsersResponse": {
             "description": "Model for UsersResponse",
             "properties": {
-                "bank_permissions": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/BankPermissions"
-                    }
+                "short_name": {
+                    "type": "string"
+                },
+                "display_name": {
+                    "type": "string"
                 },
                 "can_add_bank": {
-                    "type": "boolean"
-                },
-                "can_add_users": {
                     "type": "boolean"
                 },
                 "can_edit_banks": {
                     "type": "boolean"
                 },
-                "can_edit_users": {
+                "can_add_users": {
                     "type": "boolean"
                 },
-                "name": {
-                    "type": "string"
+                "can_edit_users": {
+                    "type": "boolean"
                 },
                 "providers": {
                     "type": "array",
@@ -6810,8 +6906,11 @@
                         "$ref": "#/definitions/Providers"
                     }
                 },
-                "short_name": {
-                    "type": "string"
+                "bank_permissions": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/BankPermissions"
+                    }
                 }
             }
         },
