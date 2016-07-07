@@ -52,7 +52,7 @@
 			"restart": false,
 			"sourceMaps": true,
 			"outDir": null,
-			"localRoot": ".",
+			"localRoot": "${workspaceRoot}/BankOpenNodeTsApi/OBPNodeTsApi/",
 			"remoteRoot": null
 		}
 	]

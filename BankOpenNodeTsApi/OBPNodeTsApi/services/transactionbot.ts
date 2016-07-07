@@ -9,7 +9,7 @@ var async = require('async');
 var transactionmodel = transactionsservice.transactionmodel;
 
 export function set() {
-    console.log('start transaction');
+    //console.log('start transaction');
     var transactionReqArray = [];
     var i: number = 0;
     var string: any = { 'details.status': 'DRAFT' };
@@ -119,7 +119,7 @@ export function set() {
                     }
                 }
             });
-            console.log('end transaction');
+            //console.log('end transaction');
         });
 
 }
