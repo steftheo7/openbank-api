@@ -99,7 +99,7 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 app.use(passport.initialize());
 app.use(passport.session());
-
+app.set('json spaces', 2);
 //filter middlware for NBG ID AND PAYLOAD
 app.use(function (req: express.Request, res, next) {
     //console.log('req.method', req.method);
