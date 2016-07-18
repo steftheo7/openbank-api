@@ -112,7 +112,7 @@ export function listmore(req: express.Request, res: express.Response, next) {
         var question: any = {};
         if (req.body.label) { question.label = commonfunct.customcontainsregexp(req.body.label); }
         if (req.body.type_id) { question.type = req.body.type_id; }
-        if (req.body.IBAN) { question.IBAN = req.body.IBAN; }
+        if (req.body.IBAN) { question.IBAN = req.body.IBAN.split(' ').join(''); }
         if (req.params.id) { question._id = req.params.id; }
         if (req.params.bid) { question.bank_id = req.params.bid; }
         accountsservice.listMore(question).then(

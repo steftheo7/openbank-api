@@ -30,7 +30,7 @@ export function listmore(req: express.Request, res: express.Response, next) {
     if (fields(check)) {
         var question: any = {};
         if (req.body.kind) { question.kind = commonfunct.customcontainsregexp(req.body.kind); }
-        if (req.body.IBAN) { question.IBAN = req.body.IBAN; }
+        if (req.body.IBAN) { question.IBAN = req.body.IBAN.split(' ').join(''); }
         if (req.params.id) { question._id = req.params.id; }
         otherAccountsservice.listMore(question).then(
             function (resp) {
