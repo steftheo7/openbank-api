@@ -10,7 +10,8 @@ import Q = require('q');
 var name = { transactions: null };
 
 export function list(req: express.Request, res: express.Response, next) {
-    var check = { field: [], params: [req, res, next] };
+    var params = { resp: null, name, res, next };
+    var check = { field: [], params: {req, res, next} };
     check.field = ['view_id'];
     if (fields(check)) {
         var question: any = {};
@@ -19,13 +20,15 @@ export function list(req: express.Request, res: express.Response, next) {
         if (req.params.id) { question._id = req.params.id };
         transactionsservice.list(question).then(
             function (resp) {
-                commonfunct.response(resp, name, res, next)
+                params.resp = resp;
+            commonfunct.response(params)
             }
         );
     }
 };
 export function listmore(req: express.Request, res: express.Response, next) {
-    var check = { field: [], params: [req, res, next] };
+    var params = { resp: null, name, res, next };
+    var check = { field: [], params: {req, res, next} };
     check.field = ['view_id'];
     if (fields(check)) {
         var question: any = {};
@@ -47,13 +50,15 @@ export function listmore(req: express.Request, res: express.Response, next) {
         if (req.params.id) { question._id = req.params.id; }
         transactionsservice.listMore(question, obp).then(
             function (resp) {
-                commonfunct.response(resp, name, res, next)
+                params.resp = resp;
+            commonfunct.response(params)
             }
         );
     }
 };
 export function listscope(req: express.Request, res: express.Response, next) {
-    var check = { field: [], params: [req, res, next] };
+    var params = { resp: null, name, res, next };
+    var check = { field: [], params: {req, res, next} };
     check.field = ['view_id'];
     if (fields(check)) {
         var question: any = {};
@@ -62,13 +67,15 @@ export function listscope(req: express.Request, res: express.Response, next) {
         if (req.params.id) { question._id = req.params.id };
         transactionsservice.list(question).then(
             function (resp) {
-                commonfunct.response(resp, name, res, next)
+                params.resp = resp;
+            commonfunct.response(params)
             }
         );
     }
 };
 export function set(req: express.Request, res: express.Response, next) {
-    var check = { field: [], params: [req, res, next] };
+    var params = { resp: null, name, res, next };
+    var check = { field: [], params: {req, res, next} };
     var scopefield = {
         narrative: { field: ['can_edit_narrative'] },
         comments: { field: ['can_add_comment'] },
@@ -82,11 +89,13 @@ export function set(req: express.Request, res: express.Response, next) {
     if (req.params.scopeid) { question.metadata[req.params.scope]._id = req.params.scopeid; }
     transactionsservice.set(question, input).then(
         function (resp) {
-            commonfunct.response(resp, name, res, next)
+            params.resp = resp;
+            commonfunct.response(params)
         });
 };
 export function del(req: express.Request, res: express.Response, next) {
-    var check = { field: [], params: [req, res, next] };
+    var params = { resp: null, name, res, next };
+    var check = { field: [], params: {req, res, next} };
     var scopefield = {
         comments: { field: ['can_delete_comment'] },
         tags: { field: ['can_delete_tag'] },
@@ -97,6 +106,7 @@ export function del(req: express.Request, res: express.Response, next) {
     if (req.params.scopeid) { question.metadata[req.params.scope]._id = req.params.scopeid; }
     transactionsservice.del(question).then(
         function (resp) {
-            commonfunct.response(resp, name, res, next)
+            params.resp = resp;
+            commonfunct.response(params)
         });
 };

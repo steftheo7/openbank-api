@@ -6,26 +6,31 @@ var fields = commonfunct.check;
 var name = { products: null };
 
 export function listbid(req: express.Request, res: express.Response, next) {
+    var params = { resp: null, name, res, next };
     var question: any = {};
     question.bank_id = req.params.bid;
     productsservice.listBid(question).then(
         function (resp) {
-            commonfunct.response(resp, name, res, next)
+            params.resp = resp;
+            commonfunct.response(params)
         }
     );
 };
 export function listid(req: express.Request, res: express.Response, next) {
+    var params = { resp: null, name, res, next };
     var question: any = {};
     question.bank_id = req.params.bid;
     question._id = req.params.id;
     productsservice.listId(question).then(
         function (resp) {
-            commonfunct.response(resp, name, res, next)
+            params.resp = resp;
+            commonfunct.response(params)
         }
     );
 };
 export function listmore(req: express.Request, res: express.Response, next) {
-    var check = { field: [], params: [req, res, next] };
+    var params = { resp: null, name, res, next };
+    var check = { field: [], params: {req, res, next} };
     check.field = ['data'];
     if (fields(check)) {
         var question: any = {};
@@ -36,13 +41,15 @@ export function listmore(req: express.Request, res: express.Response, next) {
         if (req.body.category) { question.category = req.body.category; }
         productsservice.listMore(question).then(
             function (resp) {
-                commonfunct.response(resp, name, res, next)
+                params.resp = resp;
+                commonfunct.response(params)
             }
         );
     }
 };
 export function set(req: express.Request, res: express.Response, next) {
-    var check = { field: [], params: [req, res, next] };
+    var params = { resp: null, name, res, next };
+    var check = { field: [], params: {req, res, next} };
     check.field = ['can_edit_products'];
     if (fields(check)) {
         var question: any = {};
@@ -51,20 +58,23 @@ export function set(req: express.Request, res: express.Response, next) {
         if (req.params.id) { question._id = req.params.id; }
         productsservice.set(question, input).then(
             function (resp) {
-                commonfunct.response(resp, name, res, next)
+                params.resp = resp;
+                commonfunct.response(params)
             }
         );
     }
 };
 export function del(req: express.Request, res: express.Response, next) {
-    var check = { field: [], params: [req, res, next] };
+    var params = { resp: null, name, res, next };
+    var check = { field: [], params: {req, res, next} };
     check.field = ['can_edit_products'];
     if (fields(check)) {
         var question: any = {};
         if (req.params.id) { question._id = req.params.id; }
         productsservice.del(question).then(
             function (resp) {
-                commonfunct.response(resp, name, res, next)
+                params.resp = resp;
+                commonfunct.response(params)
             }
         );
     }

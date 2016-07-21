@@ -7,28 +7,32 @@ var name = { branches: null };
 
 export function listbid(req: express.Request, res: express.Response, next) {
     var question: any = {};
+    var params = { resp: null, name, res, next };
     question.bank_id = req.params.bid;
     branchesservice.listBid(question).then(
         function (resp) {
-            commonfunct.response(resp, name, res, next)
+            params.resp = resp;
+            commonfunct.response(params)
         }
     );
 };
 export function listid(req: express.Request, res: express.Response, next) {
     var question: any = {};
+    var params = { resp: null, name, res, next };
     question.bank_id = req.params.bid;
     question._id = req.params.id;
     branchesservice.listId(question).then(
         function (resp) {
-            commonfunct.response(resp, name, res, next)
+            params.resp = resp;
+            commonfunct.response(params)
         }
     );
 };
 export function listmore(req: express.Request, res: express.Response, next) {
     // like example commonfunct.customcontainsregexp(req.body.name)
-    var check = { field: [], params: [req, res, next] };
+    var check = { field: [], params: { req, res, next } };
     check.field = ['data'];
-
+    var params = { resp: null, name, res, next };
     if (fields(check)) {
         var question: any = {};
         if (req.body.city) { question.city = commonfunct.customcontainsregexp(req.body.city); }
@@ -37,14 +41,16 @@ export function listmore(req: express.Request, res: express.Response, next) {
         if (req.params.bid) { question.bank_id = req.params.bid; }
         branchesservice.listMore(question).then(
             function (resp) {
-                commonfunct.response(resp, name, res, next)
+                params.resp = resp;
+                commonfunct.response(params)
             }
         );
     }
 };
 export function set(req: express.Request, res: express.Response, next) {
-    var check = { field: [], params: [req, res, next] };
+    var check = { field: [], params: { req, res, next } };
     check.field = ['can_edit_branches'];
+    var params = { resp: null, name, res, next };
     if (fields(check)) {
         var question: any = {};
         var input = req.body;
@@ -52,20 +58,23 @@ export function set(req: express.Request, res: express.Response, next) {
         input.bank = req.params.bid;
         branchesservice.set(question, input).then(
             function (resp) {
-                commonfunct.response(resp, name, res, next)
+                params.resp = resp;
+                commonfunct.response(params)
             }
         );
     }
 };
 export function del(req: express.Request, res: express.Response, next) {
-    var check = { field: [], params: [req, res, next] };
+    var check = { field: [], params: { req, res, next } };
     check.field = ['can_edit_branches'];
+    var params = { resp: null, name, res, next };
     if (fields(check)) {
         var question: any = {};
         if (req.params.id) { question._id = req.params.id; }
         branchesservice.del(question).then(
             function (resp) {
-                commonfunct.response(resp, name, res, next)
+                params.resp = resp;
+                commonfunct.response(params)
             }
         );
     }

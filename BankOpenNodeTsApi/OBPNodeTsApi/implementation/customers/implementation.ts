@@ -6,20 +6,23 @@ var fields = commonfunct.check;
 var name = { customers: null };
 
 export function listbid(req: express.Request, res: express.Response, next) {
-    var check = { field: [], params: [req, res, next] };
+    var params = { resp: null, name, res, next };
+    var check = { field: [], params: {req, res, next} };
     check.field = ['can_edit_customers'];
     if (fields(check)) {
         var question: any = {};
         question.bank_id = req.params.bid;
         customersservice.listBid(question).then(
             function (resp) {
-                commonfunct.response(resp, name, res, next)
+                params.resp = resp;
+                commonfunct.response(params)
             }
         );
     }
 };
 export function listid(req: express.Request, res: express.Response, next) {
-    var check = { field: [], params: [req, res, next] };
+    var params = { resp: null, name, res, next };
+    var check = { field: [], params: {req, res, next} };
     check.field = ['can_edit_customers'];
     if (fields(check)) {
         var question: any = {};
@@ -27,13 +30,15 @@ export function listid(req: express.Request, res: express.Response, next) {
         question._id = req.params.id;
         customersservice.listId(question).then(
             function (resp) {
-                commonfunct.response(resp, name, res, next)
+                params.resp = resp;
+                commonfunct.response(params)
             }
         );
     }
 };
 export function listid2(req: express.Request, res: express.Response, next) {
-    var check = { field: [], params: [req, res, next] };
+    var params = { resp: null, name, res, next };
+    var check = { field: [], params: {req, res, next} };
     check.field = ['customer_id'];
     if (fields(check)) {
         var question: any = {};
@@ -41,13 +46,15 @@ export function listid2(req: express.Request, res: express.Response, next) {
         question._id = commonfunct.bankpermissions(req).customer_id;
         customersservice.listId(question).then(
             function (resp) {
-                commonfunct.response(resp, name, res, next)
+                params.resp = resp;
+                commonfunct.response(params)
             }
         );
     }
 };
 export function listmore(req: express.Request, res: express.Response, next) {
-    var check = { field: [], params: [req, res, next] };
+    var params = { resp: null, name, res, next };
+    var check = { field: [], params: {req, res, next} };
     check.field = ['data', 'can_edit_customers'];
     if (fields(check)) {
         var question: any = {};
@@ -55,14 +62,16 @@ export function listmore(req: express.Request, res: express.Response, next) {
         if (req.params.id) { question._id = req.params.id; }
         customersservice.listMore(question).then(
             function (resp) {
-                commonfunct.response(resp, name, res, next)
+                params.resp = resp;
+                commonfunct.response(params)
             }
         );
     }
 };
 
 export function set(req: express.Request, res: express.Response, next) {
-    var check = { field: [], params: [req, res, next] };
+    var params = { resp: null, name, res, next };
+    var check = { field: [], params: {req, res, next} };
     check.field = ['can_edit_customers'];
     if (fields(check)) {
         var question: any = {};
@@ -71,19 +80,22 @@ export function set(req: express.Request, res: express.Response, next) {
         input.bank_id = req.params.bid;
         customersservice.set(question, input).then(
             function (resp) {
-                commonfunct.response(resp, name, res, next)
+                params.resp = resp;
+                commonfunct.response(params)
             }
         );
     }
 };
 export function del(req: express.Request, res: express.Response, next) {
-    var check = { field: [], params: [req, res, next] };
+    var params = { resp: null, name, res, next };
+    var check = { field: [], params: {req, res, next} };
     check.field = ['can_edit_customers'];
     if (fields(check)) {
         var question: any = {};
         customersservice.del(question).then(
             function (resp) {
-                commonfunct.response(resp, name, res, next)
+                params.resp = resp;
+                commonfunct.response(params)
             }
         );
     }

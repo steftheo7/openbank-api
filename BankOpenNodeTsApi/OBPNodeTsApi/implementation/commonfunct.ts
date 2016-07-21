@@ -110,10 +110,10 @@ export function viewfields(view, type: string) {
 }
 
 //This function is for message error handling before calling the DB
-export function check(checker) {
-    var req = checker.params[0];
-    var res = checker.params[1];
-    var next = checker.params[2];
+export function check(checker:Object) {
+    var req = checker['params'].req;
+    var res = checker['params'].res;
+    var next = checker['params'].next;
     //flag to check if there is an error on not
     var flag: Boolean;
     var bankchecked: Boolean;
@@ -243,7 +243,7 @@ export function check(checker) {
         TransactionAccount: { stat: 400, message: "Transaction Account Error", flag: function (x: Boolean) { return TransactionAccount(x); } }
     };
 
-    for (var message of checker.field) {
+    for (var message of checker['field']) {
         var tempmsg: string = msg(message);
         if (msgdata[tempmsg]) {
             var jsres: any = msgdata[tempmsg];
@@ -260,7 +260,8 @@ export function check(checker) {
     }
     return true;
 }
-export function response(resp, name, res, next) {
+export function response(params: Object) {
+    var resp = params['resp'], name = params['name'], res = params['res'], next = params['next'];
     if (resp['error']) {
         res.status(resp.status).send('Error: ' + resp.error); next(resp.error)
     }

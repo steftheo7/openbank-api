@@ -6,23 +6,28 @@ var fields = commonfunct.check;
 var name = { banks: null };
 
 export function list(req: express.Request, res: express.Response, next) {
+    var params = { resp: null, name, res, next };
     banksservice.listAll().then(
         function (resp) {
-            commonfunct.response(resp, name, res, next)
+            params.resp = resp;
+            commonfunct.response(params)
         }
     );
 };
 export function listid(req: express.Request, res: express.Response, next) {
+    var params = { resp: null, name, res, next };
     var question: any = {};
     if (req.params.id) { question._id = req.params.id; }
     banksservice.listId(question).then(
         function (resp) {
-            commonfunct.response(resp, name, res, next)
+            params.resp = resp;
+            commonfunct.response(params)
         }
     );
 };
 export function listmore(req: express.Request, res: express.Response, next) {
-    var check = { field: [], params: [req, res, next] };
+    var params = { resp: null, name, res, next };
+    var check = { field: [], params: {req, res, next} };
     check.field = ['data'];
     if (fields(check)) {
         var question: any = {};
@@ -31,13 +36,15 @@ export function listmore(req: express.Request, res: express.Response, next) {
         if (req.body.id) { question._id = req.body.id; }
         banksservice.listMore(question).then(
             function (resp) {
-                commonfunct.response(resp, name, res, next)
+                params.resp = resp;
+                commonfunct.response(params)
             }
         );
     }
 };
 export function set(req: express.Request, res: express.Response, next) {
-    var check = { field: [], params: [req, res, next] };
+    var params = { resp: null, name, res, next };
+    var check = { field: [], params: {req, res, next} };
     check.field = ['can_add_bank', 'can_edit_banks'];
     if (fields(check)) {
         var question: any = {};
@@ -45,20 +52,23 @@ export function set(req: express.Request, res: express.Response, next) {
         if (req.params.id) { question._id = req.params.id; }
         banksservice.set(question, input).then(
             function (resp) {
-                commonfunct.response(resp, name, res, next)
+                params.resp = resp;
+                commonfunct.response(params)
             }
         );
     }
 };
 export function del(req: express.Request, res: express.Response, next) {
-    var check = { field: [], params: [req, res, next] };
+    var params = { resp: null, name, res, next };
+    var check = { field: [], params: {req, res, next} };
     check.field = ['can_edit_banks'];
     if (fields(check)) {
         var question: any = {};
         if (req.params.id) { question._id = req.params.id; }
         banksservice.del(question).then(
             function (resp) {
-                commonfunct.response(resp, name, res, next)
+                params.resp = resp;
+                commonfunct.response(params)
             }
         );
     }

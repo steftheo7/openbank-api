@@ -6,26 +6,31 @@ var fields = commonfunct.check;
 var name = { otherAccounts: null };
 
 export function listbid(req: express.Request, res: express.Response, next) {
+    var params = { resp: null, name, res, next };
     var question: any = {};
     question.bank_id = req.params.bid;
     otherAccountsservice.listBid(question).then(
         function (resp) {
-            commonfunct.response(resp, name, res, next)
+            params.resp = resp;
+            commonfunct.response(params)
         }
     );
 };
 export function listid(req: express.Request, res: express.Response, next) {
+    var params = { resp: null, name, res, next };
     var question: any = {};
     question.bank_id = req.params.bid;
     question._id = req.params.id;
     otherAccountsservice.listId(question).then(
         function (resp) {
-            commonfunct.response(resp, name, res, next)
+            params.resp = resp;
+            commonfunct.response(params)
         }
     );
 };
 export function listmore(req: express.Request, res: express.Response, next) {
-    var check = { field: [], params: [req, res, next] };
+    var params = { resp: null, name, res, next };
+    var check = { field: [], params: {req, res, next} };
     check.field = ['data'];
     if (fields(check)) {
         var question: any = {};
@@ -34,27 +39,32 @@ export function listmore(req: express.Request, res: express.Response, next) {
         if (req.params.id) { question._id = req.params.id; }
         otherAccountsservice.listMore(question).then(
             function (resp) {
-                commonfunct.response(resp, name, res, next)
+                params.resp = resp;
+            commonfunct.response(params)
             }
         );
     }
 };
 export function set(req: express.Request, res: express.Response, next) {
+    var params = { resp: null, name, res, next };
     var question: any = {};
     var input = req.body;
     if (req.params.id) { question._id = req.params.id; }
     input.bank = req.params.bid;
     otherAccountsservice.set(question, input).then(
         function (resp) {
-            commonfunct.response(resp, name, res, next)
+            params.resp = resp;
+            commonfunct.response(params)
         });
 };
 export function del(req: express.Request, res: express.Response, next) {
+    var params = { resp: null, name, res, next };
     var question: any = {};
     // like example new RegExp(req.body.name, "i") 
     if (req.params.id) { question._id = req.params.id; }
     otherAccountsservice.del(question).then(
         function (resp) {
-            commonfunct.response(resp, name, res, next)
+            params.resp = resp;
+            commonfunct.response(params)
         });
 };

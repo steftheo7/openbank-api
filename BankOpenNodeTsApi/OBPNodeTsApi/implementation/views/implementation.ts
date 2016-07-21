@@ -21,42 +21,49 @@ export function reqview(req: express.Request, res: express.Response, next) {
 };
 export function listbid(req: express.Request, res: express.Response, next) {
     var question: any = {};
+    var params = { resp: null, name, res, next };
     question.bank_id = req.params.bid;
     question.is_public = true;
     viewsservice.listBid(question).then(
         function (resp) {
-            commonfunct.response(resp, name, res, next)
+            params.resp = resp;
+            commonfunct.response(params)
         }
     );
 };
 export function listid(req: express.Request, res: express.Response, next) {
     //console.log(req.params.id);
+    var params = { resp: null, name, res, next };
     var question: any = {};
     question.bank_id = req.params.bid;
     question.account_id = req.params.acid;
     question._id = req.params.id;
     viewsservice.listId(question).then(
         function (resp) {
-            commonfunct.response(resp, name, res, next)
+            params.resp = resp;
+            commonfunct.response(params)
         }
     );
 };
 
 export function listmore(req: express.Request, res: express.Response, next) {
-    var check = { field: [], params: [req, res, next] };
+    var check = { field: [], params: { req, res, next } };
+    var params = { resp: null, name, res, next };
     check.field = ['data'];
     if (fields(check)) {
         var question: any = {};
         if (req.body.id) { question._id = req.body.id; }
         viewsservice.listMore(question).then(
             function (resp) {
-                commonfunct.response(resp, name, res, next)
+                params.resp = resp;
+                commonfunct.response(params)
             }
         );
     }
 };
 export function set(req: express.Request, res: express.Response, next) {
     var question: any = {};
+    var params = { resp: null, name, res, next };
     var input = req.body;
     //fixes for views
     for (var item in input) {
@@ -80,32 +87,40 @@ export function set(req: express.Request, res: express.Response, next) {
                         var body = { $addToSet: { views_available: resp2['data'].id.toString() } }
                         //..add view id to account
                         accountsservice.setid(quest, body).then(function (resp3) {
-                            if (resp3['data'])
-                                commonfunct.response(resp2, name, res, next)
-                            else
-                                commonfunct.response(resp3, name, res, next)
+                            if (resp3['data']) {
+                                params.resp = resp2;
+                                commonfunct.response(params)
+                            }
+                            else {
+                                params.resp = resp3;
+                                commonfunct.response(params)
+                            }
                         });
                     }
                     else {
-                        commonfunct.response(resp2, name, res, next)
+                        params.resp = resp2;
+                        commonfunct.response(params)
                     }
                 });
             }
             //else error message
             else {
-                commonfunct.response(resp, name, res, next)
+                params.resp = resp;
+                commonfunct.response(params)
             }
         });
     }
     else {
         viewsservice.set(question, input).then(
             function (resp) {
-                commonfunct.response(resp, name, res, next)
+                params.resp = resp;
+                commonfunct.response(params)
             });
     }
 };
 export function del(req: express.Request, res: express.Response, next) {
     var question: any = {};
+    var params = { resp: null, name, res, next };
     question.bank_id = req.params.bid;
     if (req.params.id) { question._id = req.params.id; }
     if (req.params.acid && req.params.id) {
@@ -123,27 +138,34 @@ export function del(req: express.Request, res: express.Response, next) {
                         var body = { $pull: { views_available: req.params.id } }
                         //..add view id to account
                         accountsservice.setid(quest, body).then(function (resp3) {
-                            if (resp3['data'])
-                                commonfunct.response(resp2, name, res, next)
-                            else
-                                commonfunct.response(resp3, name, res, next)
+                            if (resp3['data']) {
+                                params.resp = resp2;
+                                commonfunct.response(params)
+                            }
+                            else {
+                                params.resp = resp3;
+                                commonfunct.response(params)
+                            }
                         });
                     }
                     else {
-                        commonfunct.response(resp2, name, res, next)
+                        params.resp = resp2;
+                        commonfunct.response(params)
                     }
                 });
             }
             //else error message
             else {
-                commonfunct.response(resp, name, res, next)
+                params.resp = resp;
+                commonfunct.response(params)
             }
         });
     }
     else {
         viewsservice.del(question).then(
             function (resp) {
-                commonfunct.response(resp, name, res, next)
+                params.resp = resp;
+                commonfunct.response(params)
             });
     }
 };

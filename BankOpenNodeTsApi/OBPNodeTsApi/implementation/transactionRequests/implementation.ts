@@ -10,14 +10,17 @@ import Q = require('q');
 var name = { 'transaction-requests': null };
 
 export function list(req: express.Request, res: express.Response, next) {
+    var params = { resp: null, name, res, next };
     transactionRequestsservice.listAll().then(
         function (resp) {
-            commonfunct.response(resp, name, res, next)
+            params.resp = resp;
+            commonfunct.response(params)
         }
     );
 };
 export function listmore(req: express.Request, res: express.Response, next) {
-    var check = { field: [], params: [req, res, next] };
+    var params = { resp: null, name, res, next };
+    var check = { field: [], params: {req, res, next} };
     check.field = ['data'];
     if (fields(check)) {
         var question: any = {};
@@ -25,12 +28,14 @@ export function listmore(req: express.Request, res: express.Response, next) {
         if (req.params.id) { question._id = req.params.id; }
         transactionRequestsservice.listMore(question).then(
             function (resp) {
-                commonfunct.response(resp, name, res, next)
+                params.resp = resp;
+                commonfunct.response(params)
             }
         );
     }
 };
 export function set(req: express.Request, res: express.Response, next) {
+    var params = { resp: null, name, res, next };
     function setRequest() {
         input.end_date = new Date().toISOString();
         transactionRequestsservice.set(question, input).then(
@@ -38,7 +43,8 @@ export function set(req: express.Request, res: express.Response, next) {
                 if (resp['data']) {
                     delete resp['data'].supported_challenge_types;
                 }
-                commonfunct.response(resp, name, res, next);
+                params.resp = resp;
+                commonfunct.response(params)
             });
     }
     function transactionRequest() {
@@ -49,7 +55,10 @@ export function set(req: express.Request, res: express.Response, next) {
             transaction.details.posted = new Date().toISOString();
             //missing code for challange check
             transactionRequestsservice.set(question, input).then(function (resp2) {
-                if (resp2['error']) { commonfunct.response(resp2, name, res, next) }
+                if (resp2['error']) {
+                    var params = { resp2, name, res, next };
+                    commonfunct.response(params)
+                }
                 else {
                     question._id = resp2['data'].id.toString();
                     input.status = 'COMPLETED';
@@ -86,7 +95,7 @@ export function set(req: express.Request, res: express.Response, next) {
             });
         }
     }
-    var check = { field: [], params: [req, res, next] };
+    var check = { field: [], params: {req, res, next} };
     check.field = ['data', 'TransactionAccount'];
     if (fields(check)) {
         var question: any = {};
@@ -151,7 +160,8 @@ export function set(req: express.Request, res: express.Response, next) {
                         }
                         else {
                             resp['error'] = "Account not Exist in Path From/Url";
-                            commonfunct.response(resp, name, res, next)
+                            params.resp = resp;
+                            commonfunct.response(params)
                         }
                     });
                 }
@@ -173,7 +183,8 @@ export function set(req: express.Request, res: express.Response, next) {
                     else {
                         delete resp['data'];
                         resp = { error: 'Currency Not Same', status: 400 };
-                        commonfunct.response(resp, name, res, next)
+                        params.resp = resp;
+                        commonfunct.response(params)
                     }
                 }
                 else {
@@ -186,7 +197,8 @@ export function set(req: express.Request, res: express.Response, next) {
                         }
                         else {
                             resp['error'] = "Account not Exist in Path To";
-                            commonfunct.response(resp, name, res, next)
+                            params.resp = resp;
+                            commonfunct.response(params)
                         }
                     });
                 }

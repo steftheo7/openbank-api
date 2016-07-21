@@ -8,18 +8,22 @@ var name = { accounts: null };
 export function getid(req: express.Request, res: express.Response, next) {
     if (req.params.IBAN) {
         var question: any = {};
+        var params = { resp: null, name, res, next };
         question.IBAN = req.params.IBAN.split(' ').join('');
         accountsservice.getId(question).then(function (resp) {
-            commonfunct.response(resp, name, res, next)
+            params.resp = resp;
+            commonfunct.response(params)
         })
     }
     else {
-        commonfunct.response(null, name, res, next)
+        params.resp = null;
+        commonfunct.response(params)
     }
 };
 export function listbid(req: express.Request, res: express.Response, next) {
-    var check = { field: [], params: [req, res, next] };
+    var check = { field: [], params: { req, res, next } };
     check.field = ['customer_id'];
+    var params = { resp: null, name, res, next };
     if (fields(check)) {
         var question: any = [{}];
         if (req.params.bid) {
@@ -32,12 +36,14 @@ export function listbid(req: express.Request, res: express.Response, next) {
             question.map(function (item) { item.callfor = "bankall"; })
         }
         accountsservice.listBid(question).then(function (resp) {
-            commonfunct.response(resp, name, res, next)
+            params.resp = resp;
+            commonfunct.response(params)
         })
     }
 };
 export function listbidprivate(req: express.Request, res: express.Response, next) {
-    var check = { field: [], params: [req, res, next] };
+    var check = { field: [], params: { req, res, next } };
+    var params = { resp: null, name, res, next };
     check.field = ['customer_id'];
     if (fields(check)) {
         var question: any = [{}];
@@ -52,13 +58,15 @@ export function listbidprivate(req: express.Request, res: express.Response, next
         }
         accountsservice.listBid(question).then(
             function (resp) {
-                commonfunct.response(resp, name, res, next)
+                params.resp = resp;
+                commonfunct.response(params)
             }
         );
     }
 };
 export function listbidpublic(req: express.Request, res: express.Response, next) {
     var question: any = [{}];
+    var params = { resp: null, name, res, next };
     if (req.params.bid) {
         question[0].bank_id = req.params.bid;
         question[0].callfor = "public";
@@ -68,12 +76,14 @@ export function listbidpublic(req: express.Request, res: express.Response, next)
     }
     accountsservice.listBid(question).then(
         function (resp) {
-            commonfunct.response(resp, name, res, next)
+            params.resp = resp;
+            commonfunct.response(params)
         }
     );
 };
 export function listidview(req: express.Request, res: express.Response, next) {
     var question: any = {};
+    var params = { resp: null, name: null, res, next };
     question.bank_id = req.params.bid;
     question._id = req.params.id;
     //question.owners = { $in: [commonfunct.bankpermissions(req).customer_id.toString()] };
@@ -81,15 +91,20 @@ export function listidview(req: express.Request, res: express.Response, next) {
     accountsservice.listIdView(question).then(function (resp) {
         if (req.params.scope && req.params.scope == 'views' && resp['data'] && resp['data'].views_available) {
             resp['data'] = resp['data'].views_available;
-            commonfunct.response(resp, { views: null }, res, next)
+            params.resp = resp;
+            params.name = { views: null };
+            commonfunct.response(params)
         }
         else {
-            commonfunct.response(resp, name, res, next)
+            params.resp = resp;
+            params.name = name;
+            commonfunct.response(params)
         }
     });
 };
 export function listidviewpublic(req: express.Request, res: express.Response, next) {
     var question: any = {};
+    var params = { resp: null, name: null, res, next };
     question.bank_id = req.params.bid;
     question._id = req.params.id;
     question.is_public = true;
@@ -97,16 +112,21 @@ export function listidviewpublic(req: express.Request, res: express.Response, ne
     accountsservice.listIdView(question).then(function (resp) {
         if (req.params.scope && req.params.scope == 'views' && resp['data'] && resp['data'].views_available) {
             resp['data'] = resp['data'].views_available;
-            commonfunct.response(resp, { views: null }, res, next)
+            params.resp = resp;
+            params.name = { views: null };
+            commonfunct.response(params)
         }
         else {
-            commonfunct.response(resp, name, res, next)
+            params.resp = resp;
+            params.name = name;
+            commonfunct.response(params)
         }
     });
 };
 export function listmore(req: express.Request, res: express.Response, next) {
     //params by default is those three paraments 
-    var check = { field: [], params: [req, res, next] };
+    var check = { field: [], params: { req, res, next } };
+    var params = { resp: null, name, res, next };
     check.field = ['data'];
     if (fields(check)) {
         var question: any = {};
@@ -117,7 +137,8 @@ export function listmore(req: express.Request, res: express.Response, next) {
         if (req.params.bid) { question.bank_id = req.params.bid; }
         accountsservice.listMore(question).then(
             function (resp) {
-                commonfunct.response(resp, name, res, next)
+                params.resp = resp;
+                commonfunct.response(params)
             }
         );
     }
@@ -126,21 +147,25 @@ export function listmore(req: express.Request, res: express.Response, next) {
 //todo auth
 export function set(req: express.Request, res: express.Response, next) {
     var question: any = {};
+    var params = { resp: null, name, res, next };
     var input = req.body;
     if (req.params.id) { question._id = req.params.id; }
     input.bank = req.params.bid;
     accountsservice.set(question, input).then(
         function (resp) {
-            commonfunct.response(resp, name, res, next)
+            params.resp = resp;
+            commonfunct.response(params)
         }
     );
 };
 export function del(req: express.Request, res: express.Response, next) {
     var question: any = {};
+    var params = { resp: null, name, res, next };
     if (req.params.id) { question._id = req.params.id; }
     accountsservice.del(question).then(
         function (resp) {
-            commonfunct.response(resp, name, res, next)
+            params.resp = resp;
+            commonfunct.response(params)
         }
     );
 };

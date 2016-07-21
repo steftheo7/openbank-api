@@ -6,13 +6,16 @@ var fields = commonfunct.check;
 var name = { users: null };
 
 export function list(req: express.Request, res: express.Response, next) {
+    var params = { resp: null, name, res, next };
     usersservice.listAll().then(
         function (resp) {
-            commonfunct.response(resp, name, res, next)
+            params.resp = resp;
+            commonfunct.response(params)
         }
     );
 };
 export function listmore(req: express.Request, res: express.Response, next) {
+    var params = { resp: null, name, res, next };
     var question: any = {};
     var provider_name = req.header('Auth-Provider-Name');
     var auth_id = req.header('Auth-ID');
@@ -22,12 +25,14 @@ export function listmore(req: express.Request, res: express.Response, next) {
     }
     usersservice.listMore(question).then(
         function (resp) {
-            commonfunct.response(resp, name, res, next)
+            params.resp = resp;
+            commonfunct.response(params)
         }
     );
 };
 export function set(req: express.Request, res: express.Response, next) {
-    var check = { field: [], params: [req, res, next] };
+    var params = { resp: null, name, res, next };
+    var check = { field: [], params: {req, res, next} };
     check.field = ['providers'];
     if (fields(check)) {
         var question: any = {};
@@ -37,17 +42,20 @@ export function set(req: express.Request, res: express.Response, next) {
         if (req.params.id) { question._id = req.params.id }
         usersservice.set(question, input).then(
             function (resp) {
-                commonfunct.response(resp, name, res, next)
+                params.resp = resp;
+                commonfunct.response(params)
             }
         );
     }
 };
 export function del(req: express.Request, res: express.Response, next) {
+    var params = { resp: null, name, res, next };
     var question: any = {};
     if (req.params.id) { question._id = req.params.id; }
     usersservice.del(question).then(
         function (resp) {
-            commonfunct.response(resp, name, res, next)
+            params.resp = resp;
+            commonfunct.response(params)
         }
     );
 };
