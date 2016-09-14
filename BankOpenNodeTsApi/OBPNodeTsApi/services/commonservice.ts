@@ -29,7 +29,8 @@ export function transform(schema) {
     }
     return schema;
 }
-export function answer(err, found, name, deferred) {
+export function answer(params: Object) {
+    var err = params['err'], found = params['found'], name = params['name'], deferred = params['deferred'];
     if (err) {
         if (err.kind == "ObjectId") { deferred.resolve({ error: 'ID with value ' + err.value + ' is Not Valid', status: 400 }); }
         deferred.resolve({ error: err, status: 500 });

@@ -37,7 +37,8 @@ export function listAll() {
         //.populate('other_account', 'text -_id') // only works if we pushed refs to children
         .exec(function (err, found: transactionRequestsmodels.transactionRequestdef[]) {
             found = transform(found);
-            commonservice.answer(err, found, name, deferred);
+            var params = { err, found, name, deferred }; 
+            commonservice.answer(params);
         });
     return deferred.promise;
 }
@@ -50,7 +51,8 @@ export function listMore(string: string) {
         //.populate('other_account', 'text -_id') // only works if we pushed refs to children
         .exec(function (err, found: transactionRequestsmodels.transactionRequestdef[]) {
             found = transform(found);
-            commonservice.answer(err, found, name, deferred);
+            var params = { err, found, name, deferred }; 
+            commonservice.answer(params);
         });
     return deferred.promise;
 }
@@ -64,7 +66,8 @@ export function list(string: string) {
         //.populate('other_account', 'text -_id') // only works if we pushed refs to children
         .exec(function (err, found: transactionRequestsmodels.transactionRequestdef) {
             found = transform(found);
-            commonservice.answer(err, found, name, deferred);
+            var params = { err, found, name, deferred }; 
+            commonservice.answer(params);
         });
     return deferred.promise;
 }

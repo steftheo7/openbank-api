@@ -27,7 +27,8 @@ export function listBid(string: string) {
     themessage.find(string).lean()
         .exec(function (err, found: messagesmodels.messagedef[]) {
             found = transform(found);
-            commonservice.answer(err, found, name, deferred);
+            var params = { err, found, name, deferred }; 
+            commonservice.answer(params);
         });
     return deferred.promise;
 }
@@ -38,7 +39,8 @@ export function listId(string: string) {
         //.populate('type', 'name -_id') // only works if we pushed refs to children
         .exec(function (err, found: messagesmodels.messagedef) {
             found = transform(found);
-            commonservice.answer(err, found, name, deferred);
+            var params = { err, found, name, deferred }; 
+            commonservice.answer(params);
         });
     return deferred.promise;
 }
@@ -50,7 +52,8 @@ export function listMore(string: string) {
         //  .populate('bank_id', 'text -_id') // only works if we pushed refs to children
         .exec(function (err, found: messagesmodels.messagedef[]) {
             found = transform(found);
-            commonservice.answer(err, found, name, deferred);
+            var params = { err, found, name, deferred }; 
+            commonservice.answer(params);
         });
     return deferred.promise;
 }

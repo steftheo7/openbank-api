@@ -27,7 +27,8 @@ export function listAll() {
     theuser.find({}).lean()
         .exec(function (err, found: usersmodels.userdef[]) {
             found = transform(found);
-            commonservice.answer(err, found, name, deferred);
+            var params = { err, found, name, deferred }; 
+            commonservice.answer(params);
         });
     return deferred.promise;
 }
@@ -38,7 +39,8 @@ export function listId(string: string) {
     theuser.findOne(string).lean()
         .exec(function (err, found: usersmodels.userdef) {
             found = transform(found);
-            commonservice.answer(err, found, name, deferred);
+            var params = { err, found, name, deferred }; 
+            commonservice.answer(params);
         });
     return deferred.promise;
 }
@@ -49,7 +51,8 @@ export function listMore(string: string) {
     theuser.findOne({ providers: { $elemMatch: string } }).lean()
         .exec(function (err, found: usersmodels.userdef[]) {
             found = transform(found);
-            commonservice.answer(err, found, name, deferred);
+            var params = { err, found, name, deferred }; 
+            commonservice.answer(params);
         });
     return deferred.promise;
 }
@@ -71,7 +74,8 @@ export function listExist(json: any) {
         .select('providers -_id')
         .exec(function (err, found: usersmodels.userdef[]) {
             found = transform(found);
-            commonservice.answer(err, found, name, deferred);
+            var params = { err, found, name, deferred }; 
+            commonservice.answer(params);
         });
     return deferred.promise;
 }

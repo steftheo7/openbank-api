@@ -52,7 +52,8 @@ export function listBid(string: string) {
         .populate('meta.license', 'text -_id') // only works if we pushed refs to children
         .exec(function (err, found: atmsmodels.atmdef[]) {
             found = transform(found);
-            commonservice.answer(err, found, name, deferred);
+            var params = { err, found, name, deferred }; 
+            commonservice.answer(params);
         });
     return deferred.promise;
 }
@@ -63,7 +64,8 @@ export function listId(string: string) {
         .populate('meta.license', 'text -_id') // only works if we pushed refs to children
         .exec(function (err, found: atmsmodels.atmdef) {
             found = transform(found);
-            commonservice.answer(err, found, name, deferred);
+            var params = { err, found, name, deferred }; 
+            commonservice.answer(params);
         });
     return deferred.promise;
 }
@@ -74,7 +76,8 @@ export function listMore(string: string) {
         .populate('meta.license', 'text -_id') // only works if we pushed refs to children
         .exec(function (err, found: atmsmodels.atmdef[]) {
             found = transform(found);
-            commonservice.answer(err, found, name, deferred);
+            var params = { err, found, name, deferred }; 
+            commonservice.answer(params);
         });
     return deferred.promise;
 }

@@ -68,7 +68,8 @@ export function getId(string: string) {
                 found.id = found._id;
                 delete found._id;
             } catch (err) { };
-            commonservice.answer(err, found, name, deferred);
+            var params = { err, found, name, deferred }; 
+            commonservice.answer(params);
         });
     return deferred.promise;
 }
@@ -94,7 +95,8 @@ export function listBid(json: any) {
         .populate('views_available') // only works if we pushed refs to children
         .exec(function (err, found: accountsmodels.accountdef[]) {
             found = transform(found);
-            commonservice.answer(err, found, name, deferred);
+            var params = { err, found, name, deferred }; 
+            commonservice.answer(params);
         });
     return deferred.promise;
 }
@@ -107,7 +109,8 @@ export function listId(string: string) {
         .populate('views_available')
         .exec(function (err, found) {
             found = transform(found);
-            commonservice.answer(err, found, name, deferred);
+            var params = { err, found, name, deferred }; 
+            commonservice.answer(params);
         });
     return deferred.promise;
 }
@@ -120,12 +123,18 @@ export function listIdView(string) {
         .select('label number owners type balance IBAN swift_bic views_available bank_id')
         .populate('views_available') // only works if we pushed refs to children
         .exec(function (err, found: accountsmodels.accountdef) {
+            var params = { err: null, found: null, name: null, deferred };
             found = transform(found);
             found = checkview(found, view);
-            if (found && !found.views_available[0])
-            { commonservice.answer("No view available", null, null, deferred); }
+            if (found && !found.views_available[0]) {
+                params.err = "No view available";
+                commonservice.answer(params);
+            }
             else {
-                commonservice.answer(err, found, name, deferred);
+                params.err = err;
+                params.found = found;
+                params.name = name;
+                commonservice.answer(params);
             }
 
         });
@@ -138,7 +147,8 @@ export function listMore(string: string) {
         .populate('views_available') // only works if we pushed refs to children
         .exec(function (err, found: accountsmodels.accountdef[]) {
             found = transform(found);
-            commonservice.answer(err, found, name, deferred);
+            var params = { err, found, name, deferred }; 
+            commonservice.answer(params);
         });
     return deferred.promise;
 }
@@ -146,7 +156,7 @@ export function listMore(string: string) {
 export function set(string: string, object: accountsmodels.accountdef) {
     var deferred = Q.defer();
     var insert = accountmodel.set(object);
-    if (insert.IBAN){insert.IBAN = insert.IBAN.split(' ').join('')};
+    if (insert.IBAN) { insert.IBAN = insert.IBAN.split(' ').join('') };
     try { insert.balance.amount = parseFloat((insert.balance.amount * 100).toFixed()); } catch (err) { };
     var theaccount = mongoose.model('account', accountmodel._schema);
     if (JSON.stringify(string) === "{}") {

@@ -30,7 +30,8 @@ export function reqView(request) {
     theview.findOne({ $or: tempor }).lean()
         .exec(function (err, found: viewsmodels.viewdef) {
             found = transform(found);
-            commonservice.answer(err, found, name, deferred);
+            var params = { err, found, name, deferred }; 
+            commonservice.answer(params);
         });
     return deferred.promise;
 }
@@ -40,7 +41,8 @@ export function listBid(string: string) {
     theview.find(string).lean()
         .exec(function (err, found: viewsmodels.viewdef[]) {
             found = transform(found);
-            commonservice.answer(err, found, name, deferred);
+            var params = { err, found, name, deferred }; 
+            commonservice.answer(params);
         });
     return deferred.promise;
 }
@@ -51,7 +53,8 @@ export function listId(string: string) {
     theview.findOne(string).lean()
         .exec(function (err, found: viewsmodels.viewdef) {
             found = transform(found);
-            commonservice.answer(err, found, name, deferred);
+            var params = { err, found, name, deferred }; 
+            commonservice.answer(params);
         });
     return deferred.promise;
 }
@@ -62,7 +65,8 @@ export function listMore(string: string) {
     theview.find(string).lean()
         .exec(function (err, found: viewsmodels.viewdef[]) {
             found = transform(found);
-            commonservice.answer(err, found, name, deferred);
+            var params = { err, found, name, deferred }; 
+            commonservice.answer(params);
         });
     return deferred.promise;
 }

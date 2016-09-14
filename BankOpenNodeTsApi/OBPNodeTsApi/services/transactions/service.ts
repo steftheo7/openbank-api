@@ -69,7 +69,8 @@ export function listAll() {
         .populate('metadata.where', 'text -_id') // only works if we pushed refs to children
         .exec(function (err, found: transactionsmodels.transactiondef[]) {
             found = transform(found);
-            commonservice.answer(err, found, name, deferred);
+            var params = { err, found, name, deferred }; 
+            commonservice.answer(params);
         });
     return deferred.promise;
 }
@@ -91,7 +92,8 @@ export function listMore(string: string, paraments) {
         .populate('metadata.where', 'text -_id') // only works if we pushed refs to children
         .exec(function (err, found: transactionsmodels.transactiondef[]) {
             found = transform(found);
-            commonservice.answer(err, found, name, deferred);
+            var params = { err, found, name, deferred }; 
+            commonservice.answer(params);
         });
     return deferred.promise;
 }
@@ -116,7 +118,8 @@ export function list(string) {
         .populate('metadata.where', 'text -_id') // only works if we pushed refs to children
         .exec(function (err, found: transactionsmodels.transactiondef) {
             found = transform(found);
-            commonservice.answer(err, found, name, deferred);
+            var params = { err, found, name, deferred }; 
+            commonservice.answer(params);
         });
     return deferred.promise;
 }

@@ -27,7 +27,8 @@ export function listAll() {
     themetadata.find({}).lean()
         .exec(function (err, found: metadatasmodels.metadatadef[]) {
             found = transform(found);
-            commonservice.answer(err, found, name, deferred);
+            var params = { err, found, name, deferred }; 
+            commonservice.answer(params);
         });
     return deferred.promise;
 }
@@ -38,7 +39,8 @@ export function listMore(string) {
     themetadata.find(string).lean()
         .exec(function (err, found: metadatasmodels.metadatadef[]) {
             found = transform(found);
-            commonservice.answer(err, found, name, deferred);
+            var params = { err, found, name, deferred }; 
+            commonservice.answer(params);
         });
     return deferred.promise;
 }
@@ -49,7 +51,8 @@ export function list(string: string) {
     themetadata.findOne(string).lean()
         .exec(function (err, found: metadatasmodels.metadatadef) {
             found = transform(found);
-            commonservice.answer(err, found, name, deferred);
+            var params = { err, found, name, deferred }; 
+            commonservice.answer(params);
         });
     return deferred.promise;
 }

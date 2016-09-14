@@ -26,7 +26,8 @@ export function listBid(string: string) {
     thecustomer.find(string).lean()
         .exec(function (err, found: customersmodels.customerdef[]) {
             found = transform(found);
-            commonservice.answer(err, found, name, deferred);
+            var params = { err, found, name, deferred };
+            commonservice.answer(params);
         });
     return deferred.promise;
 }
@@ -36,7 +37,8 @@ export function listId(string: string) {
     thecustomer.findOne(string).lean()
         .exec(function (err, found: customersmodels.customerdef) {
             found = transform(found);
-            commonservice.answer(err, found, name, deferred);
+            var params = { err, found, name, deferred };
+            commonservice.answer(params);
         });
     return deferred.promise;
 }
@@ -46,7 +48,8 @@ export function listMore(string: string) {
     thecustomer.find(string).lean()
         .exec(function (err, found: customersmodels.customerdef[]) {
             found = transform(found);
-            commonservice.answer(err, found, name, deferred);
+            var params = { err, found, name, deferred };
+            commonservice.answer(params);
         });
     return deferred.promise;
 }

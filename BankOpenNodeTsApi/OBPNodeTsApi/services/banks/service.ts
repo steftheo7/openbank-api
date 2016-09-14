@@ -26,7 +26,8 @@ export function listAll() {
     thebank.find({}).lean()
         .exec(function (err, found: banksmodels.bankdef[]) {
             found = transform(found);
-            commonservice.answer(err, found, name, deferred);
+            var params = { err, found, name, deferred };
+            commonservice.answer(params);
         });
     return deferred.promise;
 }
@@ -37,7 +38,8 @@ export function listId(string: string) {
     thebank.findOne(string).lean()
         .exec(function (err, found: banksmodels.bankdef) {
             found = transform(found);
-            commonservice.answer(err, found, name, deferred);
+            var params = { err, found, name, deferred };
+            commonservice.answer(params);
         });
     return deferred.promise;
 }
@@ -48,7 +50,8 @@ export function listMore(string: string) {
     thebank.find(string).lean()
         .exec(function (err, found: banksmodels.bankdef[]) {
             found = transform(found);
-            commonservice.answer(err, found, name, deferred);
+            var params = { err, found, name, deferred };
+            commonservice.answer(params);
         });
     return deferred.promise;
 }
