@@ -12,6 +12,8 @@ import cookieParser = require('cookie-parser')
 import passport = require('passport');
 import validator = require('validator');
 import transactionbot = require('./services/transactionbot');
+import branchesupdate = require('./services/branchesupdate');
+import atmsupdate = require('./services/atmsupdate');
 var middleware = require('swagger-express-middleware');
 
 // This line is from the Node.js HTTPS documentation.
@@ -131,8 +133,14 @@ if ('development' == app.get('env')) {
     app.use(errorhandler());
 }
 
-setInterval(transactionbot.set, 10000);
-
+setInterval(transactionbot.set, 1000*10);
+setInterval( function(){ 
+    var hour = new Date().getHours();
+    if (hour >= 3 && hour < 4) {
+        atmsupdate.set;
+        branchesupdate.set;  
+    }
+} , 1000*60*59);
 http.createServer(app).listen(app.get('port'), function () {
     console.log('Express server listening on port ' + app.get('port'));
 });

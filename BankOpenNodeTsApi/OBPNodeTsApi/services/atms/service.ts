@@ -5,7 +5,7 @@ import config = require('config');
 import mongoose = require('mongoose');
 import atmsmodels = require('../../models/atms/model');
 import commonservice = require('../../services/commonservice');
-var atmmodel = new atmsmodels.atm();
+export var atmmodel = new atmsmodels.atm();
 var name = 'Atm';
 //Transform
 export function transform(schema) {

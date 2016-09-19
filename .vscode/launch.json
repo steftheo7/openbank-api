@@ -49,7 +49,7 @@
 			"request": "attach",
 			"port": 5858,
 			"address": "localhost",
-			"restart": false,
+			"restart": true,
 			"sourceMaps": true,
 			"outDir": null,
 			"localRoot": "${workspaceRoot}/BankOpenNodeTsApi/OBPNodeTsApi/",

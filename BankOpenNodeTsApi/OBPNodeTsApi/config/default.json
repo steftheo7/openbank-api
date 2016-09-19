@@ -23,11 +23,11 @@
     }
   },
   "branchesservice": {
-    "url": "https://www.nbg.gr/branchibankpass/equeueing/api/eQueueing/areaBranches",
+    "url": "https://www.nbg.gr/Branchibankpass/equeuingapi/api/eQueueing/areaBranches",
     "bankcode": 111
   },
   "atmsservice": {
-    "url": "https://www.nbg.gr/branchibankpass/equeueing/api/eQueueing/areaAtms",
+    "url": "https://www.nbg.gr/Branchibankpass/equeuingapi/api/eQueueing/areaAtms",
     "bankcode": 111
   }
 }

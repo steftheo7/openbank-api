@@ -21,6 +21,7 @@ export function transform(schema) {
         delete ret.__v;
         delete ret.createdAt;
         delete ret.updatedAt;
+        
     }
     if (schema) {
         if (schema.constructor === Object) { change(schema); }

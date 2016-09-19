@@ -5,7 +5,7 @@ import config = require('config');
 import mongoose = require('mongoose');
 import branchesmodels = require('../../models/branches/model');
 import commonservice = require('../../services/commonservice');
-var branchemodel = new branchesmodels.branche();
+export var branchemodel = new branchesmodels.branche();
 var name = 'Branch';
 //Transform
 export function transform(schema) {
@@ -51,7 +51,7 @@ export function listBid(string: string) {
         .populate('meta.license', 'text -_id') // only works if we pushed refs to children
         .exec(function (err, found: branchesmodels.branchedef[]) {
             found = transform(found);
-            var params = { err, found, name, deferred }; 
+            var params = { err, found, name, deferred };
             commonservice.answer(params);
         });
     return deferred.promise;
@@ -63,7 +63,7 @@ export function listId(string: string) {
         .populate('meta.license', 'text -_id') // only works if we pushed refs to children
         .exec(function (err, found: branchesmodels.branchedef) {
             found = transform(found);
-            var params = { err, found, name, deferred }; 
+            var params = { err, found, name, deferred };
             commonservice.answer(params);
         });
     return deferred.promise;
@@ -76,7 +76,7 @@ export function listMore(string: string) {
         .populate('meta.license', 'text -_id') // only works if we pushed refs to children
         .exec(function (err, found: branchesmodels.branchedef[]) {
             found = transform(found);
-            var params = { err, found, name, deferred }; 
+            var params = { err, found, name, deferred };
             commonservice.answer(params);
         });
     return deferred.promise;
