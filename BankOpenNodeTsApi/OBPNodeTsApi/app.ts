@@ -137,8 +137,8 @@ setInterval(transactionbot.set, 1000*10);
 setInterval( function(){ 
     var hour = new Date().getHours();
     if (hour >= 3 && hour < 4) {
-        atmsupdate.set;
-        branchesupdate.set;  
+        atmsupdate.set();
+        branchesupdate.set();  
     }
 } , 1000*60*59);
 http.createServer(app).listen(app.get('port'), function () {
